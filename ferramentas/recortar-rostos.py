@@ -23,7 +23,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-PROPORCAO = 4 / 3          # proporção do card no site
+PROPORCAO = 4 / 5          # proporção do card no site (retrato)
 MARGEM = 1.35              # folga em volta do rosto, animal de frente
 MARGEM_PERFIL = 0.95       # folga menor quando o animal está de perfil
 CLASSES_ANIMAIS = {15, 16}  # COCO: 15 = cat, 16 = dog
