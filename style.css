@@ -18,7 +18,11 @@ body {
 }
 
 .hero {
-  background: linear-gradient(135deg, var(--terracota) 0%, var(--terracota-escuro) 100%);
+  background-color: var(--terracota-escuro);
+  background-image:
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><g fill="white" fill-opacity="0.14"><ellipse cx="30" cy="38" rx="10" ry="8"/><ellipse cx="18" cy="24" rx="4.5" ry="6"/><ellipse cx="28" cy="16" rx="4.5" ry="6"/><ellipse cx="41" cy="18" rx="4.5" ry="6"/><ellipse cx="45" cy="30" rx="4.5" ry="6"/></g></svg>'),
+    linear-gradient(135deg, var(--terracota) 0%, var(--terracota-escuro) 100%);
+  background-size: 60px 60px, auto;
   color: white;
   padding: 1.2rem 1.5rem;
   text-align: center;
