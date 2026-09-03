@@ -24,6 +24,7 @@
     "porte": "Médio",
     "status": "Disponível",
     "foto": "cristal.png",
+    "enquadramento": "baixo-esquerda",
     "descricao": ""
   },
   {
@@ -114,6 +115,7 @@
     "porte": "Médio",
     "status": "Disponível",
     "foto": "apolo.jpg",
+    "enquadramento": "topo-esquerda",
     "descricao": ""
   },
   {
@@ -168,6 +170,7 @@
     "porte": "Médio",
     "status": "Disponível",
     "foto": "hulk.jpg",
+    "enquadramento": "centro",
     "descricao": ""
   },
   {

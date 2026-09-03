@@ -53,13 +53,24 @@ function renderStats(animais) {
   `;
 }
 
+// enquadramento: como a foto é cortada no card, pra dar destaque ao rosto do animal.
+// Editável por animal na planilha (coluna "enquadramento"), combinando:
+// topo/centro/baixo + esquerda/centro/direita (ex.: "topo-esquerda"). Deixe em
+// branco para usar o padrão (funciona bem pra a maioria das fotos de rosto).
+const ENQUADRAMENTOS = {
+  "topo-esquerda": "20% 15%", "topo": "center 15%", "topo-direita": "80% 15%",
+  "esquerda": "20% center", "centro": "center center", "direita": "80% center",
+  "baixo-esquerda": "20% 80%", "baixo": "center 80%", "baixo-direita": "80% 80%",
+};
+
 function cardHTML(a) {
   const adotado = a.status === "Adotado";
+  const posicao = ENQUADRAMENTOS[(a.enquadramento || "").toLowerCase()] || "center 25%";
   return `
     <div class="card">
       <div class="card-photo">
         <span class="badge ${adotado ? "adotado" : "disponivel"}">${adotado ? "Adotado" : "Disponível"}</span>
-        <img src="${urlFoto(a.foto)}" alt="Foto de ${a.nome}" loading="lazy">
+        <img src="${urlFoto(a.foto)}" alt="Foto de ${a.nome}" loading="lazy" style="object-position: ${posicao}">
       </div>
       <div class="card-body">
         <h3>${a.nome}</h3>
