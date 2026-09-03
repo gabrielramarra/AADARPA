@@ -6,6 +6,10 @@
   --verde: #4a7c59;
   --cinza: #75838d;
   --borda: #dbe9f2;
+  --roxo: #8b5fbf;
+  --rosa: #e0729c;
+  --verde-claro: #9bd6a4;
+  --verde-escuro: #2f5940;
 }
 
 * { box-sizing: border-box; }
@@ -110,6 +114,27 @@ main { max-width: 72rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
   background: var(--terracota);
   border-color: var(--terracota);
   color: white;
+}
+#filtro-sexo button[data-sexo=""].active,
+#filtro-porte button[data-porte=""].active {
+  background: var(--roxo);
+  border-color: var(--roxo);
+}
+#filtro-sexo button[data-sexo="Fêmea"].active {
+  background: var(--rosa);
+  border-color: var(--rosa);
+}
+#filtro-porte button[data-porte="Pequeno"].active {
+  background: var(--verde-claro);
+  border-color: var(--verde-claro);
+}
+#filtro-porte button[data-porte="Médio"].active {
+  background: var(--verde);
+  border-color: var(--verde);
+}
+#filtro-porte button[data-porte="Grande"].active {
+  background: var(--verde-escuro);
+  border-color: var(--verde-escuro);
 }
 
 .contador { color: var(--cinza); font-size: .9rem; margin: 1rem 0; }
