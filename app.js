@@ -82,7 +82,7 @@ function cardHTML(a) {
   return `
     <div class="card">
       <div class="card-photo">
-        <span class="badge ${adotado ? "adotado" : "disponivel"}">${adotado ? "Adotado" : "Disponível"}</span>
+        <span class="badge ${adotado ? "adotado" : "disponivel"}">${adotado ? "Adotado(a)" : "Disponível"}</span>
         <img src="${urlFoto(a.foto)}" alt="Foto de ${a.nome}" loading="lazy" style="${estilo}">
       </div>
       <div class="card-body">
