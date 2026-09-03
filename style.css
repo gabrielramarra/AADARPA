@@ -10,6 +10,7 @@
   --rosa: #e0729c;
   --verde-claro: #6eaf7d;
   --verde-escuro: #2f5940;
+  --vermelho-coracao: #e2576b;
 }
 
 * { box-sizing: border-box; }
@@ -192,7 +193,13 @@ main { max-width: 72rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
   color: white;
 }
 .badge.disponivel { background: var(--verde); }
-.badge.adotado { background: var(--cinza); }
+.badge.adotado {
+  background: var(--vermelho-coracao);
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+}
+.badge.adotado::before { content: "♥"; }
 /* overflow: hidden é o que impede a foto ampliada pelo zoom de vazar para fora
    da própria caixa e cobrir o nome do animal, mantendo todas as thumbnails
    exatamente do mesmo tamanho. */
