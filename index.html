@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adote um Amigo · AADARPA</title>
+<link rel="icon" href="logo.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-content">
+      <img class="logo" src="logo.png" alt="AADARPA - Abrigo dos Animais Refugados">
+      <p class="eyebrow">Goiânia · GO</p>
+      <h1>Adote um amigo. Transforme uma vida.</h1>
+      <p class="subtitle">Cada animal aqui tem uma história única e está esperando por uma família que o ame para sempre.</p>
+      <a class="cta" href="https://www.instagram.com/abrigodosanimaisrefugados/" target="_blank" rel="noopener">Quero adotar</a>
+    </div>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <main>
+    <div class="filters">
+      <input type="search" id="busca" placeholder="Buscar pelo nome...">
+      <div class="filter-group" id="filtro-sexo">
+        <button data-sexo="" class="active">Todos</button>
+        <button data-sexo="Fêmea">Fêmeas</button>
+        <button data-sexo="Macho">Machos</button>
+      </div>
+      <div class="filter-group" id="filtro-porte">
+        <button data-porte="" class="active">Todo porte</button>
+        <button data-porte="Pequeno">Pequeno</button>
+        <button data-porte="Médio">Médio</button>
+        <button data-porte="Grande">Grande</button>
+      </div>
+    </div>
+    <p class="contador" id="contador"></p>
+    <div class="grid" id="grid"></div>
+    <p class="vazio" id="vazio" hidden>Nenhum animal encontrado com esses filtros.</p>
+  </main>
+
+  <footer>
+    <p>Todos os pets são castrados, vacinados e estão prontos para receber muito amor.</p>
+    <p><a href="https://www.instagram.com/abrigodosanimaisrefugados/" target="_blank" rel="noopener">@abrigodosanimaisrefugados</a></p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

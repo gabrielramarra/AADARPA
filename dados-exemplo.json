@@ -1,0 +1,344 @@
+[
+  {
+    "nome": "Branca",
+    "sexo": "Fêmea",
+    "idade": "8 anos",
+    "porte": "Grande",
+    "status": "Disponível",
+    "foto": "branca.png",
+    "descricao": ""
+  },
+  {
+    "nome": "Cinza",
+    "sexo": "Fêmea",
+    "idade": "6 anos",
+    "porte": "Médio",
+    "status": "Disponível",
+    "foto": "cinza.jpg",
+    "descricao": ""
+  },
+  {
+    "nome": "Cristal",
+    "sexo": "Fêmea",
+    "idade": "7 anos",
+    "porte": "Médio",
+    "status": "Disponível",
+    "foto": "cristal.png",
+    "descricao": ""
+  },
+  {
+    "nome": "Dandara",
+    "sexo": "Fêmea",
+    "idade": "9 anos",
+    "porte": "Médio",
+    "status": "Disponível",
+    "foto": "dandara.jpg",
+    "descricao": ""
+  },
+  {
+    "nome": "Fiona",
+    "sexo": "Fêmea",
+    "idade": "5 anos",
+    "porte": "Grande",
+    "status": "Disponível",
+    "foto": "fiona.jpg",
+    "descricao": ""
+  },
+  {
+    "nome": "Glorinha",
+    "sexo": "Fêmea",
+    "idade": "7 anos",
+    "porte": "Médio",
+    "status": "Disponível",
+    "foto": "glorinha.png",
+    "descricao": ""
+  },
+  {
+    "nome": "Juju",
+    "sexo": "Fêmea",
+    "idade": "7 anos",
+    "porte": "Médio",
+    "status": "Disponível",
+    "foto": "juju.jpg",
+    "descricao": ""
+  },
+  {
+    "nome": "Lasanha",
+    "sexo": "Fêmea",
+    "idade": "4 anos",
+    "porte": "Médio",
+    "status": "Disponível",
+    "foto": "lasanha.jpg",
+    "descricao": ""
+  },
+  {
+    "nome": "Luana",
+    "sexo": "Fêmea",
+    "idade": "4 anos",
+    "porte": "Médio",
+    "status": "Disponível",
+    "foto": "luana.png",
+    "descricao": ""
+  },
+  {
+    "nome": "Margô",
+    "sexo": "Fêmea",
+    "idade": "5 anos",
+    "porte": "Médio",
+    "status": "Disponível",
+    "foto": "margo.jpg",
+    "descricao": ""
+  },
+  {
+    "nome": "Riona",
+    "sexo": "Fêmea",
+    "idade": "5 anos",
+    "porte": "Grande",
+    "status": "Disponível",
+    "foto": "riona.jpg",
+    "descricao": ""
+  },
+  {
+    "nome": "Tigrona",
+    "sexo": "Fêmea",
+    "idade": "8 anos",
+    "porte": "Grande",
+    "status": "Disponível",
+    "foto": "tigrona.png",
+    "descricao": ""
+  },
+  {
+    "nome": "Apolo",
+    "sexo": "Macho",
+    "idade": "4 anos",
+    "porte": "Médio",
+    "status": "Disponível",
+    "foto": "apolo.jpg",
+    "descricao": ""
+  },
+  {
+    "nome": "Bob",
+    "sexo": "Macho",
+    "idade": "5 anos",
+    "porte": "Médio",
+    "status": "Disponível",
+    "foto": "bob.png",
+    "descricao": ""
+  },
+  {
+    "nome": "Bob Dilan",
+    "sexo": "Macho",
+    "idade": "5 anos",
+    "porte": "Médio",
+    "status": "Disponível",
+    "foto": "bob-dilan.png",
+    "descricao": ""
+  },
+  {
+    "nome": "Bruce",
+    "sexo": "Macho",
+    "idade": "4 anos",
+    "porte": "Médio",
+    "status": "Disponível",
+    "foto": "bruce.png",
+    "descricao": ""
+  },
+  {
+    "nome": "Cabeção",
+    "sexo": "Macho",
+    "idade": "4 anos",
+    "porte": "Médio",
+    "status": "Disponível",
+    "foto": "cabecao.png",
+    "descricao": ""
+  },
+  {
+    "nome": "Chuvisco",
+    "sexo": "Macho",
+    "idade": "5 anos",
+    "porte": "Grande",
+    "status": "Disponível",
+    "foto": "chuvisco.png",
+    "descricao": ""
+  },
+  {
+    "nome": "Hulk",
+    "sexo": "Macho",
+    "idade": "4 anos",
+    "porte": "Médio",
+    "status": "Disponível",
+    "foto": "hulk.jpg",
+    "descricao": ""
+  },
+  {
+    "nome": "Joca",
+    "sexo": "Macho",
+    "idade": "8 anos",
+    "porte": "Médio",
+    "status": "Disponível",
+    "foto": "joca.png",
+    "descricao": ""
+  },
+  {
+    "nome": "Jorge",
+    "sexo": "Macho",
+    "idade": "5 anos",
+    "porte": "Grande",
+    "status": "Disponível",
+    "foto": "jorge.jpg",
+    "descricao": ""
+  },
+  {
+    "nome": "Negão",
+    "sexo": "Macho",
+    "idade": "6 anos",
+    "porte": "Grande",
+    "status": "Disponível",
+    "foto": "negao.png",
+    "descricao": ""
+  },
+  {
+    "nome": "Pandi",
+    "sexo": "Macho",
+    "idade": "6 anos",
+    "porte": "Médio",
+    "status": "Disponível",
+    "foto": "pandi.jpg",
+    "descricao": ""
+  },
+  {
+    "nome": "Pingo Preto",
+    "sexo": "Macho",
+    "idade": "4 anos",
+    "porte": "Pequeno",
+    "status": "Disponível",
+    "foto": "pingo-preto.png",
+    "descricao": ""
+  },
+  {
+    "nome": "Poker",
+    "sexo": "Macho",
+    "idade": "7 anos",
+    "porte": "Grande",
+    "status": "Disponível",
+    "foto": "poker.png",
+    "descricao": ""
+  },
+  {
+    "nome": "Pretinho",
+    "sexo": "Macho",
+    "idade": "4 anos",
+    "porte": "Médio",
+    "status": "Disponível",
+    "foto": "pretinho.jpg",
+    "descricao": ""
+  },
+  {
+    "nome": "Russo",
+    "sexo": "Macho",
+    "idade": "5 anos",
+    "porte": "Grande",
+    "status": "Disponível",
+    "foto": "russo.jpg",
+    "descricao": ""
+  },
+  {
+    "nome": "Scooby",
+    "sexo": "Macho",
+    "idade": "4 anos",
+    "porte": "Grande",
+    "status": "Disponível",
+    "foto": "scooby.jpg",
+    "descricao": ""
+  },
+  {
+    "nome": "Toquinho",
+    "sexo": "Macho",
+    "idade": "5 anos",
+    "porte": "Médio",
+    "status": "Disponível",
+    "foto": "toquinho.jpg",
+    "descricao": ""
+  },
+  {
+    "nome": "Zion",
+    "sexo": "Macho",
+    "idade": "1 ano",
+    "porte": "Médio",
+    "status": "Disponível",
+    "foto": "zion.jpg",
+    "descricao": ""
+  },
+  {
+    "nome": "Romeu",
+    "sexo": "Macho",
+    "idade": "7 anos",
+    "porte": "Pequeno",
+    "status": "Disponível",
+    "foto": "romeu.png",
+    "descricao": ""
+  },
+  {
+    "nome": "Boneca",
+    "sexo": "Fêmea",
+    "idade": "",
+    "porte": "",
+    "status": "Adotado",
+    "foto": "boneca.jpg",
+    "descricao": ""
+  },
+  {
+    "nome": "Lorena Branca",
+    "sexo": "Fêmea",
+    "idade": "",
+    "porte": "",
+    "status": "Adotado",
+    "foto": "lorena-branca.png",
+    "descricao": ""
+  },
+  {
+    "nome": "Lucia",
+    "sexo": "Fêmea",
+    "idade": "",
+    "porte": "",
+    "status": "Adotado",
+    "foto": "lucia.jpg",
+    "descricao": ""
+  },
+  {
+    "nome": "Gaara",
+    "sexo": "Macho",
+    "idade": "",
+    "porte": "",
+    "status": "Adotado",
+    "foto": "gaara.png",
+    "descricao": ""
+  },
+  {
+    "nome": "Jack",
+    "sexo": "Macho",
+    "idade": "",
+    "porte": "",
+    "status": "Adotado",
+    "foto": "jack.jpg",
+    "descricao": ""
+  },
+  {
+    "nome": "Zé",
+    "sexo": "Macho",
+    "idade": "",
+    "porte": "",
+    "status": "Adotado",
+    "foto": "ze.png",
+    "descricao": ""
+  },
+  {
+    "nome": "Pumba",
+    "sexo": "Macho",
+    "idade": "7 anos",
+    "porte": "Pequeno",
+    "status": "Disponível",
+    "foto": "",
+    "descricao": ""
+  }
+]
