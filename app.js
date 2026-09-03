@@ -53,24 +53,37 @@ function renderStats(animais) {
   `;
 }
 
-// enquadramento: como a foto é cortada no card, pra dar destaque ao rosto do animal.
+// enquadramento: onde fica o rosto do animal na foto, pra centralizar o corte e o zoom.
 // Editável por animal na planilha (coluna "enquadramento"), combinando:
-// topo/centro/baixo + esquerda/centro/direita (ex.: "topo-esquerda"). Deixe em
-// branco para usar o padrão (funciona bem pra a maioria das fotos de rosto).
+// topo/centro/baixo + esquerda/centro/direita (ex.: "topo-esquerda"). Pra ajuste
+// fino também aceita coordenadas diretas, ex.: "35% 60%". Em branco usa o padrão.
 const ENQUADRAMENTOS = {
-  "topo-esquerda": "20% 15%", "topo": "center 15%", "topo-direita": "80% 15%",
-  "esquerda": "20% center", "centro": "center center", "direita": "80% center",
-  "baixo-esquerda": "20% 80%", "baixo": "center 80%", "baixo-direita": "80% 80%",
+  "topo-esquerda": [20, 15], "topo": [50, 15], "topo-direita": [80, 15],
+  "esquerda": [20, 50], "centro": [50, 50], "direita": [80, 50],
+  "baixo-esquerda": [20, 80], "baixo": [50, 80], "baixo-direita": [80, 80],
 };
+
+function focoFoto(a) {
+  const v = (a.enquadramento || "").trim().toLowerCase();
+  if (ENQUADRAMENTOS[v]) return ENQUADRAMENTOS[v];
+  const custom = v.match(/^(\d{1,3})%?\s+(\d{1,3})%?$/);
+  if (custom) return [Number(custom[1]), Number(custom[2])];
+  return [50, 25];
+}
 
 function cardHTML(a) {
   const adotado = a.status === "Adotado";
-  const posicao = ENQUADRAMENTOS[(a.enquadramento || "").toLowerCase()] || "center 25%";
+  const [x, y] = focoFoto(a);
+  // zoom: quanto aproximar do rosto (1 = sem zoom). Coluna "zoom" na planilha, ex.: 1.5
+  // transform-origin fica sempre no centro: object-position já trouxe o rosto pro
+  // meio da caixa, então o zoom amplia a partir dali (não do ponto na imagem original).
+  const zoom = Math.max(1, parseFloat(a.zoom) || 1);
+  const estilo = `object-position:${x}% ${y}%; transform:scale(${zoom});`;
   return `
     <div class="card">
       <div class="card-photo">
         <span class="badge ${adotado ? "adotado" : "disponivel"}">${adotado ? "Adotado" : "Disponível"}</span>
-        <img src="${urlFoto(a.foto)}" alt="Foto de ${a.nome}" loading="lazy" style="object-position: ${posicao}">
+        <img src="${urlFoto(a.foto)}" alt="Foto de ${a.nome}" loading="lazy" style="${estilo}">
       </div>
       <div class="card-body">
         <h3>${a.nome}</h3>
