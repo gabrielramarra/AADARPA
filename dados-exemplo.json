@@ -24,8 +24,6 @@
     "porte": "Médio",
     "status": "Disponível",
     "foto": "cristal.png",
-    "enquadramento": "35% 68%",
-    "zoom": 1.4,
     "descricao": ""
   },
   {
@@ -53,8 +51,6 @@
     "porte": "Médio",
     "status": "Disponível",
     "foto": "glorinha.png",
-    "enquadramento": "40% 55%",
-    "zoom": 1.3,
     "descricao": ""
   },
   {
@@ -64,8 +60,6 @@
     "porte": "Médio",
     "status": "Disponível",
     "foto": "juju.jpg",
-    "enquadramento": "50% 40%",
-    "zoom": 1.3,
     "descricao": ""
   },
   {
@@ -75,8 +69,6 @@
     "porte": "Médio",
     "status": "Disponível",
     "foto": "lasanha.jpg",
-    "enquadramento": "38% 18%",
-    "zoom": 1.7,
     "descricao": ""
   },
   {
@@ -113,8 +105,6 @@
     "porte": "Grande",
     "status": "Disponível",
     "foto": "tigrona.png",
-    "enquadramento": "50% 2%",
-    "zoom": 1.3,
     "descricao": ""
   },
   {
@@ -207,8 +197,6 @@
     "porte": "Grande",
     "status": "Disponível",
     "foto": "negao.png",
-    "enquadramento": "50% 55%",
-    "zoom": 1.4,
     "descricao": ""
   },
   {
