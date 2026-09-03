@@ -24,16 +24,22 @@
   <main>
     <div class="filters">
       <input type="search" id="busca" placeholder="Buscar pelo nome...">
-      <div class="filter-group" id="filtro-sexo">
-        <button data-sexo="" class="active">Todos</button>
-        <button data-sexo="Fêmea">Fêmeas</button>
-        <button data-sexo="Macho">Machos</button>
+      <div class="filtro-coluna">
+        <span class="filtro-label">Gênero</span>
+        <div class="filter-group" id="filtro-sexo">
+          <button data-sexo="" class="active">Todos</button>
+          <button data-sexo="Fêmea">Fêmeas</button>
+          <button data-sexo="Macho">Machos</button>
+        </div>
       </div>
-      <div class="filter-group" id="filtro-porte">
-        <button data-porte="" class="active">Todo porte</button>
-        <button data-porte="Pequeno">Pequeno</button>
-        <button data-porte="Médio">Médio</button>
-        <button data-porte="Grande">Grande</button>
+      <div class="filtro-coluna">
+        <span class="filtro-label">Porte</span>
+        <div class="filter-group" id="filtro-porte">
+          <button data-porte="" class="active">Todo porte</button>
+          <button data-porte="Pequeno">Pequeno</button>
+          <button data-porte="Médio">Médio</button>
+          <button data-porte="Grande">Grande</button>
+        </div>
       </div>
     </div>
     <p class="contador" id="contador"></p>
