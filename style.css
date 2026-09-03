@@ -20,34 +20,35 @@ body {
 .hero {
   background: linear-gradient(135deg, var(--terracota) 0%, var(--terracota-escuro) 100%);
   color: white;
-  padding: 3rem 1.5rem 2rem;
+  padding: 1.2rem 1.5rem;
   text-align: center;
 }
 
-.logo { width: 5.5rem; height: 5.5rem; border-radius: 50%; background: white; padding: .3rem; margin-bottom: .5rem; }
-.eyebrow { text-transform: uppercase; letter-spacing: .1em; font-size: .8rem; opacity: .85; margin: 0; }
-.hero h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: .5rem 0; }
-.subtitle { max-width: 32rem; margin: 0 auto 1.5rem; opacity: .95; }
+.logo { width: 2.75rem; height: 2.75rem; border-radius: 50%; background: white; padding: .2rem; margin-bottom: .2rem; }
+.eyebrow { text-transform: uppercase; letter-spacing: .1em; font-size: .7rem; opacity: .85; margin: 0; }
+.hero h1 { font-size: clamp(1.15rem, 2.4vw, 1.5rem); margin: .2rem 0; }
+.subtitle { max-width: 30rem; margin: 0 auto .6rem; opacity: .95; font-size: .85rem; }
 
 .cta {
   display: inline-block;
   background: white;
   color: var(--terracota-escuro);
-  padding: .8rem 1.8rem;
+  padding: .45rem 1.2rem;
   border-radius: 999px;
   text-decoration: none;
   font-weight: 600;
+  font-size: .9rem;
 }
 
 .stats {
   display: flex;
   justify-content: center;
-  gap: 2.5rem;
-  margin-top: 2rem;
+  gap: 1.6rem;
+  margin-top: .8rem;
   flex-wrap: wrap;
 }
-.stats .valor { font-size: 1.8rem; font-weight: 700; }
-.stats .rotulo { font-size: .85rem; opacity: .85; }
+.stats .valor { font-size: 1.15rem; font-weight: 700; }
+.stats .rotulo { font-size: .7rem; opacity: .85; }
 
 main { max-width: 72rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 
@@ -104,6 +105,7 @@ main { max-width: 72rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+  object-position: center 25%;
   background: var(--borda);
 }
 
