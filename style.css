@@ -44,13 +44,15 @@ body {
   font-size: .9rem;
 }
 
-.stats {
+.stats-row {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 1.6rem;
   margin-top: .8rem;
   flex-wrap: wrap;
 }
+.stats { display: flex; gap: 1.6rem; flex-wrap: wrap; }
 .stats .valor { font-size: 1.15rem; font-weight: 700; }
 .stats .rotulo { font-size: .7rem; opacity: .85; }
 
