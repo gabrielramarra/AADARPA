@@ -128,6 +128,61 @@ async function carregarAnimais() {
   return resp.json();
 }
 
+// Payload PIX padrão (BR Code / EMV), pra gerar um QR estático que funciona em
+// qualquer banco. Referência: manual do BR Code do Banco Central.
+function crc16(str) {
+  let crc = 0xffff;
+  for (let i = 0; i < str.length; i++) {
+    crc ^= str.charCodeAt(i) << 8;
+    for (let j = 0; j < 8; j++) {
+      crc = (crc & 0x8000) ? ((crc << 1) ^ 0x1021) : (crc << 1);
+      crc &= 0xffff;
+    }
+  }
+  return crc.toString(16).toUpperCase().padStart(4, "0");
+}
+
+function tlv(id, valor) {
+  return `${id}${String(valor.length).padStart(2, "0")}${valor}`;
+}
+
+function montarPayloadPix(chave, nome, cidade) {
+  const contaPix = tlv("00", "BR.GOV.BCB.PIX") + tlv("01", chave);
+  let payload =
+    tlv("00", "01") +
+    tlv("01", "11") +
+    tlv("26", contaPix) +
+    tlv("52", "0000") +
+    tlv("53", "986") +
+    tlv("58", "BR") +
+    tlv("59", nome.slice(0, 25)) +
+    tlv("60", cidade.slice(0, 15)) +
+    tlv("62", tlv("05", "***")) +
+    "6304";
+  return payload + crc16(payload);
+}
+
+(function configurarPix() {
+  const chave = "aadarpagoiania@gmail.com";
+  const payload = montarPayloadPix(chave, "AADARPA", "GOIANIA");
+  document.getElementById("pix-qr").src =
+    `https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=${encodeURIComponent(payload)}`;
+
+  const botao = document.getElementById("pix-copiar");
+  botao.addEventListener("click", async () => {
+    const campo = document.getElementById("pix-chave");
+    try {
+      await navigator.clipboard.writeText(campo.value);
+    } catch {
+      campo.select();
+      document.execCommand("copy");
+    }
+    const original = botao.textContent;
+    botao.textContent = "Copiado!";
+    setTimeout(() => { botao.textContent = original; }, 1500);
+  });
+})();
+
 (async function init() {
   let animais;
   try {

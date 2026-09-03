@@ -211,6 +211,65 @@ main { max-width: 72rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 .finais-felizes h2 { margin: 0 0 .2rem; font-size: 1.3rem; }
 .secao-subtitulo { color: var(--cinza); font-size: .9rem; margin: 0 0 1.2rem; }
 
+.apoio {
+  margin-top: 3rem;
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--terracota) 0%, var(--terracota-escuro) 100%);
+  color: white;
+  text-align: center;
+}
+.apoio h2 { margin: 0 0 .5rem; font-size: 1.4rem; }
+.apoio-subtitulo { opacity: .92; max-width: 30rem; margin: 0 auto 1.5rem; font-size: .95rem; }
+
+.pix-box {
+  background: rgba(255, 255, 255, .15);
+  border-radius: 12px;
+  padding: 1.3rem;
+  max-width: 30rem;
+  margin: 0 auto 1.3rem;
+}
+.pix-label {
+  display: block;
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  opacity: .85;
+  margin-bottom: .7rem;
+}
+.pix-conteudo { display: flex; gap: 1.2rem; align-items: center; justify-content: center; flex-wrap: wrap; }
+.pix-chave-coluna { flex: 1 1 15rem; text-align: left; }
+.pix-linha { display: flex; gap: .5rem; }
+#pix-chave {
+  flex: 1;
+  min-width: 0;
+  padding: .6rem .8rem;
+  border-radius: 8px;
+  border: none;
+  font-size: .9rem;
+  background: white;
+  color: var(--marrom);
+}
+#pix-copiar {
+  padding: .6rem 1.1rem;
+  border-radius: 8px;
+  border: none;
+  background: white;
+  color: var(--terracota-escuro);
+  font-weight: 600;
+  cursor: pointer;
+}
+.pix-nota { font-size: .78rem; opacity: .85; margin: .6rem 0 0; }
+.pix-qr { border-radius: 8px; background: white; padding: .4rem; }
+
+.apoio-instagram {
+  display: inline-block;
+  color: white;
+  text-decoration: underline;
+  font-weight: 600;
+  font-size: .95rem;
+}
+
 footer {
   text-align: center;
   padding: 2rem 1.5rem 3rem;
