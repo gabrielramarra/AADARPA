@@ -36,6 +36,9 @@ function parseCSV(texto) {
 
 function urlFoto(foto) {
   if (!foto) return "";
+  // link do Google Drive (qualquer formato de compartilhamento) -> URL de imagem direta
+  const drive = foto.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?id=)([a-zA-Z0-9_-]+)/);
+  if (drive) return `https://drive.google.com/thumbnail?id=${drive[1]}&sz=w1000`;
   return /^https?:\/\//i.test(foto) ? foto : FOTO_BASE + foto;
 }
 
