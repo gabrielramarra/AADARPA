@@ -3,6 +3,7 @@
 const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQeWqJccN8iuZEpI5RJBXV6k0gtww5Sg-4tCBOMYAuVQDMXkl_52fAlSFtxz5NqFE5e5GU4XWlBBr_v/pub?gid=1604179694&single=true&output=csv";
 
 const FOTO_BASE = "fotos/";
+const INSTAGRAM_URL = "https://www.instagram.com/abrigodosanimaisrefugados/";
 
 function parseCSV(texto) {
   const linhas = [];
@@ -92,6 +93,7 @@ function cardHTML(a) {
           <span>${a.porte || ""}</span>
           <span>${a.idade || ""}</span>
         </div>
+        <a class="card-instagram" href="${INSTAGRAM_URL}" target="_blank" rel="noopener">Contato pelo Instagram</a>
       </div>
     </div>`;
 }

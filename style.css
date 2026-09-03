@@ -119,6 +119,16 @@ main { max-width: 72rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 .card-meta { color: var(--cinza); font-size: .88rem; display: flex; gap: .5rem; flex-wrap: wrap; }
 .card-meta span:not(:last-child)::after { content: "·"; margin-left: .5rem; }
 
+.card-instagram {
+  display: block;
+  margin-top: .7rem;
+  color: var(--terracota-escuro);
+  text-decoration: none;
+  font-size: .85rem;
+  font-weight: 600;
+}
+.card-instagram:hover { text-decoration: underline; }
+
 .badge {
   position: absolute;
   z-index: 1;
