@@ -140,6 +140,10 @@ async function carregarAnimais() {
 
   renderStats(animais);
 
+  const adotados = animais.filter(a => a.status === "Adotado");
+  document.getElementById("finais-felizes").hidden = adotados.length === 0;
+  document.getElementById("grid-adotados").innerHTML = adotados.map(cardHTML).join("");
+
   const estado = { sexo: "", porte: "", busca: "" };
   const grid = document.getElementById("grid");
   const vazio = document.getElementById("vazio");

@@ -138,6 +138,10 @@ main { max-width: 72rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 
 .vazio { text-align: center; color: var(--cinza); padding: 3rem 0; }
 
+.finais-felizes { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--borda); }
+.finais-felizes h2 { margin: 0 0 .2rem; font-size: 1.3rem; }
+.secao-subtitulo { color: var(--cinza); font-size: .9rem; margin: 0 0 1.2rem; }
+
 footer {
   text-align: center;
   padding: 2rem 1.5rem 3rem;
