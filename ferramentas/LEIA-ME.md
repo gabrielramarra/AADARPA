@@ -1,3 +1,18 @@
+# Enquadramento das fotos
+
+Duas ferramentas, para dois casos:
+
+- **`ajustar-foto.html`**: ajuste manual, visual, no navegador. Não precisa
+  instalar nada. Abra em
+  https://gabrielramarra.github.io/AADARPA/ferramentas/ajustar-foto.html
+  (ou dê dois cliques no arquivo), arraste a foto para posicionar o rosto,
+  aproxime com a barra ou a rolagem do mouse, e baixe o recorte pronto na
+  proporção 4:5 dos cards. Use para foto com mais de um animal, ou sempre que
+  o recorte automático errar.
+- **`recortar-rostos.py`**: recorte automático em lote, descrito abaixo.
+
+---
+
 # Recorte automático de fotos
 
 `recortar-rostos.py` deixa as fotos dos animais já enquadradas no rosto, no
