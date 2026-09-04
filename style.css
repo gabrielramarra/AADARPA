@@ -13,6 +13,7 @@
   --vermelho-coracao: #e2576b;
   --laranja: #f0973a;
   --laranja-escuro: #d9711f;
+  --grafite: #2b2f36;
 }
 
 * { box-sizing: border-box; }
@@ -236,17 +237,17 @@ main { max-width: 96rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 .apoio-texto { flex: 1 1 22rem; max-width: 30rem; text-align: left; }
 
 .pix-box {
-  background: white;
+  background: var(--grafite);
   border-radius: 12px;
   padding: 1.3rem;
-  color: var(--marrom);
+  color: white;
 }
 .pix-label {
   display: block;
   font-size: .75rem;
   text-transform: uppercase;
   letter-spacing: .08em;
-  color: var(--laranja-escuro);
+  color: var(--laranja);
   font-weight: 700;
   margin-bottom: .7rem;
 }
@@ -272,7 +273,7 @@ main { max-width: 96rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
   font-weight: 600;
   cursor: pointer;
 }
-.pix-nota { font-size: .78rem; color: var(--cinza); margin: .6rem 0 0; }
+.pix-nota { font-size: .78rem; color: rgba(255, 255, 255, .6); margin: .6rem 0 0; }
 .pix-qr { border-radius: 8px; background: white; padding: .4rem; border: 1px solid var(--borda); }
 
 .instagram-card {
