@@ -1,14 +1,26 @@
 # Enquadramento das fotos
 
-Duas ferramentas, para dois casos:
+Três ferramentas, para três casos:
 
-- **`ajustar-foto.html`**: ajuste manual, visual, no navegador. Não precisa
-  instalar nada. Abra em
+- **Modo ajuste do site** (jeito mais rápido para corrigir um card já no ar):
+  abra https://gabrielramarra.github.io/AADARPA/?ajustar — o `?ajustar` no fim
+  da URL liga o modo. Arraste a foto dentro do card para reposicionar e role o
+  mouse para aproximar, como o reposicionar da galeria do Notion. O card mostra
+  os valores prontos; o botão "Copiar" copia os dois de uma vez (separados por
+  tabulação, então uma colada só preenche as duas células da planilha).
+  Cole nas colunas `enquadramento` e `zoom` da aba "Público", deixando as duas
+  lado a lado. Nada é salvo sozinho: a planilha continua sendo a fonte da
+  verdade, e o site passa a mostrar o novo enquadramento assim que ela atualiza.
+  Só reposiciona depois de aproximar um pouco — sem zoom, a foto 4:5 já preenche
+  o card inteiro e não sobra imagem para deslocar.
+- **`ajustar-foto.html`**: recorta o arquivo em si, para quando a foto original
+  precisa de um corte de verdade (mais de um animal na foto, animal no canto).
+  Não precisa instalar nada. Abra em
   https://gabrielramarra.github.io/AADARPA/ferramentas/ajustar-foto.html
   (ou dê dois cliques no arquivo), arraste a foto para posicionar o rosto,
   aproxime com a barra ou a rolagem do mouse, e baixe o recorte pronto na
-  proporção 4:5 dos cards. Use para foto com mais de um animal, ou sempre que
-  o recorte automático errar.
+  proporção 4:5 dos cards. O arquivo baixado sai com o mesmo nome do original,
+  para substituir direto o que está em `fotos/`.
 - **`recortar-rostos.py`**: recorte automático em lote, descrito abaixo.
 
 ---

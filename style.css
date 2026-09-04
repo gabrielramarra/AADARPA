@@ -211,6 +211,58 @@ main { max-width: 96rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 
 .vazio { text-align: center; color: var(--cinza); padding: 3rem 0; }
 
+/* modo ajuste (?ajustar): só aparece pra quem abre o site com a URL de ajuste */
+.ajuste-info { display: none; }
+body.modo-ajuste .card-photo { cursor: grab; touch-action: none; }
+body.modo-ajuste .card-photo.arrastando { cursor: grabbing; }
+body.modo-ajuste .ajuste-info {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .4rem;
+  padding: .35rem .45rem;
+  background: rgba(43, 47, 54, .85);
+  color: white;
+  font-size: .72rem;
+}
+.ajuste-info button {
+  border: none;
+  border-radius: 999px;
+  background: white;
+  color: var(--marrom);
+  font: inherit;
+  font-weight: 600;
+  padding: .2rem .6rem;
+  cursor: pointer;
+}
+.barra-ajuste {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: .6rem 1rem;
+  background: var(--grafite);
+  color: white;
+  font-size: .85rem;
+}
+.barra-ajuste button {
+  border: none;
+  border-radius: 999px;
+  background: var(--laranja);
+  color: white;
+  font: inherit;
+  font-weight: 600;
+  padding: .35rem 1rem;
+  cursor: pointer;
+}
+
 .finais-felizes { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--borda); }
 .finais-felizes h2 { margin: 0 0 .2rem; font-size: 1.4rem; color: var(--vermelho-coracao); }
 .secao-subtitulo { color: var(--cinza); font-size: .9rem; margin: 0 0 1.2rem; }
