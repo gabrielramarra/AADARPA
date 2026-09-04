@@ -14,6 +14,7 @@
   --laranja: #f0973a;
   --laranja-escuro: #d9711f;
   --grafite: #2b2f36;
+  --cinza-claro: #e7e6e3;
 }
 
 * { box-sizing: border-box; }
@@ -237,17 +238,17 @@ main { max-width: 96rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 .apoio-texto { flex: 1 1 22rem; max-width: 30rem; text-align: left; }
 
 .pix-box {
-  background: var(--grafite);
+  background: var(--cinza-claro);
   border-radius: 12px;
   padding: 1.3rem;
-  color: white;
+  color: var(--marrom);
 }
 .pix-label {
   display: block;
   font-size: .75rem;
   text-transform: uppercase;
   letter-spacing: .08em;
-  color: var(--laranja);
+  color: var(--laranja-escuro);
   font-weight: 700;
   margin-bottom: .7rem;
 }
@@ -261,7 +262,7 @@ main { max-width: 96rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
   border-radius: 8px;
   border: 1px solid var(--borda);
   font-size: .9rem;
-  background: var(--creme);
+  background: white;
   color: var(--marrom);
 }
 #pix-copiar {
@@ -273,7 +274,7 @@ main { max-width: 96rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
   font-weight: 600;
   cursor: pointer;
 }
-.pix-nota { font-size: .78rem; color: rgba(255, 255, 255, .6); margin: .6rem 0 0; }
+.pix-nota { font-size: .78rem; color: var(--cinza); margin: .6rem 0 0; }
 .pix-qr { border-radius: 8px; background: white; padding: .4rem; border: 1px solid var(--borda); }
 
 .instagram-card {
