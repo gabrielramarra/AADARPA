@@ -236,16 +236,18 @@ main { max-width: 96rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 .apoio-texto { flex: 1 1 22rem; max-width: 30rem; text-align: left; }
 
 .pix-box {
-  background: rgba(255, 255, 255, .15);
+  background: white;
   border-radius: 12px;
   padding: 1.3rem;
+  color: var(--marrom);
 }
 .pix-label {
   display: block;
   font-size: .75rem;
   text-transform: uppercase;
   letter-spacing: .08em;
-  opacity: .85;
+  color: var(--laranja-escuro);
+  font-weight: 700;
   margin-bottom: .7rem;
 }
 .pix-conteudo { display: flex; gap: 1.2rem; align-items: center; justify-content: center; flex-wrap: wrap; }
@@ -256,22 +258,22 @@ main { max-width: 96rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
   min-width: 0;
   padding: .6rem .8rem;
   border-radius: 8px;
-  border: none;
+  border: 1px solid var(--borda);
   font-size: .9rem;
-  background: white;
+  background: var(--creme);
   color: var(--marrom);
 }
 #pix-copiar {
   padding: .6rem 1.1rem;
   border-radius: 8px;
   border: none;
-  background: white;
-  color: var(--laranja-escuro);
+  background: var(--laranja);
+  color: white;
   font-weight: 600;
   cursor: pointer;
 }
-.pix-nota { font-size: .78rem; opacity: .85; margin: .6rem 0 0; }
-.pix-qr { border-radius: 8px; background: white; padding: .4rem; }
+.pix-nota { font-size: .78rem; color: var(--cinza); margin: .6rem 0 0; }
+.pix-qr { border-radius: 8px; background: white; padding: .4rem; border: 1px solid var(--borda); }
 
 .instagram-card {
   flex: 0 1 14rem;
