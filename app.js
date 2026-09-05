@@ -318,6 +318,7 @@ function montarPayloadPix(chave, nome, cidade) {
     console.error(e);
     return;
   }
+  animais.sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"));
 
   const adotados = animais.filter(a => a.status === "Adotado");
   document.getElementById("finais-felizes").hidden = adotados.length === 0;
