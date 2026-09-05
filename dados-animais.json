@@ -20,8 +20,8 @@
     "status": "Disponível",
     "foto": "cinza.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "60% 49%",
+    "zoom": "1.26"
   },
   {
     "id": 6,
@@ -32,8 +32,8 @@
     "status": "Disponível",
     "foto": "cristal.png",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "94% 100%",
+    "zoom": "1.36"
   },
   {
     "id": 7,
@@ -44,8 +44,8 @@
     "status": "Disponível",
     "foto": "dandara.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "11% 20%",
+    "zoom": "1.08"
   },
   {
     "id": 8,
@@ -56,8 +56,8 @@
     "status": "Disponível",
     "foto": "fiona.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "100% 98%",
+    "zoom": "1.36"
   },
   {
     "id": 9,
@@ -68,8 +68,8 @@
     "status": "Disponível",
     "foto": "glorinha.png",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "28% 100%",
+    "zoom": "1.36"
   },
   {
     "id": 10,
@@ -80,8 +80,8 @@
     "status": "Disponível",
     "foto": "juju.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "42% 86%",
+    "zoom": "1.47"
   },
   {
     "id": 11,
@@ -92,8 +92,8 @@
     "status": "Disponível",
     "foto": "lasanha.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "32% 27%",
+    "zoom": "1.59"
   },
   {
     "id": 12,
@@ -104,8 +104,8 @@
     "status": "Disponível",
     "foto": "luana.png",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "54% 13%",
+    "zoom": "1.26"
   },
   {
     "id": 13,
@@ -140,8 +140,8 @@
     "status": "Disponível",
     "foto": "tigrona.png",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "64% 0%",
+    "zoom": "1.26"
   },
   {
     "id": 16,
@@ -152,8 +152,8 @@
     "status": "Disponível",
     "foto": "apolo.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "43% 0%",
+    "zoom": "1.26"
   },
   {
     "id": 17,
@@ -164,8 +164,8 @@
     "status": "Disponível",
     "foto": "bob.png",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "28% 32%",
+    "zoom": "1.36"
   },
   {
     "id": 18,
@@ -176,8 +176,8 @@
     "status": "Disponível",
     "foto": "bob-dilan.png",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "100% 100%",
+    "zoom": "1.59"
   },
   {
     "id": 19,
@@ -212,8 +212,8 @@
     "status": "Disponível",
     "foto": "chuvisco.png",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "2% 83%",
+    "zoom": "1.36"
   },
   {
     "id": 22,
@@ -236,8 +236,8 @@
     "status": "Disponível",
     "foto": "joca.png",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "100% 26%",
+    "zoom": "1.36"
   },
   {
     "id": 24,
@@ -248,8 +248,8 @@
     "status": "Disponível",
     "foto": "jorge.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "70% 41%",
+    "zoom": "2.00"
   },
   {
     "id": 25,
@@ -260,8 +260,8 @@
     "status": "Disponível",
     "foto": "negao.png",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "51% 33%",
+    "zoom": "1.36"
   },
   {
     "id": 26,
@@ -272,8 +272,8 @@
     "status": "Disponível",
     "foto": "pandi.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "51% 1%",
+    "zoom": "1.47"
   },
   {
     "id": 27,
@@ -284,8 +284,8 @@
     "status": "Disponível",
     "foto": "pingo-preto.png",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "61% 93%",
+    "zoom": "1.26"
   },
   {
     "id": 28,
@@ -296,8 +296,8 @@
     "status": "Disponível",
     "foto": "poker.png",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "100% 95%",
+    "zoom": "1.47"
   },
   {
     "id": 29,
@@ -308,8 +308,8 @@
     "status": "Disponível",
     "foto": "pretinho.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "25% 0%",
+    "zoom": "1.47"
   },
   {
     "id": 30,
@@ -320,8 +320,8 @@
     "status": "Disponível",
     "foto": "russo.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "88% 29%",
+    "zoom": "1.26"
   },
   {
     "id": 31,
@@ -332,8 +332,8 @@
     "status": "Disponível",
     "foto": "scooby.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "33% 19%",
+    "zoom": "1.47"
   },
   {
     "id": 32,
@@ -344,8 +344,8 @@
     "status": "Disponível",
     "foto": "toquinho.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "50% 50%",
+    "zoom": "1.17"
   },
   {
     "id": 33,
@@ -356,8 +356,8 @@
     "status": "Disponível",
     "foto": "zion.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "0% 77%",
+    "zoom": "1.26"
   },
   {
     "id": 34,
@@ -368,8 +368,8 @@
     "status": "Disponível",
     "foto": "romeu.png",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "8% 17%",
+    "zoom": "1.36"
   },
   {
     "id": 35,
@@ -428,8 +428,8 @@
     "status": "Adotado",
     "foto": "jack.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "0% 86%",
+    "zoom": "1.26"
   },
   {
     "id": 40,
