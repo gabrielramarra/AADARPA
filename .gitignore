@@ -1,3 +1,4 @@
 ferramentas/venv/
 yolov8n.pt
 fotos/.originais/
+.env

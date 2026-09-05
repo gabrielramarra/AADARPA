@@ -1,38 +1,4 @@
-// Cole aqui a URL de "Publicar na Web" (formato CSV) da aba "Público" da Planilha Google.
-// Deixe vazio para usar os dados de exemplo em dados-exemplo.json.
-const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQeWqJccN8iuZEpI5RJBXV6k0gtww5Sg-4tCBOMYAuVQDMXkl_52fAlSFtxz5NqFE5e5GU4XWlBBr_v/pub?gid=1604179694&single=true&output=csv";
-
 const FOTO_BASE = "fotos/";
-
-function parseCSV(texto) {
-  const linhas = [];
-  let campo = "", linha = [], dentroAspas = false;
-  for (let i = 0; i < texto.length; i++) {
-    const c = texto[i], prox = texto[i + 1];
-    if (dentroAspas) {
-      if (c === '"' && prox === '"') { campo += '"'; i++; }
-      else if (c === '"') { dentroAspas = false; }
-      else { campo += c; }
-    } else {
-      if (c === '"') dentroAspas = true;
-      else if (c === ',') { linha.push(campo); campo = ""; }
-      else if (c === '\n' || c === '\r') {
-        if (c === '\r' && prox === '\n') i++;
-        linha.push(campo); campo = "";
-        if (linha.length > 1 || linha[0] !== "") linhas.push(linha);
-        linha = [];
-      } else { campo += c; }
-    }
-  }
-  if (campo !== "" || linha.length) { linha.push(campo); linhas.push(linha); }
-
-  const cabecalho = linhas[0].map(h => h.trim().toLowerCase());
-  return linhas.slice(1).map(cols => {
-    const obj = {};
-    cabecalho.forEach((h, idx) => obj[h] = (cols[idx] || "").trim());
-    return obj;
-  });
-}
 
 function urlFoto(foto) {
   if (!foto) return "";
@@ -268,14 +234,14 @@ function iniciarModoAjuste() {
   });
 }
 
+// dados-animais.json é gerado a partir do Baserow (scripts/gerar-dados.mjs),
+// não editado à mão. dados-exemplo.json é só uma reserva estática, pro caso
+// raro do arquivo gerado não existir.
 async function carregarAnimais() {
-  if (SHEET_CSV_URL) {
-    const resp = await fetch(SHEET_CSV_URL, { cache: "no-store" });
-    if (!resp.ok) throw new Error("Falha ao carregar a planilha");
-    return parseCSV(await resp.text());
-  }
-  const resp = await fetch("dados-exemplo.json");
-  return resp.json();
+  const resp = await fetch("dados-animais.json", { cache: "no-store" });
+  if (resp.ok) return resp.json();
+  const reserva = await fetch("dados-exemplo.json");
+  return reserva.json();
 }
 
 // Payload PIX padrão (BR Code / EMV), pra gerar um QR estático que funciona em
