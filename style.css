@@ -372,3 +372,18 @@ footer {
   font-size: .9rem;
 }
 footer a { color: var(--terracota-escuro); }
+
+/* Em tela estreita, a pilha de espaçamentos (moldura + banner + caixa do
+   PIX + botão) não deixa espaço suficiente pro e-mail aparecer inteiro, e o
+   @usuario do Instagram (uma palavra só, sem espaço) quebra feio deixando
+   só uma letra na linha de baixo. */
+@media (max-width: 480px) {
+  .apoio { padding: 2rem 1.25rem; }
+  .pix-box { padding: 1rem; }
+  .pix-linha { flex-direction: column; align-items: stretch; }
+  #pix-copiar { width: 100%; }
+  .instagram-handle { font-size: .72rem; }
+  /* main já dá 1.5rem (24px); mais 11px aqui fecha em ~35px de cada lado
+     só na grade de disponíveis (não em #grid-adotados). */
+  #grid { margin: 0 11px; }
+}
