@@ -140,6 +140,33 @@ async function travarNoBaserow(id, enquadramento, zoom) {
   return { ok: true };
 }
 
+// Depois de travar no Baserow, aciona na hora a mesma automação que já lê o
+// Baserow e publica o site (em vez de esperar os até 15min do agendamento).
+function tokenGithub() {
+  let token = sessionStorage.getItem("github_token");
+  if (!token) {
+    token = prompt("Token do GitHub pra publicar agora (fica só nesta aba; Enter pra pular e deixar a publicação automática cuidar disso em até 15min):");
+    if (token) sessionStorage.setItem("github_token", token);
+  }
+  return token;
+}
+
+async function publicarAgora() {
+  const token = tokenGithub();
+  if (!token) return { ok: false, motivo: "sem token" };
+  const resp = await fetch(
+    "https://api.github.com/repos/gabrielramarra/AADARPA/actions/workflows/sincronizar-baserow.yml/dispatches",
+    {
+      method: "POST",
+      headers: { "Authorization": `Bearer ${token}`, "Accept": "application/vnd.github+json" },
+      body: JSON.stringify({ ref: "main" }),
+    }
+  );
+  if (resp.status === 401 || resp.status === 403) sessionStorage.removeItem("github_token");
+  if (!resp.ok) return { ok: false, motivo: `GitHub respondeu ${resp.status}` };
+  return { ok: true };
+}
+
 function valoresPlanilha(x, y, zoom) {
   return [`${Math.round(x)}% ${Math.round(y)}%`, zoom.toFixed(2)];
 }
@@ -180,26 +207,55 @@ function iniciarModoAjuste() {
   barra.className = "barra-ajuste";
   barra.innerHTML = `
     <span>Modo ajuste: arraste a foto para reposicionar, role para aproximar,
-    clique em <strong>Travar</strong> pra gravar direto no banco de dados.</span>`;
+    clique em <strong>Travar</strong> pra gravar no banco de dados e publicar
+    no site na hora.</span>`;
   document.body.prepend(barra);
 
   const area = document.querySelector("main");
-  let cardAtivo = null, ultimoX = 0, ultimoY = 0;
+  // No touque, dois dedos no mesmo card viram pinça de zoom em vez de
+  // arrasto: por isso os ponteiros ativos ficam num Map (não só o último),
+  // pra saber quando são dois e medir a distância entre eles.
+  const ponteiros = new Map(); // pointerId -> {x, y}
+  let cardAtivo = null, ultimoX = 0, ultimoY = 0, distanciaAnterior = null;
+
+  const distanciaEntrePonteiros = () => {
+    const [a, b] = [...ponteiros.values()];
+    return Math.hypot(a.x - b.x, a.y - b.y);
+  };
 
   area.addEventListener("pointerdown", e => {
     if (e.target.closest(".ajuste-info")) return;
     const foto = e.target.closest(".card-photo");
     if (!foto) return;
-    cardAtivo = foto.closest(".card");
-    ultimoX = e.clientX;
-    ultimoY = e.clientY;
+    const card = foto.closest(".card");
+    if (cardAtivo && cardAtivo !== card) return;
+    cardAtivo = card;
+    ponteiros.set(e.pointerId, { x: e.clientX, y: e.clientY });
     foto.classList.add("arrastando");
-    foto.setPointerCapture(e.pointerId);
+    try { foto.setPointerCapture(e.pointerId); } catch { /* segundo dedo às vezes chega tarde demais, sem problema */ }
+    if (ponteiros.size === 1) {
+      ultimoX = e.clientX;
+      ultimoY = e.clientY;
+    } else if (ponteiros.size === 2) {
+      distanciaAnterior = distanciaEntrePonteiros();
+    }
   });
 
   area.addEventListener("pointermove", e => {
-    if (!cardAtivo) return;
+    if (!cardAtivo || !ponteiros.has(e.pointerId)) return;
+    ponteiros.set(e.pointerId, { x: e.clientX, y: e.clientY });
     const ajuste = ajusteDoCard(cardAtivo);
+
+    if (ponteiros.size >= 2) {
+      const distancia = distanciaEntrePonteiros();
+      if (distanciaAnterior) {
+        ajuste.zoom = Math.min(4, Math.max(1, ajuste.zoom * (distancia / distanciaAnterior)));
+        desenharAjuste(cardAtivo, ajuste);
+      }
+      distanciaAnterior = distancia;
+      return;
+    }
+
     if (ajuste.zoom <= 1.01) return;   // nada pra deslocar ainda
     // Sensibilidade fixa (não depende do zoom): arrastar a largura/altura toda
     // da caixa sempre varre 0-100%. Antes dividia por largura*(zoom-1) pra
@@ -218,9 +274,19 @@ function iniciarModoAjuste() {
     desenharAjuste(cardAtivo, ajuste);
   });
 
-  ["pointerup", "pointercancel"].forEach(ev => area.addEventListener(ev, () => {
-    if (cardAtivo) cardAtivo.querySelector(".card-photo").classList.remove("arrastando");
-    cardAtivo = null;
+  ["pointerup", "pointercancel"].forEach(ev => area.addEventListener(ev, e => {
+    ponteiros.delete(e.pointerId);
+    if (ponteiros.size === 0) {
+      if (cardAtivo) cardAtivo.querySelector(".card-photo").classList.remove("arrastando");
+      cardAtivo = null;
+      distanciaAnterior = null;
+    } else if (ponteiros.size === 1) {
+      // sobrou um dedo: reinicia a base do arraste pra não pular de lugar
+      const [p] = [...ponteiros.values()];
+      ultimoX = p.x;
+      ultimoY = p.y;
+      distanciaAnterior = null;
+    }
   }));
 
   area.addEventListener("wheel", e => {
@@ -246,10 +312,21 @@ function iniciarModoAjuste() {
     botao.disabled = true;
     botao.textContent = "Travando...";
     const resultado = await travarNoBaserow(id, enquadramento, Number(zoomTexto));
-    botao.textContent = resultado.ok ? "Travado!" : original;
-    if (!resultado.ok && resultado.motivo !== "sem token") alert(`Não consegui travar: ${resultado.motivo}`);
+    if (!resultado.ok) {
+      botao.textContent = original;
+      botao.disabled = false;
+      if (resultado.motivo !== "sem token") alert(`Não consegui travar: ${resultado.motivo}`);
+      return;
+    }
+
+    botao.textContent = "Publicando...";
+    const publicou = await publicarAgora();
+    botao.textContent = publicou.ok ? "Travado, publicando!" : "Travado!";
+    if (!publicou.ok && publicou.motivo !== "sem token") {
+      console.warn(`Travou no banco, mas não consegui publicar agora: ${publicou.motivo}. A publicação automática ainda cuida disso em até 15min.`);
+    }
     botao.disabled = false;
-    if (resultado.ok) setTimeout(() => { botao.textContent = original; }, 1500);
+    setTimeout(() => { botao.textContent = original; }, 2500);
   });
 }
 
