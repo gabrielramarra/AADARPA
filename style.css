@@ -213,7 +213,8 @@ main { max-width: 96rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 
 /* modo ajuste (?ajustar): só aparece pra quem abre o site com a URL de ajuste */
 .ajuste-info { display: none; }
-body.modo-ajuste .card-photo { cursor: grab; touch-action: none; }
+body.modo-ajuste .card-photo { cursor: grab; touch-action: none; user-select: none; }
+body.modo-ajuste .card-photo img { -webkit-user-drag: none; }
 body.modo-ajuste .card-photo.arrastando { cursor: grabbing; }
 body.modo-ajuste .ajuste-info {
   position: absolute;

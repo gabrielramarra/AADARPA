@@ -93,7 +93,7 @@ function cardHTML(a) {
     <div class="card" data-nome="${a.nome}">
       <div class="card-photo">
         <span class="badge ${adotado ? "adotado" : "disponivel"}">${adotado ? "Adotado(a)" : "Disponível"}</span>
-        <img src="${urlFoto(a.foto)}" alt="Foto de ${a.nome}" loading="lazy" style="${estilo}">
+        <img src="${urlFoto(a.foto)}" alt="Foto de ${a.nome}" loading="lazy" draggable="false" style="${estilo}">
         <div class="ajuste-info">
           <span class="ajuste-valores">${textoAjuste(x, y, zoom)}</span>
           <button type="button" class="ajuste-copiar">Copiar</button>
@@ -221,12 +221,14 @@ function iniciarModoAjuste() {
     if (!cardAtivo) return;
     const ajuste = ajusteDoCard(cardAtivo);
     if (ajuste.zoom <= 1.01) return;   // nada pra deslocar ainda
-    // com scale(z) a partir do ponto de foco, a janela visível anda
-    // largura*(z-1) pixels na tela de ponta a ponta: essa conta faz a foto
-    // acompanhar o cursor na razão de 1 pra 1.
+    // Sensibilidade fixa (não depende do zoom): arrastar a largura/altura toda
+    // da caixa sempre varre 0-100%. Antes dividia por largura*(zoom-1) pra
+    // acompanhar o cursor 1 pra 1 de verdade, mas isso deixava o arraste
+    // absurdamente sensível com pouco zoom (o normal pra maioria dos ajustes):
+    // qualquer tremedeira de mouse já estourava pro extremo.
     const caixa = cardAtivo.querySelector(".card-photo").getBoundingClientRect();
-    const dx = 100 * (e.clientX - ultimoX) / (caixa.width * (ajuste.zoom - 1));
-    const dy = 100 * (e.clientY - ultimoY) / (caixa.height * (ajuste.zoom - 1));
+    const dx = 100 * (e.clientX - ultimoX) / caixa.width;
+    const dy = 100 * (e.clientY - ultimoY) / caixa.height;
     ajuste.foco = [
       Math.min(100, Math.max(0, ajuste.foco[0] - dx)),
       Math.min(100, Math.max(0, ajuste.foco[1] - dy)),
