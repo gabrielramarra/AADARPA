@@ -390,4 +390,6 @@ footer a { color: var(--terracota-escuro); }
   /* Finais felizes: cards menores, 2 por linha em vez de 1 — eles têm menos
      conteúdo (sem sexo/porte/idade), cabem bem mais apertados. */
   #grid-adotados { grid-template-columns: repeat(2, 1fr); gap: .8rem; }
+  #grid-adotados .card-body { padding: .6rem .7rem; }
+  #grid-adotados .card-body h3 { font-size: 1rem; }
 }
