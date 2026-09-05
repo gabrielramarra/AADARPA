@@ -381,6 +381,11 @@ footer a { color: var(--terracota-escuro); }
    @usuario do Instagram (uma palavra só, sem espaço) quebra feio deixando
    só uma letra na linha de baixo. */
 @media (max-width: 480px) {
+  /* Os 4 botões de "Porte" (Todo porte/Pequeno/Médio/Grande) não cabiam numa
+     linha só; aperta o suficiente pra caberem (o de "Gênero" também encolhe
+     junto, pra manter os dois grupos com a mesma cara). */
+  .filter-group { gap: .3rem; }
+  .filter-group button { padding: .45rem .6rem; font-size: .82rem; }
   .apoio { padding: 2rem 1.25rem; }
   .pix-box { padding: 1rem; }
   .instagram-handle { font-size: .72rem; }
