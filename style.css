@@ -187,7 +187,7 @@ main { max-width: 96rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 .card-body { padding: .9rem 1rem 1.1rem; }
 .card-body h3 { margin: 0 0 .3rem; font-size: 1.15rem; }
 #grid-adotados .card-body { padding: .9rem 1rem; }
-#grid-adotados .card-body h3 { margin: 0; }
+#grid-adotados .card-body h3 { margin: 0; white-space: nowrap; overflow: hidden; }
 .card-meta { color: var(--cinza); font-size: .88rem; display: flex; gap: .5rem; flex-wrap: wrap; }
 .card-meta span:not(:last-child)::after { content: "·"; margin-left: .5rem; }
 

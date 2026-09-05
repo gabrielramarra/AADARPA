@@ -66,6 +66,20 @@ function cardHTML(a) {
     </div>`;
 }
 
+// Reduz a fonte do nome até caber numa linha só (h3 já é nowrap+overflow:hidden
+// via CSS pra isso funcionar — sem isso, o texto simplesmente quebraria antes
+// de "achar" que precisa encolher).
+function ajustarFonteNomes(container) {
+  container.querySelectorAll(".card h3").forEach(h3 => {
+    h3.style.fontSize = "";
+    let tamanho = parseFloat(getComputedStyle(h3).fontSize);
+    while (h3.scrollWidth > h3.clientWidth && tamanho > 11) {
+      tamanho -= 1;
+      h3.style.fontSize = `${tamanho}px`;
+    }
+  });
+}
+
 function embaralhar(lista) {
   const copia = [...lista];
   for (let i = copia.length - 1; i > 0; i--) {
@@ -412,6 +426,7 @@ function montarPayloadPix(chave, nome, cidade) {
   // Aleatório de propósito: dá chance de adoções antigas reaparecerem, em vez
   // de fixar sempre os mesmos (e a lista só cresce, nunca ficaria só numa tela).
   document.getElementById("grid-adotados").innerHTML = embaralhar(adotados).slice(0, 10).map(cardHTML).join("");
+  ajustarFonteNomes(document.getElementById("grid-adotados"));
 
   const estado = { sexo: "", porte: "", busca: "" };
   const grid = document.getElementById("grid");
