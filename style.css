@@ -64,7 +64,7 @@ body {
 .nome-abrigo { font-weight: 700; font-size: 1rem; margin: 0; }
 .eyebrow { text-transform: uppercase; letter-spacing: .1em; font-size: .7rem; opacity: .85; margin: 0; }
 .divisor-hero { width: 2.5rem; height: 2px; margin: .6rem auto; border: none; background: rgba(255, 255, 255, .5); }
-.hero h1 { font-size: clamp(1.15rem, 2.4vw, 1.5rem); font-style: italic; margin: .2rem 0; }
+.hero h1 { font-size: clamp(1.15rem, 2.4vw, 1.5rem); font-style: italic; margin: .2rem 0; text-wrap: balance; }
 .subtitle { max-width: 30rem; margin: 0 auto .6rem; opacity: .95; font-size: .85rem; }
 
 .cta {
