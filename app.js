@@ -65,6 +65,15 @@ function cardHTML(a) {
     </div>`;
 }
 
+function embaralhar(lista) {
+  const copia = [...lista];
+  for (let i = copia.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copia[i], copia[j]] = [copia[j], copia[i]];
+  }
+  return copia;
+}
+
 function aplicarFiltros(animais, estado) {
   const termo = estado.busca.trim().toLowerCase();
   return animais.filter(a => {
@@ -399,7 +408,9 @@ function montarPayloadPix(chave, nome, cidade) {
 
   const adotados = animais.filter(a => a.status === "Adotado");
   document.getElementById("finais-felizes").hidden = adotados.length === 0;
-  document.getElementById("grid-adotados").innerHTML = adotados.map(cardHTML).join("");
+  // Aleatório de propósito: dá chance de adoções antigas reaparecerem, em vez
+  // de fixar sempre os mesmos (e a lista só cresce, nunca ficaria só numa tela).
+  document.getElementById("grid-adotados").innerHTML = embaralhar(adotados).slice(0, 10).map(cardHTML).join("");
 
   const estado = { sexo: "", porte: "", busca: "" };
   const grid = document.getElementById("grid");
