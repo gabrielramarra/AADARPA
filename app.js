@@ -56,13 +56,13 @@ function cardHTML(a) {
   const zoom = ajuste ? ajuste.zoom : Math.max(1, parseFloat(a.zoom) || 1);
   const estilo = `transform:scale(${zoom}); transform-origin:${x}% ${y}%;`;
   return `
-    <div class="card" data-nome="${a.nome}">
+    <div class="card" data-nome="${a.nome}" data-id="${a.id ?? ""}">
       <div class="card-photo">
         <span class="badge ${adotado ? "adotado" : "disponivel"}">${adotado ? "Adotado(a)" : "Disponível"}</span>
         <img src="${urlFoto(a.foto)}" alt="Foto de ${a.nome}" loading="lazy" draggable="false" style="${estilo}">
         <div class="ajuste-info">
           <span class="ajuste-valores">${textoAjuste(x, y, zoom)}</span>
-          <button type="button" class="ajuste-copiar">Copiar</button>
+          <button type="button" class="ajuste-travar">Travar</button>
         </div>
       </div>
       <div class="card-body">
@@ -118,11 +118,38 @@ async function copiarTexto(texto, botao) {
 
 /* ---------- modo ajuste (?ajustar) ----------
 Reposicionar o recorte arrastando a foto no próprio card, como a galeria do
-Notion, e sair com os valores prontos pra colar nas colunas "enquadramento" e
-"zoom" da planilha. Fica invisível pra quem só visita o site: só liga com
-?ajustar na URL. Nada é salvo sozinho, a planilha continua sendo a fonte da
-verdade. */
+Notion, e travar a posição com um clique — grava direto na tabela do Baserow,
+sem copiar/colar em planilha nenhuma. Fica invisível pra quem só visita o
+site: só liga com ?ajustar na URL. Quem usa precisa colar o token de escrita
+do Baserow uma vez por aba (nunca fica salvo no código do site, só na memória
+do navegador enquanto a aba estiver aberta). */
 const MODO_AJUSTE = new URLSearchParams(location.search).has("ajustar");
+const BASEROW_TABLE_ID = "1178421";
+
+function tokenBaserow() {
+  let token = sessionStorage.getItem("baserow_token");
+  if (!token) {
+    token = prompt("Token de escrita do Baserow (fica só nesta aba, nunca é salvo no site):");
+    if (token) sessionStorage.setItem("baserow_token", token);
+  }
+  return token;
+}
+
+async function travarNoBaserow(id, enquadramento, zoom) {
+  const token = tokenBaserow();
+  if (!token) return { ok: false, motivo: "sem token" };
+  const resp = await fetch(
+    `https://api.baserow.io/api/database/rows/table/${BASEROW_TABLE_ID}/${id}/?user_field_names=true`,
+    {
+      method: "PATCH",
+      headers: { "Authorization": `Token ${token}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ Enquadramento: enquadramento, Zoom: zoom }),
+    }
+  );
+  if (resp.status === 401 || resp.status === 403) sessionStorage.removeItem("baserow_token");
+  if (!resp.ok) return { ok: false, motivo: `Baserow respondeu ${resp.status}` };
+  return { ok: true };
+}
 
 function valoresPlanilha(x, y, zoom) {
   return [`${Math.round(x)}% ${Math.round(y)}%`, zoom.toFixed(2)];
@@ -163,10 +190,8 @@ function iniciarModoAjuste() {
   const barra = document.createElement("div");
   barra.className = "barra-ajuste";
   barra.innerHTML = `
-    <span>Modo ajuste: arraste a foto para reposicionar, role para aproximar.
-    Depois cole os valores nas colunas <strong>enquadramento</strong> e
-    <strong>zoom</strong> da planilha.</span>
-    <button type="button" id="copiar-todos">Copiar todos</button>`;
+    <span>Modo ajuste: arraste a foto para reposicionar, role para aproximar,
+    clique em <strong>Travar</strong> pra gravar direto no banco de dados.</span>`;
   document.body.prepend(barra);
 
   const area = document.querySelector("main");
@@ -219,18 +244,23 @@ function iniciarModoAjuste() {
     desenharAjuste(card, ajuste);
   }, { passive: false });
 
-  area.addEventListener("click", e => {
-    const botao = e.target.closest(".ajuste-copiar");
+  area.addEventListener("click", async e => {
+    const botao = e.target.closest(".ajuste-travar");
     if (!botao) return;
-    const ajuste = ajusteDoCard(botao.closest(".card"));
-    // separado por tabulação: uma colada só preenche as duas células da planilha
-    copiarTexto(valoresPlanilha(ajuste.foco[0], ajuste.foco[1], ajuste.zoom).join("\t"), botao);
-  });
+    const card = botao.closest(".card");
+    const id = card.dataset.id;
+    if (!id) { alert("Esse animal não tem id do Baserow (dado de exemplo?), não dá pra travar."); return; }
 
-  document.getElementById("copiar-todos").addEventListener("click", e => {
-    const linhas = [...AJUSTES].map(([nome, aj]) =>
-      [nome, ...valoresPlanilha(aj.foco[0], aj.foco[1], aj.zoom)].join("\t"));
-    copiarTexto(linhas.join("\n"), e.target);
+    const ajuste = ajusteDoCard(card);
+    const [enquadramento, zoomTexto] = valoresPlanilha(ajuste.foco[0], ajuste.foco[1], ajuste.zoom);
+    const original = botao.textContent;
+    botao.disabled = true;
+    botao.textContent = "Travando...";
+    const resultado = await travarNoBaserow(id, enquadramento, Number(zoomTexto));
+    botao.textContent = resultado.ok ? "Travado!" : original;
+    if (!resultado.ok && resultado.motivo !== "sem token") alert(`Não consegui travar: ${resultado.motivo}`);
+    botao.disabled = false;
+    if (resultado.ok) setTimeout(() => { botao.textContent = original; }, 1500);
   });
 }
 

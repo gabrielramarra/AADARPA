@@ -34,6 +34,7 @@ async function main() {
   const { results } = await resposta.json();
 
   const animais = results.map(r => ({
+    id: r.id,
     nome: valor(r.Nome),
     sexo: valor(r.Sexo),
     idade: idadeEmAnos(r.Data_Nasc),
