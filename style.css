@@ -302,7 +302,7 @@ body.modo-ajuste .ajuste-info {
 .apoio-subtitulo { opacity: .92; max-width: 30rem; margin: 0 0 1.5rem; font-size: .95rem; }
 
 .apoio-grid { display: flex; gap: 2rem; align-items: stretch; justify-content: center; flex-wrap: wrap; }
-.apoio-texto { flex: 1 1 22rem; max-width: 30rem; text-align: left; }
+.apoio-texto { flex: 1 1 22rem; min-width: 0; max-width: 30rem; text-align: left; }
 
 .pix-box {
   background: var(--cinza-claro);
@@ -320,7 +320,7 @@ body.modo-ajuste .ajuste-info {
   margin-bottom: .7rem;
 }
 .pix-conteudo { display: flex; gap: 1.2rem; align-items: center; justify-content: center; flex-wrap: wrap; }
-.pix-chave-coluna { flex: 1 1 15rem; text-align: left; }
+.pix-chave-coluna { flex: 1 1 15rem; min-width: 0; text-align: left; }
 .pix-linha { display: flex; gap: .5rem; }
 #pix-chave {
   flex: 1;
@@ -346,6 +346,7 @@ body.modo-ajuste .ajuste-info {
 
 .instagram-card {
   flex: 0 1 14rem;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -362,7 +363,7 @@ body.modo-ajuste .ajuste-info {
 .instagram-card:hover { filter: saturate(1.3); }
 .instagram-card svg { width: 2.75rem; height: 2.75rem; }
 .instagram-titulo { font-weight: 700; font-size: 1.05rem; }
-.instagram-handle { font-size: .82rem; opacity: .85; }
+.instagram-handle { font-size: .82rem; opacity: .85; overflow-wrap: anywhere; }
 
 footer {
   text-align: center;
