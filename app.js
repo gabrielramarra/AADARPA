@@ -8,17 +8,6 @@ function urlFoto(foto) {
   return /^https?:\/\//i.test(foto) ? foto : FOTO_BASE + foto;
 }
 
-function renderStats(animais) {
-  const disponiveis = animais.filter(a => a.status === "Disponível");
-  const femeas = disponiveis.filter(a => a.sexo === "Fêmea").length;
-  const machos = disponiveis.filter(a => a.sexo === "Macho").length;
-  document.getElementById("stats").innerHTML = `
-    <div><div class="valor">${disponiveis.length}</div><div class="rotulo">Pets disponíveis</div></div>
-    <div><div class="valor">${femeas}</div><div class="rotulo">Fêmeas</div></div>
-    <div><div class="valor">${machos}</div><div class="rotulo">Machos</div></div>
-  `;
-}
-
 // enquadramento: pra onde o zoom aponta dentro do card. Editável por animal na
 // planilha (coluna "enquadramento"), combinando topo/centro/baixo +
 // esquerda/centro/direita (ex.: "topo-esquerda"), ou coordenadas diretas
@@ -329,8 +318,6 @@ function montarPayloadPix(chave, nome, cidade) {
     console.error(e);
     return;
   }
-
-  renderStats(animais);
 
   const adotados = animais.filter(a => a.status === "Adotado");
   document.getElementById("finais-felizes").hidden = adotados.length === 0;

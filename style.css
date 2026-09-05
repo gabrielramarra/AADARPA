@@ -83,9 +83,6 @@ body {
   margin-top: .8rem;
   flex-wrap: wrap;
 }
-.stats { display: flex; gap: 1.6rem; flex-wrap: wrap; }
-.stats .valor { font-size: 1.15rem; font-weight: 700; }
-.stats .rotulo { font-size: .7rem; opacity: .85; }
 
 main { max-width: 96rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 
