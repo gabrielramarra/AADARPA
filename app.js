@@ -56,11 +56,12 @@ function cardHTML(a) {
       </div>
       <div class="card-body">
         <h3>${a.nome}</h3>
+        ${adotado ? "" : `
         <div class="card-meta">
           <span>${a.sexo || ""}</span>
           <span>${a.porte || ""}</span>
           <span>${a.idade || ""}</span>
-        </div>
+        </div>`}
       </div>
     </div>`;
 }
