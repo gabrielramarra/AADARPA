@@ -277,6 +277,7 @@ body.modo-ajuste .ajuste-info {
     url('https://images.unsplash.com/photo-1682587368650-40a601316178?q=80&w=1486&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
   background-repeat: repeat;
   background-size: 220px;
+  border: 2px dashed var(--cinza);
 }
 .finais-felizes h2 { margin: 0 0 .2rem; font-size: 1.4rem; color: var(--vermelho-coracao); }
 .secao-subtitulo { color: var(--cinza); font-size: .9rem; margin: 0 0 1.2rem; }
