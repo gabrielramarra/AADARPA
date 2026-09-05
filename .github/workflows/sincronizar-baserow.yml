@@ -1,0 +1,37 @@
+name: Sincronizar dados do Baserow
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  sincronizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Gerar dados-animais.json a partir do Baserow
+        env:
+          BASEROW_TOKEN: ${{ secrets.BASEROW_TOKEN }}
+          BASEROW_TABLE_ID: "1178421"
+        run: node scripts/gerar-dados.mjs
+
+      - name: Publicar se algo mudou
+        run: |
+          if git diff --quiet -- dados-animais.json; then
+            echo "Sem mudanças, nada a publicar."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add dados-animais.json
+          git commit -m "Sincroniza dados-animais.json com o Baserow"
+          git push

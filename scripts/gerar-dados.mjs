@@ -1,20 +1,23 @@
 // Lê a tabela "Animais" do Baserow e gera dados-animais.json, só com os
 // campos públicos (nunca os campos internos como histórico médico ou
 // vacinas). Uso: node scripts/gerar-dados.mjs
-// Precisa de um .env na raiz do repositório com BASEROW_TOKEN e
-// BASEROW_TABLE_ID (veja scripts/setup-baserow, ou peça pro Claude).
-import { readFileSync, writeFileSync } from "fs";
+// Precisa de BASEROW_TOKEN e BASEROW_TABLE_ID no ambiente: localmente, via
+// .env na raiz do repositório; no GitHub Actions, via secrets do workflow.
+import { existsSync, readFileSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
 const raiz = join(dirname(fileURLToPath(import.meta.url)), "..");
+const envPath = join(raiz, ".env");
 
-const env = Object.fromEntries(
-  readFileSync(join(raiz, ".env"), "utf8")
-    .split("\n")
-    .filter(l => l.includes("="))
-    .map(l => { const i = l.indexOf("="); return [l.slice(0, i), l.slice(i + 1).trim()]; })
-);
+const env = { ...process.env };
+if (existsSync(envPath)) {
+  for (const linha of readFileSync(envPath, "utf8").split("\n")) {
+    if (!linha.includes("=")) continue;
+    const i = linha.indexOf("=");
+    env[linha.slice(0, i)] ??= linha.slice(i + 1).trim();
+  }
+}
 
 function idadeEmAnos(dataNascimento) {
   if (!dataNascimento) return "";
