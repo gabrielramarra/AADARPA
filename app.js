@@ -43,7 +43,7 @@ function urlFoto(foto) {
 }
 
 function renderStats(animais) {
-  const disponiveis = animais.filter(a => a.status !== "Adotado");
+  const disponiveis = animais.filter(a => a.status === "Disponível");
   const femeas = disponiveis.filter(a => a.sexo === "Fêmea").length;
   const machos = disponiveis.filter(a => a.sexo === "Macho").length;
   document.getElementById("stats").innerHTML = `
@@ -113,7 +113,7 @@ function cardHTML(a) {
 function aplicarFiltros(animais, estado) {
   const termo = estado.busca.trim().toLowerCase();
   return animais.filter(a => {
-    if (a.status === "Adotado") return false;
+    if (a.status !== "Disponível") return false;
     if (estado.sexo && a.sexo !== estado.sexo) return false;
     if (estado.porte && a.porte !== estado.porte) return false;
     if (termo && !a.nome.toLowerCase().includes(termo)) return false;
@@ -349,7 +349,7 @@ function montarPayloadPix(chave, nome, cidade) {
     const filtrados = aplicarFiltros(animais, estado);
     grid.innerHTML = filtrados.map(cardHTML).join("");
     vazio.hidden = filtrados.length > 0;
-    const total = animais.filter(a => a.status !== "Adotado").length;
+    const total = animais.filter(a => a.status === "Disponível").length;
     contador.textContent = `Mostrando ${filtrados.length} de ${total} pets`;
   }
 
