@@ -200,7 +200,7 @@
 /* Números: faixa escura */
 .qs-numeros {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 2rem;
   padding: 4rem max(1.5rem, calc((100% - 69rem) / 2));
   background: var(--marrom);
@@ -232,14 +232,12 @@
 .qs-vitrine-topo .qs-kicker { margin: 0; }
 .qs-vitrine-topo a { font-family: var(--serifada); font-weight: 800; font-size: 1.3rem; color: var(--marrom); text-decoration: none; }
 .qs-vitrine-topo a:hover { color: var(--terracota-escuro); }
-.qs-trilho {
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
-  mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
-}
-.qs-faixa { display: flex; gap: 1rem; padding-right: 1rem; width: max-content; animation: qs-rolar 70s linear infinite; }
+/* Sem mask-image nas bordas: no Safari do iPhone, máscara em volta de um
+   elemento animado faz as fotos sumirem ou piscarem. */
+.qs-trilho { overflow: hidden; }
+.qs-faixa { display: flex; gap: 1rem; padding-right: 1rem; width: max-content; animation: qs-rolar 55s linear infinite; will-change: transform; }
 .qs-trilho:hover .qs-faixa { animation-play-state: paused; }
-@keyframes qs-rolar { to { transform: translateX(-50%); } }
+@keyframes qs-rolar { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
 .qs-bicho { flex: 0 0 10.5rem; color: var(--marrom); text-decoration: none; }
 .qs-bicho img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 16px; background: var(--borda); }
 .qs-bicho span { display: block; margin-top: .45rem; font-weight: 700; }
@@ -297,6 +295,7 @@
   .qs-tile-foto { grid-row: auto; min-height: 18rem; }
   .qs-tile-verde { grid-column: auto; }
   .qs-numeros { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .qs-numeros div:last-child { grid-column: 1 / -1; }
   .qs-ficha { grid-template-columns: minmax(0, 1fr); }
   .qs-acao { grid-template-columns: minmax(0, 1fr) auto; }
   .qs-acao span { grid-column: 1; grid-row: 2; }

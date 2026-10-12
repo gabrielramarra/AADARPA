@@ -98,7 +98,6 @@
     <section class="qs-numeros">
       <div class="qs-revela"><strong data-contar="1000" data-prefixo="+">+1.000</strong><span>animais resgatados desde a fundação</span></div>
       <div class="qs-revela"><strong data-contar="25" data-prefixo="+">+25</strong><span>anos de trabalho</span></div>
-      <div class="qs-revela"><strong id="num-adotados">…</strong><span>finais felizes registrados no site</span></div>
       <div class="qs-revela"><strong>2018</strong><span>ano em que nos formalizamos como associação</span></div>
     </section>
 
@@ -165,12 +164,11 @@
     }, { threshold: .6 });
     document.querySelectorAll("[data-contar]").forEach(el => contar.observe(el));
 
-    // Adotados ao vivo e faixa com os animais disponíveis, dos mesmos dados da página de adoção.
+    // Faixa com os animais disponíveis, dos mesmos dados da página de adoção.
     fetch("dados-animais.json").then(r => r.json()).then(animais => {
-      document.getElementById("num-adotados").textContent = animais.filter(a => a.status === "Adotado").length;
-      const disponiveis = animais.filter(a => a.status === "Disponível" && a.foto).sort(() => Math.random() - .5).slice(0, 14);
+      const disponiveis = animais.filter(a => a.status === "Disponível" && a.foto).sort(() => Math.random() - .5).slice(0, 10);
       if (!disponiveis.length) return;
-      const cartao = a => `<a class="qs-bicho" href="./"><img src="fotos/${a.foto}" alt="${a.nome}" loading="lazy"${a.enquadramento ? ` style="object-position:${a.enquadramento}"` : ""}><span>${a.nome}</span></a>`;
+      const cartao = a => `<a class="qs-bicho" href="./"><img src="fotos/${a.foto}" alt="${a.nome}" decoding="async"${a.enquadramento ? ` style="object-position:${a.enquadramento}"` : ""}><span>${a.nome}</span></a>`;
       const faixa = document.getElementById("qs-faixa");
       faixa.innerHTML = disponiveis.map(cartao).join("");
       // segunda cópia escondida dos leitores de tela, só pra emendar o loop da animação
