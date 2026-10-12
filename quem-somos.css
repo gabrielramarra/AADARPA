@@ -44,7 +44,7 @@
   color: var(--marrom);
   text-wrap: balance;
 }
-.qs-display em { font-style: italic; font-weight: 600; color: var(--laranja-escuro); }
+.qs-display em { font-style: italic; font-weight: 600; color: var(--paleta-roxo); background: linear-gradient(transparent 62%, rgba(243, 143, 34, .45) 62%); }
 .qs-lead { margin: 0; max-width: 34rem; font-size: 1.1rem; line-height: 1.6; color: #44525e; }
 
 .qs-colagem { position: relative; min-height: 28rem; }
@@ -115,7 +115,7 @@
   background: white;
   border: 3px solid var(--terracota);
 }
-.qs-marco { padding-right: 1.6rem; font-family: var(--serifada); font-weight: 800; font-size: 1.5rem; line-height: 1.2; color: var(--laranja-escuro); text-align: right; }
+.qs-marco { padding-right: 1.6rem; font-family: var(--serifada); font-weight: 800; font-size: 1.5rem; line-height: 1.2; color: var(--paleta-roxo); text-align: right; }
 .qs-linha p { margin: 0; max-width: 46rem; font-size: 1.05rem; line-height: 1.7; }
 
 /* Legado: faixa roxa de ponta a ponta */
@@ -123,7 +123,7 @@
   position: relative;
   overflow: hidden;
   padding: 5rem 1.5rem;
-  background: linear-gradient(135deg, #4b2a78 0%, var(--roxo) 100%);
+  background: linear-gradient(135deg, var(--paleta-roxo) 0%, var(--paleta-azul) 100%);
   color: white;
 }
 .qs-legado blockquote { position: relative; max-width: 58rem; margin: 0 auto; }
@@ -160,7 +160,7 @@
 }
 .qs-manifesto mark {
   color: inherit;
-  background: linear-gradient(transparent 58%, rgba(240, 151, 58, .38) 58%);
+  background: linear-gradient(transparent 58%, rgba(243, 143, 34, .4) 58%);
 }
 
 /* O que fazemos: mosaico assimétrico */
@@ -194,7 +194,7 @@
 .qs-tile-foto div { position: relative; z-index: 1; }
 .qs-tile-azul { background: #dff0fa; }
 .qs-tile-laranja { background: #fde8d2; }
-.qs-tile-verde { grid-column: 2 / 4; background: #e3f1e6; }
+.qs-tile-verde { grid-column: 2 / 4; background: #fcf2cc; }
 
 /* Números: faixa escura */
 .qs-numeros {
@@ -202,7 +202,7 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 2rem;
   padding: 4rem max(1.5rem, calc((100% - 69rem) / 2));
-  background: var(--marrom);
+  background: var(--paleta-roxo);
   color: white;
 }
 .qs-numeros strong {
@@ -211,7 +211,7 @@
   font-weight: 800;
   font-size: clamp(2.6rem, 5vw, 4.2rem);
   line-height: 1;
-  color: var(--laranja);
+  color: var(--paleta-amarelo);
   font-variant-numeric: tabular-nums;
 }
 .qs-numeros span { display: block; margin-top: .5rem; font-size: .95rem; opacity: .78; }

@@ -419,8 +419,47 @@ function montarPayloadPix(chave, nome, cidade) {
 // Ficha do animal: abre ao tocar num card disponível, com o botão que leva
 // direto a uma conversa com o abrigo no Instagram (ig.me). <dialog> nativo:
 // Esc fecha, o foco fica preso dentro e volta ao card ao fechar.
+// Endereço que abre direto a ficha de um animal: aadarpa.ong.br/#poison-malinois
+function slug(nome) {
+  return nome.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+// Compartilhar no Status do WhatsApp: site nenhum consegue postar direto no
+// Status, então no celular abrimos o menu nativo de compartilhar, onde o
+// WhatsApp oferece "Meu status". A foto vai junto quando o aparelho aceita
+// arquivo; ela é baixada antes do toque porque o Safari só permite abrir o
+// menu de imediato, sem esperar download. Sem esse menu (computador), abre o
+// WhatsApp Web com o texto pronto.
+const ARQUIVOS = new Map(); // url da imagem -> File já baixado
+function prepararArquivo(url) {
+  if (!url || ARQUIVOS.has(url) || !navigator.canShare) return;
+  ARQUIVOS.set(url, null);
+  fetch(url).then(r => r.blob()).then(blob => {
+    ARQUIVOS.set(url, new File([blob], url.split("/").pop(), { type: blob.type || "image/jpeg" }));
+  }).catch(() => {});
+}
+
+function compartilhar({ texto, url, imagem, local, animal }) {
+  const mensagem = `${texto}
+${url}`;
+  const params = { local, ...(animal && { animal }) };
+  const registrar = metodo => window.gtag && gtag("event", "compartilhar", { ...params, metodo });
+  if (!navigator.share) {
+    window.open(`https://wa.me/?text=${encodeURIComponent(mensagem)}`, "_blank", "noopener");
+    registrar("whatsapp_web");
+    return;
+  }
+  const arquivo = ARQUIVOS.get(imagem);
+  const dados = arquivo && navigator.canShare({ files: [arquivo] }) ? { files: [arquivo], text: mensagem } : { text: mensagem };
+  navigator.share(dados).then(() => registrar("menu_do_celular")).catch(() => { /* cancelado */ });
+}
+
+let fichaAtual = null;
+
 function abrirFicha(a) {
   const ficha = document.getElementById("ficha");
+  fichaAtual = a;
+  prepararArquivo(urlFoto(a.foto));
   const femea = a.sexo === "Fêmea";
   const artigo = femea ? "a" : "o";
   ficha.dataset.sexo = a.sexo || "";
@@ -437,7 +476,7 @@ function abrirFicha(a) {
   document.getElementById("ficha-texto").textContent = a.descricao ||
     `${femea ? "Ela" : "Ele"} está esperando uma família. Mande uma mensagem e contamos tudo sobre ${femea ? "ela" : "ele"}: personalidade, saúde e como funciona a adoção.`;
   const adotar = document.getElementById("ficha-adotar");
-  adotar.textContent = `Quero adotar ${artigo} ${a.nome}`;
+  document.getElementById("ficha-adotar-texto").textContent = `Quero adotar ${artigo} ${a.nome}`;
   adotar.dataset.animal = a.nome;
   document.getElementById("ficha-dica").textContent =
     `Abre uma conversa com o abrigo no Instagram. Conte que viu ${artigo} ${a.nome} no site.`;
@@ -449,6 +488,21 @@ function abrirFicha(a) {
   ficha.querySelector(".ficha-fechar").addEventListener("click", () => ficha.close());
   // clique no fundo escurecido (fora do conteúdo) também fecha
   ficha.addEventListener("click", e => { if (e.target === ficha) ficha.close(); });
+  document.getElementById("status-ficha").addEventListener("click", () => {
+    const a = fichaAtual;
+    const femea = a.sexo === "Fêmea";
+    compartilhar({
+      texto: `Conheça ${femea ? "a" : "o"} ${a.nome}! ${femea ? "Ela" : "Ele"} está esperando uma família no abrigo AADARPA, em Goiânia 🐾`,
+      url: `https://aadarpa.ong.br/#${slug(a.nome)}`,
+      imagem: urlFoto(a.foto), local: "ficha", animal: a.nome,
+    });
+  });
+  const imagemSite = "imagens/compartilhar.jpg";
+  addEventListener("load", () => prepararArquivo(imagemSite));
+  document.getElementById("status-site").addEventListener("click", () => compartilhar({
+    texto: "Cães e gatos do abrigo AADARPA estão esperando uma família em Goiânia 🐾 Adote ou ajude:",
+    url: "https://aadarpa.ong.br/", imagem: imagemSite, local: "apoio",
+  }));
 })();
 
 (async function init() {
@@ -497,4 +551,8 @@ function abrirFicha(a) {
 
   render();
   if (MODO_AJUSTE) iniciarModoAjuste();
+  // link compartilhado de um animal (aadarpa.ong.br/#nome) abre a ficha dele
+  const alvo = decodeURIComponent(location.hash.slice(1));
+  const doLink = alvo && !MODO_AJUSTE && animais.find(a => a.status === "Disponível" && slug(a.nome) === alvo);
+  if (doLink) abrirFicha(doLink);
 })();

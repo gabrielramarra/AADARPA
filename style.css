@@ -1,19 +1,26 @@
 :root {
+  /* Paleta oficial do abrigo (Dropbox/AADARPA/Logo) + azul do logo */
+  --paleta-roxo: #403287;
+  --paleta-azul: #405eb8;
+  --paleta-azul-claro: #56b3f0;
+  --paleta-amarelo: #f2cb44;
+  --paleta-laranja: #f38f22;
+  --paleta-logo: #24aae1;
   --serifada: "Fraunces", Georgia, "Times New Roman", serif;
   --creme: #f4f9fc;
   --marrom: #1f3242;
-  --terracota: #3aa5da;
-  --terracota-escuro: #2680ab;
-  --verde: #4a7c59;
+  --terracota: var(--paleta-logo);
+  --terracota-escuro: var(--paleta-azul);
+  --verde: var(--paleta-azul);
   --cinza: #75838d;
   --borda: #dbe9f2;
-  --roxo: #8b5fbf;
+  --roxo: var(--paleta-roxo);
   --rosa: #e0729c;
-  --verde-claro: #6eaf7d;
-  --verde-escuro: #2f5940;
-  --vermelho-coracao: #e2576b;
-  --laranja: #f0973a;
-  --laranja-escuro: #d9711f;
+  --verde-claro: var(--paleta-azul-claro);
+  --verde-escuro: var(--paleta-roxo);
+  --vermelho-coracao: var(--paleta-roxo);
+  --laranja: var(--paleta-laranja);
+  --laranja-escuro: var(--paleta-laranja);
   --grafite: #2b2f36;
   --cinza-claro: #e7e6e3;
   --rosa-claro: #fbeef2;
@@ -44,7 +51,7 @@ body {
 .hero {
   background-image:
     url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><g fill="white" fill-opacity="0.14"><ellipse cx="30" cy="38" rx="10" ry="8"/><ellipse cx="18" cy="24" rx="4.5" ry="6"/><ellipse cx="28" cy="16" rx="4.5" ry="6"/><ellipse cx="41" cy="18" rx="4.5" ry="6"/><ellipse cx="45" cy="30" rx="4.5" ry="6"/></g></svg>'),
-    linear-gradient(135deg, var(--terracota) 0%, var(--terracota-escuro) 100%);
+    linear-gradient(135deg, var(--paleta-logo) 0%, var(--paleta-azul) 100%);
   background-size: 60px 60px, auto;
 }
 */
@@ -52,7 +59,7 @@ body {
   position: relative;
   overflow: hidden;
   background-color: var(--terracota-escuro);
-  background-image: linear-gradient(135deg, var(--terracota) 0%, var(--terracota-escuro) 100%);
+  background-image: linear-gradient(135deg, var(--paleta-logo) 0%, var(--paleta-azul) 100%);
   color: white;
   padding: 1.2rem 1.5rem;
   text-align: center;
@@ -75,22 +82,39 @@ body {
 .hero h1 { font-family: var(--serifada); font-weight: 600; font-size: clamp(1.35rem, 2.8vw, 1.8rem); font-style: italic; margin: .2rem 0; text-wrap: balance; }
 .subtitle { max-width: 30rem; margin: 0 auto .6rem; opacity: .95; font-size: .85rem; }
 
+/* Botões de ação. "Quero adotar" é o principal (rosa, preenchido);
+   "Quero doar" é o secundário (branco), pra não disputarem atenção. */
 .cta {
-  display: inline-block;
-  background: var(--vermelho-coracao);
-  color: white;
-  padding: .6rem 1.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  min-height: 3rem;
+  padding: .7rem 1.6rem .7rem 1.3rem;
+  border: 0;
   border-radius: 999px;
-  text-decoration: none;
+  background: linear-gradient(180deg, #f6d96e 0%, var(--paleta-amarelo) 100%);
+  color: var(--paleta-roxo);
   font-weight: 700;
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: .04em;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
-  transition: transform .15s, box-shadow .15s;
+  font-size: 1.02rem;
+  letter-spacing: .01em;
+  text-decoration: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), 0 8px 20px rgba(64, 50, 135, .3);
+  transition: transform .15s ease, box-shadow .15s ease;
 }
-.cta-doar { background: var(--laranja); }
-.cta:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0, 0, 0, .3); }
+.cta-icone { width: 1.2rem; height: 1.2rem; flex: none; transition: transform .2s ease; }
+.cta:hover { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), 0 12px 26px rgba(64, 50, 135, .38); }
+.cta:hover .cta-icone { transform: rotate(-12deg) scale(1.12); }
+.cta:active { transform: translateY(0) scale(.97); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), 0 4px 10px rgba(64, 50, 135, .3); }
+.cta:focus-visible { outline: 3px solid white; outline-offset: 3px; }
+.cta-doar {
+  background: white;
+  color: var(--paleta-roxo);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .18);
+}
+.cta-doar .cta-icone { color: var(--paleta-laranja); }
+.cta-doar:hover { box-shadow: 0 12px 26px rgba(0, 0, 0, .24); }
+.cta-doar:active { box-shadow: 0 4px 10px rgba(0, 0, 0, .18); }
+.ficha .cta:focus-visible { outline-color: var(--terracota-escuro); }
 
 .stats-row {
   display: flex;
@@ -170,8 +194,9 @@ main { max-width: 96rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 }
 #filtro-sexo button[data-sexo=""].active,
 #filtro-porte button[data-porte=""].active {
-  background: var(--roxo);
-  border-color: var(--roxo);
+  background: var(--paleta-amarelo);
+  border-color: var(--paleta-amarelo);
+  color: var(--paleta-roxo);
 }
 #filtro-sexo button[data-sexo="Fêmea"].active {
   background: var(--rosa);
@@ -180,6 +205,7 @@ main { max-width: 96rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 #filtro-porte button[data-porte="Pequeno"].active {
   background: var(--verde-claro);
   border-color: var(--verde-claro);
+  color: var(--paleta-roxo);
 }
 #filtro-porte button[data-porte="Médio"].active {
   background: var(--verde);
@@ -260,8 +286,9 @@ body.modo-ajuste .card-abrir, body.modo-ajuste .card-ver { display: none; }
   color: white;
 }
 .badge.disponivel { background: var(--verde); }
+/* Vermelho de propósito (exceção à paleta): avisa que o animal já não está disponível. */
 .badge.adotado {
-  background: var(--vermelho-coracao);
+  background: #b3263e;
   display: flex;
   align-items: center;
   gap: .3rem;
@@ -331,17 +358,17 @@ body.modo-ajuste .ajuste-info {
   margin-top: 3rem;
   padding: 2rem 1.5rem;
   border-radius: 16px;
-  background-color: var(--roxo-claro);
+  background-color: var(--paleta-roxo);
   background-image:
-    linear-gradient(rgba(203, 179, 236, .88), rgba(203, 179, 236, .88)),
+    linear-gradient(rgba(64, 50, 135, .9), rgba(64, 50, 135, .9)),
     url('https://images.unsplash.com/photo-1682587368650-40a601316178?q=80&w=1486&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
   background-repeat: repeat;
   background-size: 220px;
-  border: 2px dashed var(--cinza);
+  border: 2px dashed rgba(255, 255, 255, .4);
 }
-.finais-felizes h2 { margin: 0 0 .2rem; font-family: var(--serifada); font-weight: 800; font-size: 1.6rem; color: #4b2a78; }
+.finais-felizes h2 { margin: 0 0 .2rem; font-family: var(--serifada); font-weight: 800; font-size: 1.6rem; color: white; }
 .secao-subtitulo { color: var(--cinza); font-size: .9rem; margin: 0 0 1.2rem; }
-.finais-felizes .secao-subtitulo { color: #5b3d86; }
+.finais-felizes .secao-subtitulo { color: rgba(255, 255, 255, .82); }
 
 .apoio-moldura {
   margin: 3rem auto 0;
@@ -355,7 +382,7 @@ body.modo-ajuste .ajuste-info {
 .apoio {
   padding: 2.5rem 2rem;
   border-radius: 16px;
-  background: linear-gradient(135deg, var(--laranja) 0%, var(--laranja-escuro) 100%);
+  background: linear-gradient(135deg, var(--paleta-roxo) 0%, #4a3d99 100%);
   color: white;
   text-align: center;
 }
@@ -376,7 +403,7 @@ body.modo-ajuste .ajuste-info {
   font-size: .75rem;
   text-transform: uppercase;
   letter-spacing: .08em;
-  color: var(--laranja-escuro);
+  color: var(--paleta-roxo);
   font-weight: 700;
   margin-bottom: .7rem;
 }
@@ -398,9 +425,9 @@ body.modo-ajuste .ajuste-info {
   padding: .6rem 1.1rem;
   border-radius: 8px;
   border: none;
-  background: var(--laranja);
-  color: white;
-  font-weight: 600;
+  background: var(--paleta-amarelo);
+  color: var(--paleta-roxo);
+  font-weight: 700;
   cursor: pointer;
 }
 .pix-nota { font-size: .78rem; color: var(--cinza); margin: .6rem 0 0; }
@@ -521,6 +548,30 @@ body.modo-ajuste .ajuste-info {
 .politica a { color: var(--terracota-escuro); }
 @media (max-width: 600px) { .politica { margin: 1.5rem 1rem 0; padding: 1.4rem 1.2rem .6rem; } }
 
+/* Compartilhar no Status do WhatsApp (verde da marca, texto escuro pra contraste) */
+.btn-status {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  min-height: 2.75rem;
+  padding: .5rem 1.2rem .5rem .75rem;
+  border: 0;
+  border-radius: 999px;
+  background: #25d366;
+  color: #063b2a;
+  font-weight: 700;
+  font-size: .95rem;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(18, 140, 126, .3);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.btn-status svg { width: 1.6rem; height: 1.6rem; flex: none; }
+.btn-status:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(18, 140, 126, .38); }
+.btn-status:active { transform: scale(.97); }
+.btn-status:focus-visible { outline: 3px solid var(--marrom); outline-offset: 3px; }
+.divulgar-texto { margin: 1.1rem 0 .5rem; font-size: .9rem; font-weight: 600; }
+.ficha .btn-status { margin-top: -.2rem; }
+
 /* Ficha do animal (dialog) */
 .ficha {
   width: min(56rem, calc(100% - 2rem));
@@ -607,7 +658,8 @@ footer a { color: var(--terracota-escuro); }
   .filter-group { gap: .3rem; }
   .filter-group button { padding: .45rem .6rem; font-size: .82rem; }
   /* "Quero adotar" e "Quero doar" juntos na 1ª linha, ícones das redes na 2ª. */
-  .cta { padding: .55rem 1.1rem; font-size: .85rem; }
+  .cta { min-height: 2.9rem; padding: .6rem 1.15rem .6rem .95rem; gap: .45rem; font-size: .92rem; }
+  .cta-icone { width: 1.05rem; height: 1.05rem; }
   .apoio { padding: 2rem 1.25rem; }
   .pix-box { padding: 1rem; }
   .instagram-handle { font-size: .72rem; }
