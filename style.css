@@ -790,7 +790,6 @@ body:has(.ficha[open]) { overflow: hidden; }
 .ficha-corpo { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
 .ficha-corpo img { display: block; width: 100%; height: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 25%; background: var(--borda); }
 .ficha-info { align-self: center; display: flex; flex-direction: column; align-items: flex-start; gap: .9rem; padding: 2.4rem 2.2rem; }
-.ficha-status { margin: 0; padding: .25rem .7rem; border-radius: 999px; background: var(--verde); color: white; font-size: .75rem; font-weight: 700; }
 .ficha h2 { margin: 0; font-family: var(--serifada); font-weight: 800; font-size: clamp(2.1rem, 4.5vw, 3.2rem); line-height: 1.05; color: var(--terracota-escuro); }
 .ficha[data-sexo="Fêmea"] h2 { color: #b0305f; }
 .ficha-meta { display: flex; flex-wrap: wrap; gap: .45rem; margin: 0; padding: 0; list-style: none; }
@@ -822,7 +821,8 @@ body:has(.ficha[open]) { overflow: hidden; }
 }
 @media (max-width: 700px) {
   .ficha-corpo { grid-template-columns: minmax(0, 1fr); }
-  .ficha-corpo img { aspect-ratio: 4 / 3; height: auto; max-height: 40vh; }
+  /* foto quadrada, o maior tamanho que ainda deixa "Quero adotar" à vista sem rolar */
+  .ficha-corpo img { aspect-ratio: 1 / 1; height: auto; max-height: 55vh; }
   .ficha-info { padding: 1.5rem 1.3rem 1.7rem; }
 }
 
