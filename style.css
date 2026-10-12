@@ -368,6 +368,63 @@ body.modo-ajuste .ajuste-info {
 .instagram-titulo { font-weight: 700; font-size: 1.05rem; }
 .instagram-handle { font-size: .82rem; opacity: .85; overflow-wrap: anywhere; }
 
+/* Banner do TikTok: preto com o "glitch" ciano/vermelho da marca no título. */
+.tiktok {
+  margin: 2rem auto 0;
+  max-width: 62rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2.2rem 2.5rem;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(37, 244, 238, .22), transparent 45%),
+    radial-gradient(circle at 100% 100%, rgba(254, 44, 85, .25), transparent 45%),
+    #0d0d0f;
+  color: white;
+}
+.tiktok-texto { flex: 1 1 22rem; min-width: 0; }
+.tiktok-logo { width: 2.6rem; height: 2.6rem; display: block; margin-bottom: .8rem; }
+.tiktok-eyebrow {
+  margin: 0 0 .3rem;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #25F4EE;
+}
+.tiktok h2 {
+  margin: 0 0 .5rem;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  line-height: 1.15;
+  text-wrap: balance;
+  text-shadow: -2px -2px 0 rgba(37, 244, 238, .75), 2px 2px 0 rgba(254, 44, 85, .75);
+}
+.tiktok-sub { margin: 0 0 1.3rem; max-width: 32rem; opacity: .85; font-size: .95rem; }
+.tiktok-botao {
+  display: inline-block;
+  padding: .7rem 1.6rem;
+  border-radius: 999px;
+  background: #FE2C55;
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: -3px -3px 0 #25F4EE;
+  transition: transform .15s, box-shadow .15s;
+}
+.tiktok-botao:hover { transform: translate(2px, 2px); box-shadow: -5px -5px 0 #25F4EE; }
+.tiktok-botao:focus-visible { outline: 2px solid white; outline-offset: 3px; }
+.tiktok-qr { margin: 0; flex: 0 0 auto; text-align: center; }
+.tiktok-qr img { display: block; border-radius: 12px; background: white; padding: .5rem; }
+.tiktok-qr figcaption { margin-top: .5rem; font-size: .78rem; opacity: .7; }
+
+/* No celular a pessoa já está no aparelho: QR não serve, o botão basta. */
+@media (max-width: 640px) {
+  .tiktok { padding: 1.8rem 1.4rem; }
+  .tiktok-qr { display: none; }
+}
+
 footer {
   text-align: center;
   padding: 2rem 1.5rem 3rem;
