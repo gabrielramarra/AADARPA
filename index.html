@@ -58,7 +58,7 @@
             <use href="#tiktok-nota" fill="#fff"/>
           </svg>
         </a>
-        <button type="button" class="rede rede-compartilhar" id="abrir-compartilhar" aria-label="Compartilhar o site do abrigo">
+        <button type="button" class="rede rede-compartilhar" id="abrir-compartilhar" data-abrir-compartilhar aria-label="Compartilhar o site do abrigo">
           <svg aria-hidden="true"><use href="#icone-compartilhar"/></svg>
         </button>
       </span>
@@ -101,7 +101,7 @@
         <div class="apoio-grid">
           <div class="apoio-texto">
             <h2>Não pode adotar? Você ainda pode ajudar 🧡</h2>
-            <p class="apoio-subtitulo">Faça uma doação via PIX e compartilhe o abrigo. Toda ajuda transforma vidas.</p>
+            <p class="apoio-subtitulo">Doe via PIX ou todo mês no cartão, e compartilhe o abrigo. Toda ajuda transforma vidas.</p>
             <div class="pix-box">
               <span class="pix-label">Doe via PIX</span>
               <div class="pix-conteudo">
@@ -115,6 +115,14 @@
                 <img id="pix-qr" class="pix-qr" width="140" height="140" alt="QR Code para doação via PIX">
               </div>
             </div>
+            <a class="apoiase" href="https://apoia.se/aadarpa" target="_blank" rel="noopener" data-evento="clique_apoiase">
+              <span class="apoiase-texto"><strong>Doe todo mês no cartão de crédito</strong>Pelo Apoia.se, um apoio mensal que ajuda o abrigo a planejar ração, remédios e castrações.</span>
+              <span class="apoiase-botao">Apoiar no Apoia.se →</span>
+            </a>
+            <a class="apadrinhar" href="https://ig.me/m/abrigodosanimaisrefugados" target="_blank" rel="noopener" data-evento="clique_apadrinhar">
+              <span class="apadrinhar-icone" aria-hidden="true">🐾</span>
+              <span><strong>Quer apadrinhar um peludo?</strong> Conheça nosso programa de Apadrinhamento: fale com a gente no Instagram →</span>
+            </a>
             <div class="compartilhar" data-alvo="site" data-rotulo="Não pode doar? Ajude compartilhando:"></div>
           </div>
         </div>
@@ -166,7 +174,7 @@
     <button type="button" class="ficha-fechar" aria-label="Fechar">×</button>
     <h2 id="caixa-compartilhar-titulo">Compartilhar o abrigo</h2>
     <p>Ajude esses peludos a chegarem em mais gente.</p>
-    <div class="compartilhar" data-alvo="site" data-sem-rotulo></div>
+    <div class="compartilhar" data-alvo="site" data-local="topo" data-sem-rotulo></div>
   </dialog>
 
   <dialog id="ficha" class="ficha" aria-labelledby="ficha-nome">
@@ -187,6 +195,7 @@
     </div>
   </dialog>
 
+  <script src="compartilhar.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

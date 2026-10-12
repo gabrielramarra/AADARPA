@@ -27,6 +27,8 @@
   document.addEventListener("click", e => {
     const link = e.target.closest("a[href]");
     if (!link) return;
+    // links marcados com data-evento (Apadrinhamento, Apoia.se) mandam o próprio evento
+    if (link.dataset.evento) { enviar(link.dataset.evento, { destino: link.hostname, origem: location.pathname }); return; }
     // ig.me é o atalho do Instagram que abre uma conversa (botão da ficha do animal)
     const rede = /(^|\.)instagram\.com$|^ig\.me$/.test(link.hostname) ? "instagram"
       : /(^|\.)tiktok\.com$/.test(link.hostname) ? "tiktok" : null;

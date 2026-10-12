@@ -276,6 +276,7 @@
   text-decoration: none;
   transition: background .2s, padding .2s;
 }
+button.qs-acao { width: 100%; border: 0; border-bottom: 1px solid var(--borda); background: none; font: inherit; text-align: left; cursor: pointer; }
 .qs-acao strong { font-family: var(--serifada); font-weight: 800; font-size: clamp(1.4rem, 2.6vw, 1.9rem); }
 .qs-acao span { color: #44525e; }
 .qs-acao i { font-style: normal; font-size: 1.6rem; color: var(--terracota-escuro); transition: transform .2s; }

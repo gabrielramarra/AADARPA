@@ -629,6 +629,63 @@ body.modo-ajuste .ajuste-info {
   .insta-qr { display: none; }
 }
 
+/* Doação mensal no cartão pelo Apoia.se */
+.apoiase {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .7rem 1rem;
+  margin-top: 1.1rem;
+  padding: 1rem 1.1rem;
+  border-radius: 12px;
+  background: white;
+  color: var(--marrom);
+  font-size: .88rem;
+  line-height: 1.45;
+  text-align: left;
+  text-decoration: none;
+}
+.apoiase-texto { flex: 1 1 14rem; }
+.apoiase-texto strong { display: block; margin-bottom: .15rem; font-size: 1rem; color: var(--paleta-roxo); }
+.apoiase-botao {
+  flex: none;
+  padding: .6rem 1.1rem;
+  border-radius: 999px;
+  background: var(--paleta-amarelo);
+  color: var(--paleta-roxo);
+  font-weight: 700;
+  white-space: nowrap;
+  transition: transform .15s;
+}
+.apoiase:hover .apoiase-botao { transform: translateY(-2px); }
+.apoiase:focus-visible { outline: 3px solid var(--paleta-amarelo); outline-offset: 2px; }
+.doar-card .apoiase { margin-top: 1rem; background: #f4f3fa; }
+
+/* Destaque do programa de Apadrinhamento (leva ao Instagram) */
+.apadrinhar {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  margin-top: 1.1rem;
+  padding: .8rem 1rem;
+  border: 1.5px dashed var(--paleta-amarelo);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .08);
+  color: white;
+  font-size: .9rem;
+  line-height: 1.4;
+  text-align: left;
+  text-decoration: none;
+  transition: background .15s;
+}
+.apadrinhar:hover { background: rgba(255, 255, 255, .14); }
+.apadrinhar:focus-visible { outline: 3px solid var(--paleta-amarelo); outline-offset: 2px; }
+.apadrinhar strong { color: var(--paleta-amarelo); }
+.apadrinhar-icone { font-size: 1.4rem; }
+.doar-card .apadrinhar { color: var(--marrom); background: #fff8e1; }
+.doar-card .apadrinhar strong { color: var(--paleta-roxo); }
+
 /* Página /doar: card de doação para link de Stories, bio e mensagens */
 body.pagina-doar {
   min-height: 100vh;
