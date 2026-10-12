@@ -15,7 +15,11 @@
   window.dataLayer = window.dataLayer || [];
   window.gtag = function () { dataLayer.push(arguments); };
   gtag("js", new Date());
-  gtag("config", ID, new URLSearchParams(location.search).has("debug_ga") ? { debug_mode: true } : {});
+  // Teste: ?debug_ga na URL ou qualquer endereço fora do site oficial (prévia
+  // local, rede de casa). O filtro de tráfego de desenvolvedor do GA4 tira
+  // essas visitas dos relatórios e das conversões.
+  const teste = new URLSearchParams(location.search).has("debug_ga") || !/(^|\.)aadarpa\.ong\.br$/.test(location.hostname);
+  gtag("config", ID, teste ? { debug_mode: true } : {});
 
   // Cliques de saída: beacon entrega o hit mesmo se a página for descarregada.
   const enviar = (nome, params) => gtag("event", nome, { ...params, transport_type: "beacon" });
