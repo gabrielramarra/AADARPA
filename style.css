@@ -585,6 +585,23 @@ body.modo-ajuste .ajuste-info {
 .caixa-compartilhar p { margin: 0; color: var(--cinza); font-size: .92rem; }
 .caixa-compartilhar .compartilhar-botoes { justify-content: center; }
 
+/* Janela "Postar nos Stories" */
+.caixa-stories img { display: block; height: min(38vh, 22rem); aspect-ratio: 9 / 16; margin: 1rem auto; border-radius: 14px; box-shadow: 0 10px 28px rgba(0, 0, 0, .25); background: var(--borda); }
+.stories-passos { display: grid; gap: .9rem; margin: 0; padding: 0; list-style: none; text-align: left; }
+.stories-passos button {
+  width: 100%;
+  min-height: 2.9rem;
+  border: 0;
+  border-radius: 999px;
+  color: white;
+  font-weight: 700;
+  font-size: .98rem;
+  cursor: pointer;
+}
+#stories-salvar { background: var(--paleta-roxo); }
+#stories-abrir { background: linear-gradient(90deg, #d62976 0%, #962fbf 100%); }
+.stories-passos span { display: block; margin-top: .35rem; font-size: .8rem; color: var(--cinza); }
+
 /* Banner do Instagram, no mesmo formato do banner do TikTok */
 .insta {
   margin: 2rem auto 0;

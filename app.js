@@ -551,10 +551,27 @@ function alvoDaBarra(barra) {
   };
 }
 
+// registra antes de sair da página (beacon garante a entrega)
+function registrarCompartilhar(alvo, metodo) {
+  if (window.gtag) gtag("event", "compartilhar", { local: alvo.local, ...(alvo.animal && { animal: alvo.animal }), metodo, transport_type: "beacon" });
+}
+
+// No iPhone o Instagram não aparece no menu de compartilhar para imagens
+// vindas de um site. Então a janela "Postar nos Stories" faz em dois passos:
+// salvar a imagem (menu do sistema, "Salvar Imagem") e abrir a câmera de
+// Stories do Instagram (instagram://story-camera), onde a foto salva aparece.
+let storiesAtual = null; // { alvo, arquivo, previa }
+function abrirCaixaStories(alvo) {
+  const arquivo = STORIES[alvo.chave] || STORIES.site;
+  if (!arquivo) return;
+  if (storiesAtual) URL.revokeObjectURL(storiesAtual.previa);
+  storiesAtual = { alvo, arquivo, previa: URL.createObjectURL(arquivo) };
+  document.getElementById("stories-previa").src = storiesAtual.previa;
+  document.getElementById("caixa-stories").showModal();
+}
+
 function compartilharVia(acao, alvo, botao) {
-  // registra antes de sair da página (beacon garante a entrega)
-  const registrar = metodo => window.gtag && gtag("event", "compartilhar",
-    { local: alvo.local, ...(alvo.animal && { animal: alvo.animal }), metodo, transport_type: "beacon" });
+  const registrar = metodo => registrarCompartilhar(alvo, metodo);
   const mensagem = encodeURIComponent(alvo.texto + " " + alvo.url);
   if (acao === "copiar") {
     copiarTexto(alvo.url, botao.querySelector("span"));
@@ -567,10 +584,8 @@ function compartilharVia(acao, alvo, botao) {
     registrar("facebook");
     window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(alvo.url), "_blank", "noopener");
   } else if (acao === "instagram") {
-    // se a imagem do animal falhou ou ainda está sendo gerada, vai a geral
-    const arquivo = STORIES[alvo.chave] || STORIES.site;
-    if (!arquivo || !navigator.canShare({ files: [arquivo] })) return;
-    navigator.share({ files: [arquivo] }).then(() => registrar("instagram_menu")).catch(() => { /* cancelado */ });
+    registrar("instagram_abrir");
+    abrirCaixaStories(alvo);
   }
 }
 
@@ -612,6 +627,19 @@ function abrirFicha(a) {
   document.addEventListener("click", e => {
     const botao = e.target.closest(".compartilhar [data-acao]");
     if (botao) compartilharVia(botao.dataset.acao, alvoDaBarra(botao.closest(".compartilhar")), botao);
+  });
+  // janela "Postar nos Stories"
+  const caixaStories = document.getElementById("caixa-stories");
+  caixaStories.querySelector(".ficha-fechar").addEventListener("click", () => caixaStories.close());
+  caixaStories.addEventListener("click", e => { if (e.target === caixaStories) caixaStories.close(); });
+  document.getElementById("stories-salvar").addEventListener("click", () => {
+    const { alvo, arquivo } = storiesAtual;
+    if (!navigator.canShare({ files: [arquivo] })) return;
+    navigator.share({ files: [arquivo] }).then(() => registrarCompartilhar(alvo, "stories_salvar")).catch(() => { /* cancelado */ });
+  });
+  document.getElementById("stories-abrir").addEventListener("click", () => {
+    registrarCompartilhar(storiesAtual.alvo, "stories_abrir_instagram");
+    location.href = "instagram://story-camera";
   });
   // botão geral de compartilhar do topo
   const caixa = document.getElementById("caixa-compartilhar");
