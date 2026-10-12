@@ -6,7 +6,7 @@
     "idade": "8 anos",
     "porte": "Grande",
     "status": "Disponível",
-    "foto": "branca.png",
+    "foto": "branca.jpg",
     "descricao": "",
     "enquadramento": "",
     "zoom": ""
@@ -30,7 +30,7 @@
     "idade": "7 anos",
     "porte": "Médio",
     "status": "Disponível",
-    "foto": "cristal.png",
+    "foto": "cristal.jpg",
     "descricao": "",
     "enquadramento": "94% 100%",
     "zoom": "1.36"
@@ -66,7 +66,7 @@
     "idade": "7 anos",
     "porte": "Médio",
     "status": "Disponível",
-    "foto": "glorinha.png",
+    "foto": "glorinha.jpg",
     "descricao": "",
     "enquadramento": "28% 100%",
     "zoom": "1.36"
@@ -102,7 +102,7 @@
     "idade": "4 anos",
     "porte": "Médio",
     "status": "Disponível",
-    "foto": "luana.png",
+    "foto": "luana.jpg",
     "descricao": "",
     "enquadramento": "54% 13%",
     "zoom": "1.26"
@@ -138,7 +138,7 @@
     "idade": "8 anos",
     "porte": "Grande",
     "status": "Disponível",
-    "foto": "tigrona.png",
+    "foto": "tigrona.jpg",
     "descricao": "",
     "enquadramento": "64% 0%",
     "zoom": "1.26"
@@ -162,7 +162,7 @@
     "idade": "5 anos",
     "porte": "Médio",
     "status": "Disponível",
-    "foto": "bob.png",
+    "foto": "bob.jpg",
     "descricao": "",
     "enquadramento": "28% 32%",
     "zoom": "1.36"
@@ -174,7 +174,7 @@
     "idade": "5 anos",
     "porte": "Médio",
     "status": "Falecido",
-    "foto": "bob-dilan.png",
+    "foto": "bob-dilan.jpg",
     "descricao": "",
     "enquadramento": "100% 100%",
     "zoom": "1.59"
@@ -186,7 +186,7 @@
     "idade": "4 anos",
     "porte": "Médio",
     "status": "Disponível",
-    "foto": "bruce.png",
+    "foto": "bruce.jpg",
     "descricao": "",
     "enquadramento": "",
     "zoom": ""
@@ -198,7 +198,7 @@
     "idade": "4 anos",
     "porte": "Médio",
     "status": "Adotado",
-    "foto": "cabecao.png",
+    "foto": "cabecao.jpg",
     "descricao": "",
     "enquadramento": "",
     "zoom": ""
@@ -210,7 +210,7 @@
     "idade": "5 anos",
     "porte": "Grande",
     "status": "Disponível",
-    "foto": "chuvisco.png",
+    "foto": "chuvisco.jpg",
     "descricao": "",
     "enquadramento": "2% 83%",
     "zoom": "1.36"
@@ -234,7 +234,7 @@
     "idade": "8 anos",
     "porte": "Médio",
     "status": "Disponível",
-    "foto": "joca.png",
+    "foto": "joca.jpg",
     "descricao": "",
     "enquadramento": "100% 26%",
     "zoom": "1.36"
@@ -258,7 +258,7 @@
     "idade": "6 anos",
     "porte": "Grande",
     "status": "Disponível",
-    "foto": "negao.png",
+    "foto": "negao.jpg",
     "descricao": "",
     "enquadramento": "51% 33%",
     "zoom": "1.36"
@@ -282,7 +282,7 @@
     "idade": "4 anos",
     "porte": "Pequeno",
     "status": "Disponível",
-    "foto": "pingo-preto.png",
+    "foto": "pingo-preto.jpg",
     "descricao": "",
     "enquadramento": "61% 93%",
     "zoom": "1.26"
@@ -294,7 +294,7 @@
     "idade": "7 anos",
     "porte": "Grande",
     "status": "Disponível",
-    "foto": "poker.png",
+    "foto": "poker.jpg",
     "descricao": "",
     "enquadramento": "100% 95%",
     "zoom": "1.47"
@@ -366,7 +366,7 @@
     "idade": "7 anos",
     "porte": "Pequeno",
     "status": "Adotado",
-    "foto": "romeu.png",
+    "foto": "romeu.jpg",
     "descricao": "",
     "enquadramento": "8% 17%",
     "zoom": "1.36"
@@ -390,7 +390,7 @@
     "idade": "",
     "porte": "",
     "status": "Adotado",
-    "foto": "lorena-branca.png",
+    "foto": "lorena-branca.jpg",
     "descricao": "",
     "enquadramento": "",
     "zoom": ""
@@ -414,7 +414,7 @@
     "idade": "",
     "porte": "",
     "status": "Adotado",
-    "foto": "gaara.png",
+    "foto": "gaara.jpg",
     "descricao": "",
     "enquadramento": "",
     "zoom": ""
@@ -438,7 +438,7 @@
     "idade": "",
     "porte": "",
     "status": "Adotado",
-    "foto": "ze.png",
+    "foto": "ze.jpg",
     "descricao": "",
     "enquadramento": "",
     "zoom": ""

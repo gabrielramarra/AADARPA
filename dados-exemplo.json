@@ -5,7 +5,7 @@
     "idade": "8 anos",
     "porte": "Grande",
     "status": "Disponível",
-    "foto": "branca.png",
+    "foto": "branca.jpg",
     "descricao": ""
   },
   {
@@ -23,7 +23,7 @@
     "idade": "7 anos",
     "porte": "Médio",
     "status": "Disponível",
-    "foto": "cristal.png",
+    "foto": "cristal.jpg",
     "descricao": ""
   },
   {
@@ -50,7 +50,7 @@
     "idade": "7 anos",
     "porte": "Médio",
     "status": "Disponível",
-    "foto": "glorinha.png",
+    "foto": "glorinha.jpg",
     "descricao": ""
   },
   {
@@ -77,7 +77,7 @@
     "idade": "4 anos",
     "porte": "Médio",
     "status": "Disponível",
-    "foto": "luana.png",
+    "foto": "luana.jpg",
     "descricao": ""
   },
   {
@@ -104,7 +104,7 @@
     "idade": "8 anos",
     "porte": "Grande",
     "status": "Disponível",
-    "foto": "tigrona.png",
+    "foto": "tigrona.jpg",
     "descricao": ""
   },
   {
@@ -123,7 +123,7 @@
     "idade": "5 anos",
     "porte": "Médio",
     "status": "Disponível",
-    "foto": "bob.png",
+    "foto": "bob.jpg",
     "descricao": ""
   },
   {
@@ -132,7 +132,7 @@
     "idade": "5 anos",
     "porte": "Médio",
     "status": "Disponível",
-    "foto": "bob-dilan.png",
+    "foto": "bob-dilan.jpg",
     "descricao": ""
   },
   {
@@ -141,7 +141,7 @@
     "idade": "4 anos",
     "porte": "Médio",
     "status": "Disponível",
-    "foto": "bruce.png",
+    "foto": "bruce.jpg",
     "descricao": ""
   },
   {
@@ -150,7 +150,7 @@
     "idade": "4 anos",
     "porte": "Médio",
     "status": "Disponível",
-    "foto": "cabecao.png",
+    "foto": "cabecao.jpg",
     "descricao": ""
   },
   {
@@ -159,7 +159,7 @@
     "idade": "5 anos",
     "porte": "Grande",
     "status": "Disponível",
-    "foto": "chuvisco.png",
+    "foto": "chuvisco.jpg",
     "descricao": ""
   },
   {
@@ -178,7 +178,7 @@
     "idade": "8 anos",
     "porte": "Médio",
     "status": "Disponível",
-    "foto": "joca.png",
+    "foto": "joca.jpg",
     "descricao": ""
   },
   {
@@ -196,7 +196,7 @@
     "idade": "6 anos",
     "porte": "Grande",
     "status": "Disponível",
-    "foto": "negao.png",
+    "foto": "negao.jpg",
     "descricao": ""
   },
   {
@@ -214,7 +214,7 @@
     "idade": "4 anos",
     "porte": "Pequeno",
     "status": "Disponível",
-    "foto": "pingo-preto.png",
+    "foto": "pingo-preto.jpg",
     "descricao": ""
   },
   {
@@ -223,7 +223,7 @@
     "idade": "7 anos",
     "porte": "Grande",
     "status": "Disponível",
-    "foto": "poker.png",
+    "foto": "poker.jpg",
     "descricao": ""
   },
   {
@@ -277,7 +277,7 @@
     "idade": "7 anos",
     "porte": "Pequeno",
     "status": "Disponível",
-    "foto": "romeu.png",
+    "foto": "romeu.jpg",
     "descricao": ""
   },
   {
@@ -295,7 +295,7 @@
     "idade": "",
     "porte": "",
     "status": "Adotado",
-    "foto": "lorena-branca.png",
+    "foto": "lorena-branca.jpg",
     "descricao": ""
   },
   {
@@ -313,7 +313,7 @@
     "idade": "",
     "porte": "",
     "status": "Adotado",
-    "foto": "gaara.png",
+    "foto": "gaara.jpg",
     "descricao": ""
   },
   {
@@ -331,7 +331,7 @@
     "idade": "",
     "porte": "",
     "status": "Adotado",
-    "foto": "ze.png",
+    "foto": "ze.jpg",
     "descricao": ""
   },
   {

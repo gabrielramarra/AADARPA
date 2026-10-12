@@ -26,6 +26,7 @@ from PIL import Image
 PROPORCAO = 4 / 5          # proporção do card no site (retrato)
 MARGEM = 1.35              # folga em volta do rosto, animal de frente
 MARGEM_PERFIL = 0.95       # folga menor quando o animal está de perfil
+LARGURA_MAX = 1000         # largura máxima da foto salva (px)
 CLASSES_ANIMAIS = {15, 16}  # COCO: 15 = cat, 16 = dog
 
 
@@ -121,8 +122,16 @@ def recortar(modelo, caminho, destino):
     larg_janela = min(larg_caixa, alt_caixa) * folga
 
     x, y, w, h = janela_no_rosto(energia, caixa, larg_janela, img.size)
-    img.crop((x, y, x + w, y + h)).save(destino)
-    return conf, (x, y, w, h), img.size
+    recorte = img.crop((x, y, x + w, y + h))
+    # site leve: no máximo LARGURA_MAX de largura, sempre JPEG (PNG de foto pesa 5x mais)
+    if recorte.width > LARGURA_MAX:
+        recorte = recorte.resize((LARGURA_MAX, round(recorte.height * LARGURA_MAX / recorte.width)), Image.LANCZOS)
+    # PNG vira .jpg (avise o Baserow do nome novo); .jpg/.jpeg mantêm o nome
+    destino = Path(destino)
+    if destino.suffix.lower() == ".png":
+        destino = destino.with_suffix(".jpg")
+    recorte.save(destino, "JPEG", quality=82, optimize=True, progressive=True)
+    return conf, (x, y, w, h), img.size, destino
 
 
 def main():
@@ -157,7 +166,11 @@ def main():
             if not destino_backup.exists():
                 shutil.copy2(foto, destino_backup)
         destino = saida / foto.name
-        conf, janela, tamanho = recortar(modelo, foto, destino)
+        conf, janela, tamanho, destino = recortar(modelo, foto, destino)
+        if destino.name != foto.name:
+            print(f"  {foto.name} virou {destino.name}: atualize o campo Foto no Baserow")
+            if not args.saida:
+                foto.unlink()  # o PNG original fica em .originais/
         marca = "animal detectado" if conf else "SEM DETECÇÃO, usou a foto toda"
         print(f"{foto.name}: {marca} ({conf:.0%}) {tamanho} -> {janela[2]}x{janela[3]}")
         resultados.append(destino)

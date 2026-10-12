@@ -462,21 +462,51 @@ function abrirFicha(a) {
   document.getElementById("finais-felizes").hidden = adotados.length === 0;
   // Aleatório de propósito: dá chance de adoções antigas reaparecerem, em vez
   // de fixar sempre os mesmos (e a lista só cresce, nunca ficaria só numa tela).
-  document.getElementById("grid-adotados").innerHTML = embaralhar(adotados).slice(0, 10).map(cardHTML).join("");
-  ajustarFonteNomes(document.getElementById("grid-adotados"));
+  // Faixa rolante: os cards e uma segunda volta (escondida dos leitores de tela)
+  // pra emendar o loop. As fotos carregam um pouco antes de a seção aparecer:
+  // foto preguiçosa dentro de faixa animada chega vazia no Safari.
+  const felizes = embaralhar(adotados).slice(0, 16);
+  const faixaFelizes = document.getElementById("grid-adotados");
+  const cardsFelizes = felizes.map(cardHTML).join("");
+  faixaFelizes.innerHTML = cardsFelizes + `<div class="felizes-copia" aria-hidden="true">${cardsFelizes}</div>`;
+  faixaFelizes.style.setProperty("--duracao", felizes.length * 4 + "s");
+  ajustarFonteNomes(faixaFelizes);
+  new IntersectionObserver((entradas, obs) => {
+    if (!entradas[0].isIntersecting) return;
+    faixaFelizes.querySelectorAll("img").forEach(img => { img.loading = "eager"; });
+    obs.disconnect();
+  }, { rootMargin: "800px 0px" }).observe(faixaFelizes);
 
   const estado = { sexo: "", porte: "", busca: "" };
   const grid = document.getElementById("grid");
   const vazio = document.getElementById("vazio");
   const contador = document.getElementById("contador");
 
+  // entrada suave dos cards conforme aparecem (o CSS desliga pra quem prefere menos movimento)
+  document.documentElement.classList.add("cards-animados");
+  const revelar = new IntersectionObserver(entradas => entradas.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add("visivel");
+    revelar.unobserve(e.target);
+  }), { rootMargin: "0px 0px -40px 0px" });
+
   function render() {
     const filtrados = aplicarFiltros(animais, estado);
     grid.innerHTML = filtrados.map(cardHTML).join("");
+    grid.querySelectorAll(".card").forEach((card, i) => {
+      card.style.setProperty("--atraso", (i % 4) * 70 + "ms");
+      revelar.observe(card);
+    });
     vazio.hidden = filtrados.length > 0;
     const total = animais.filter(a => a.status === "Disponível").length;
     contador.textContent = `Mostrando ${filtrados.length} de ${total} pets`;
+    // filtrou com a lista já rolada: volta ao começo dos resultados (abaixo dos filtros presos)
+    const topoLista = contador.getBoundingClientRect().top;
+    if (topoLista < filtros.offsetHeight) scrollTo({ top: scrollY + topoLista - filtros.offsetHeight - 8 });
   }
+
+  const filtros = document.querySelector(".filters");
+  addEventListener("scroll", () => filtros.classList.toggle("presos", filtros.getBoundingClientRect().top <= 0), { passive: true });
 
   document.getElementById("busca").addEventListener("input", e => {
     estado.busca = e.target.value;
