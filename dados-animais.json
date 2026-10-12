@@ -392,8 +392,8 @@
     "status": "Adotado",
     "foto": "lorena-branca.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "16% 0%",
+    "zoom": "1.17"
   },
   {
     "id": 37,
@@ -404,8 +404,8 @@
     "status": "Adotado",
     "foto": "lucia.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "47% 51%",
+    "zoom": "1.08"
   },
   {
     "id": 38,
@@ -440,8 +440,8 @@
     "status": "Adotado",
     "foto": "ze.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "27% 35%",
+    "zoom": "1.71"
   },
   {
     "id": 41,
@@ -728,8 +728,8 @@
     "status": "Adotado",
     "foto": "mel.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "0% 72%",
+    "zoom": "1.17"
   },
   {
     "id": 66,
@@ -752,8 +752,8 @@
     "status": "Adotado",
     "foto": "bisteca.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "100% 34%",
+    "zoom": "1.17"
   },
   {
     "id": 68,
@@ -776,7 +776,7 @@
     "status": "Adotado",
     "foto": "caio.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "59% 0%",
+    "zoom": "1.08"
   }
 ]
