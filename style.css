@@ -212,10 +212,12 @@ main { max-width: 96rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
   background: var(--borda);
 }
 
-.card-body { padding: .9rem 1rem 1.1rem; }
+.card-body { flex: 1; padding: .9rem 1rem 1.1rem; }
 /* Faixa do nome tingida pelo sexo: rosa para fêmeas, azul para machos. */
+.card[data-sexo="Fêmea"] { border-color: #f7cfdc; }
 .card[data-sexo="Fêmea"] .card-body { background: #fde4ec; }
 .card[data-sexo="Fêmea"] .card-body h3 { color: #b0305f; }
+.card[data-sexo="Macho"] { border-color: #c6e2f3; }
 .card[data-sexo="Macho"] .card-body { background: #dff0fa; }
 .card[data-sexo="Macho"] .card-body h3 { color: var(--terracota-escuro); }
 .card-body h3 { margin: 0 0 .3rem; font-size: 1.15rem; }
