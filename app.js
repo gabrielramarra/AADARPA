@@ -424,38 +424,19 @@ function slug(nome) {
   return nome.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
-// Compartilhar no Status do WhatsApp: site nenhum consegue postar direto no
-// Status, então no celular abrimos o menu nativo de compartilhar, onde o
-// WhatsApp oferece "Meu status". A foto vai junto quando o aparelho aceita
-// arquivo; ela é baixada antes do toque porque o Safari só permite abrir o
-// menu de imediato, sem esperar download. Sem esse menu (computador), abre o
-// WhatsApp Web com o texto pronto.
-// Status só se posta pelo celular: no computador o Chrome/Edge também têm
-// navigator.share, mas ele abre a janela de compartilhar do Windows, sem
-// WhatsApp. Por isso a decisão é pelo tipo de tela, não pela existência da API.
+// Compartilhar no WhatsApp. Nenhum link abre o Status direto, então no
+// celular abrimos o app (whatsapp://) na tela "Enviar para...", onde "Meu
+// status" aparece no topo; no computador, o WhatsApp Web (wa.me). A escolha
+// é pelo tipo de tela: Chrome/Edge no Windows também têm navigator.share,
+// mas ele abre a janela de compartilhar do Windows, sem WhatsApp.
 const CELULAR = matchMedia("(pointer: coarse)").matches;
-const ARQUIVOS = new Map(); // url da imagem -> File já baixado
-function prepararArquivo(url) {
-  if (!CELULAR || !url || ARQUIVOS.has(url) || !navigator.canShare) return;
-  ARQUIVOS.set(url, null);
-  fetch(url).then(r => r.blob()).then(blob => {
-    ARQUIVOS.set(url, new File([blob], url.split("/").pop(), { type: blob.type || "image/jpeg" }));
-  }).catch(() => {});
-}
 
-function compartilhar({ texto, url, imagem, local, animal }) {
-  const mensagem = `${texto}
-${url}`;
-  const params = { local, ...(animal && { animal }) };
-  const registrar = metodo => window.gtag && gtag("event", "compartilhar", { ...params, metodo });
-  if (!CELULAR || !navigator.share) {
-    window.open(`https://wa.me/?text=${encodeURIComponent(mensagem)}`, "_blank", "noopener");
-    registrar("whatsapp_web");
-    return;
-  }
-  const arquivo = ARQUIVOS.get(imagem);
-  const dados = arquivo && navigator.canShare({ files: [arquivo] }) ? { files: [arquivo], text: mensagem } : { text: mensagem };
-  navigator.share(dados).then(() => registrar("menu_do_celular")).catch(() => { /* cancelado */ });
+function compartilhar({ texto, url, local, animal }) {
+  const mensagem = encodeURIComponent(texto + " " + url);
+  // registra antes de sair da página (beacon garante a entrega)
+  if (window.gtag) gtag("event", "compartilhar", { local, ...(animal && { animal }), metodo: CELULAR ? "app_whatsapp" : "whatsapp_web", transport_type: "beacon" });
+  if (CELULAR) location.href = "whatsapp://send?text=" + mensagem;
+  else window.open("https://wa.me/?text=" + mensagem, "_blank", "noopener");
 }
 
 let fichaAtual = null;
@@ -463,7 +444,6 @@ let fichaAtual = null;
 function abrirFicha(a) {
   const ficha = document.getElementById("ficha");
   fichaAtual = a;
-  prepararArquivo(urlFoto(a.foto));
   const femea = a.sexo === "Fêmea";
   const artigo = femea ? "a" : "o";
   ficha.dataset.sexo = a.sexo || "";
@@ -498,15 +478,13 @@ function abrirFicha(a) {
     compartilhar({
       texto: `Conheça ${femea ? "a" : "o"} ${a.nome}! ${femea ? "Ela" : "Ele"} está esperando uma família no abrigo AADARPA, em Goiânia 🐾`,
       url: `https://aadarpa.ong.br/#${slug(a.nome)}`,
-      imagem: urlFoto(a.foto), local: "ficha", animal: a.nome,
+      local: "ficha", animal: a.nome,
     });
   });
   if (!CELULAR) document.querySelectorAll(".btn-status").forEach(b => { b.lastChild.textContent = "Compartilhar no WhatsApp"; });
-  const imagemSite = "imagens/compartilhar.jpg";
-  addEventListener("load", () => prepararArquivo(imagemSite));
   document.getElementById("status-site").addEventListener("click", () => compartilhar({
     texto: "Cães e gatos do abrigo AADARPA estão esperando uma família em Goiânia 🐾 Adote ou ajude:",
-    url: "https://aadarpa.ong.br/", imagem: imagemSite, local: "apoio",
+    url: "https://aadarpa.ong.br/", local: "apoio",
   }));
 })();
 

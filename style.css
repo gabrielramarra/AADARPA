@@ -570,7 +570,9 @@ body.modo-ajuste .ajuste-info {
 .btn-status:active { transform: scale(.97); }
 .btn-status:focus-visible { outline: 3px solid var(--marrom); outline-offset: 3px; }
 .divulgar-texto { margin: 1.1rem 0 .5rem; font-size: .9rem; font-weight: 600; }
-.ficha .btn-status { margin-top: -.2rem; }
+/* Separado do botão de adoção, pra não parecer que também abre o Instagram */
+.ficha-divulgar { align-self: stretch; margin-top: .8rem; padding-top: 1.1rem; border-top: 1px dashed var(--borda); }
+.ficha-divulgar p { margin: 0 0 .6rem; font-size: .88rem; font-weight: 600; color: var(--marrom); }
 
 /* Ficha do animal (dialog) */
 .ficha {
