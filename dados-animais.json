@@ -32,7 +32,7 @@
     "status": "Disponível",
     "foto": "cristal.jpg",
     "descricao": "",
-    "enquadramento": "94% 100%",
+    "enquadramento": "89% 100%",
     "zoom": "1.36"
   },
   {
@@ -68,8 +68,8 @@
     "status": "Disponível",
     "foto": "glorinha.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "55% 100%",
+    "zoom": "1.26"
   },
   {
     "id": 10,
@@ -152,8 +152,8 @@
     "status": "Disponível",
     "foto": "apolo.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "37% 0%",
+    "zoom": "1.85"
   },
   {
     "id": 17,
@@ -224,8 +224,8 @@
     "status": "Disponível",
     "foto": "hulk.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "100% 34%",
+    "zoom": "1.08"
   },
   {
     "id": 23,
@@ -272,8 +272,8 @@
     "status": "Disponível",
     "foto": "pandi.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "75% 64%",
+    "zoom": "1.59"
   },
   {
     "id": 27,
@@ -284,8 +284,8 @@
     "status": "Disponível",
     "foto": "pingo-preto.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "0% 26%",
+    "zoom": "1.59"
   },
   {
     "id": 28,
