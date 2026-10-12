@@ -390,7 +390,7 @@ body.modo-ajuste .ajuste-info {
 .apoio-subtitulo { opacity: .92; max-width: 30rem; margin: 0 0 1.5rem; font-size: .95rem; }
 
 .apoio-grid { display: flex; gap: 2rem; align-items: stretch; justify-content: center; flex-wrap: wrap; }
-.apoio-texto { flex: 1 1 22rem; min-width: 0; max-width: 30rem; text-align: left; }
+.apoio-texto { flex: 1 1 22rem; min-width: 0; max-width: 36rem; text-align: left; }
 
 .pix-box {
   background: var(--cinza-claro);
@@ -433,26 +433,6 @@ body.modo-ajuste .ajuste-info {
 .pix-nota { font-size: .78rem; color: var(--cinza); margin: .6rem 0 0; }
 .pix-qr { border-radius: 8px; background: white; padding: .4rem; border: 1px solid var(--borda); }
 
-.instagram-card {
-  flex: 0 1 14rem;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: .5rem;
-  background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7);
-  border-radius: 14px;
-  padding: 1.5rem;
-  color: white;
-  text-decoration: none;
-  filter: saturate(1);
-  transition: filter .15s;
-}
-.instagram-card:hover { filter: saturate(1.3); }
-.instagram-card svg { width: 2.75rem; height: 2.75rem; }
-.instagram-titulo { font-weight: 700; font-size: 1.05rem; }
-.instagram-handle { font-size: .82rem; opacity: .85; overflow-wrap: anywhere; }
 
 /* Banner do TikTok: preto com o "glitch" ciano/vermelho da marca no título. */
 .tiktok {
@@ -548,31 +528,105 @@ body.modo-ajuste .ajuste-info {
 .politica a { color: var(--terracota-escuro); }
 @media (max-width: 600px) { .politica { margin: 1.5rem 1rem 0; padding: 1.4rem 1.2rem .6rem; } }
 
-/* Compartilhar no Status do WhatsApp (verde da marca, texto escuro pra contraste) */
-.btn-status {
-  display: inline-flex;
+
+/* Barra "Compartilhar:" (ficha, doação e janela do topo) */
+.compartilhar { margin-top: 1.2rem; }
+.compartilhar-rotulo { display: block; margin-bottom: .55rem; font-size: .88rem; font-weight: 700; }
+.compartilhar-botoes { display: flex; flex-wrap: wrap; gap: .6rem; }
+.compartilhar-botoes button {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: .5rem;
-  min-height: 2.75rem;
-  padding: .5rem 1.2rem .5rem .75rem;
+  gap: .35rem;
+  min-width: 3.9rem;
+  padding: 0;
   border: 0;
-  border-radius: 999px;
-  background: #25d366;
-  color: #063b2a;
-  font-weight: 700;
-  font-size: .95rem;
+  background: none;
+  color: inherit;
+  font-size: .74rem;
+  font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 6px 16px rgba(18, 140, 126, .3);
-  transition: transform .15s ease, box-shadow .15s ease;
 }
-.btn-status svg { width: 1.6rem; height: 1.6rem; flex: none; }
-.btn-status:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(18, 140, 126, .38); }
-.btn-status:active { transform: scale(.97); }
-.btn-status:focus-visible { outline: 3px solid var(--marrom); outline-offset: 3px; }
-.divulgar-texto { margin: 1.1rem 0 .5rem; font-size: .9rem; font-weight: 600; }
-/* Separado do botão de adoção, pra não parecer que também abre o Instagram */
-.ficha-divulgar { align-self: stretch; margin-top: .8rem; padding-top: 1.1rem; border-top: 1px dashed var(--borda); }
-.ficha-divulgar p { margin: 0 0 .6rem; font-size: .88rem; font-weight: 600; color: var(--marrom); }
+.compartilhar-botoes svg {
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: .65rem;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .18);
+  transition: transform .15s ease;
+}
+.compartilhar-botoes button:hover svg { transform: translateY(-2px); }
+.compartilhar-botoes button:active svg { transform: scale(.94); }
+.compartilhar-botoes button:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; border-radius: 8px; }
+/* cores das marcas; ícone escuro no verde do WhatsApp por contraste */
+.compartilhar-copiar svg { background: var(--paleta-amarelo); color: var(--paleta-roxo); }
+.compartilhar-instagram svg { background: linear-gradient(45deg, #f9ce34, #ee2a7b 50%, #6228d7); color: white; }
+.compartilhar-whatsapp svg { background: #25d366; color: #063b2a; }
+.compartilhar-facebook svg { background: #1877f2; color: white; }
+/* na ficha, separada do "Quero adotar" (que abre o Instagram) */
+.ficha-compartilhar { align-self: stretch; margin-top: .6rem; padding-top: .2rem; border-top: 1px dashed var(--borda); }
+.ficha-compartilhar .compartilhar-rotulo { color: var(--marrom); }
+
+/* Botão geral de compartilhar no topo e a janela que ele abre */
+.rede-compartilhar { border: 0; padding: 0; background: white; color: var(--paleta-roxo); cursor: pointer; }
+.rede-compartilhar svg { width: 1.35rem; height: 1.35rem; }
+.caixa-compartilhar {
+  width: min(24rem, calc(100% - 2rem));
+  padding: 2.8rem 1.6rem 1.6rem;
+  border: 0;
+  border-radius: 22px;
+  background: white;
+  color: var(--marrom);
+  text-align: center;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .35);
+}
+.caixa-compartilhar::backdrop { background: rgba(20, 30, 40, .62); backdrop-filter: blur(3px); }
+.caixa-compartilhar h2 { margin: 0 0 .3rem; font-family: var(--serifada); font-weight: 800; font-size: 1.45rem; color: var(--paleta-roxo); }
+.caixa-compartilhar p { margin: 0; color: var(--cinza); font-size: .92rem; }
+.caixa-compartilhar .compartilhar-botoes { justify-content: center; }
+
+/* Banner do Instagram, no mesmo formato do banner do TikTok */
+.insta {
+  margin: 2rem auto 0;
+  max-width: 62rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2.2rem 2.5rem;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 0% 100%, rgba(249, 206, 52, .35), transparent 42%),
+    radial-gradient(circle at 45% 0%, rgba(238, 42, 123, .32), transparent 45%),
+    radial-gradient(circle at 100% 100%, rgba(98, 40, 215, .45), transparent 50%),
+    #1c1233;
+  color: white;
+}
+.insta-texto { flex: 1 1 22rem; min-width: 0; }
+.insta-logo { display: block; width: 2.6rem; height: 2.6rem; margin-bottom: .8rem; color: white; }
+.insta-eyebrow { margin: 0 0 .3rem; font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #f9ce34; }
+.insta h2 { margin: 0 0 .5rem; font-family: var(--serifada); font-weight: 800; font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.15; text-wrap: balance; }
+.insta-sub { margin: 0 0 1.3rem; max-width: 32rem; opacity: .85; font-size: .95rem; }
+.insta-botao {
+  display: inline-block;
+  padding: .7rem 1.6rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #d62976 0%, #962fbf 100%);
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: transform .15s;
+}
+.insta-botao:hover { transform: translateY(-2px); }
+.insta-botao:focus-visible { outline: 2px solid white; outline-offset: 3px; }
+.insta-qr { margin: 0; flex: 0 0 auto; text-align: center; }
+.insta-qr img { display: block; border-radius: 12px; background: white; padding: .5rem; }
+.insta-qr figcaption { margin-top: .5rem; font-size: .78rem; opacity: .7; }
+@media (max-width: 640px) {
+  .insta { padding: 1.8rem 1.4rem; }
+  .insta-qr { display: none; }
+}
 
 /* Ficha do animal (dialog) */
 .ficha {
@@ -664,7 +718,6 @@ footer a { color: var(--terracota-escuro); }
   .cta-icone { width: 1.05rem; height: 1.05rem; }
   .apoio { padding: 2rem 1.25rem; }
   .pix-box { padding: 1rem; }
-  .instagram-handle { font-size: .72rem; }
   /* main já dá 1.5rem (24px); mais 11px aqui fecha em ~35px de cada lado
      só na grade de disponíveis (não em #grid-adotados). */
   #grid { margin: 0 11px; }

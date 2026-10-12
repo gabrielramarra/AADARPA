@@ -424,19 +424,154 @@ function slug(nome) {
   return nome.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
-// Compartilhar no WhatsApp. Nenhum link abre o Status direto, então no
-// celular abrimos o app (whatsapp://) na tela "Enviar para...", onde "Meu
-// status" aparece no topo; no computador, o WhatsApp Web (wa.me). A escolha
-// é pelo tipo de tela: Chrome/Edge no Windows também têm navigator.share,
-// mas ele abre a janela de compartilhar do Windows, sem WhatsApp.
+// Barra "Compartilhar:" (ficha do animal, bloco de doação e janela do topo):
+// copiar link, Instagram, WhatsApp e Facebook. Nenhum site posta direto no
+// Status do WhatsApp nem nos Stories do Instagram, então:
+// - WhatsApp: no celular abre o app (whatsapp://) na tela "Enviar para...",
+//   onde "Meu status" aparece no topo; no computador, o WhatsApp Web (wa.me).
+// - Instagram: no celular geramos uma imagem 1080x1920 e abrimos o menu de
+//   compartilhar, onde o Instagram oferece Story, Feed ou Direct. A imagem fica
+//   pronta antes do toque porque o Safari só abre esse menu de imediato. No
+//   computador não há como postar no Instagram, então o botão nem aparece.
+// A escolha é pelo tipo de tela: Chrome/Edge no Windows também têm
+// navigator.share, mas ele abre a janela de compartilhar do Windows.
 const CELULAR = matchMedia("(pointer: coarse)").matches;
+const STORIES_OK = CELULAR && !!navigator.canShare;
+const STORIES = {}; // chave -> File pronto ("site" ou "ficha:<nome>")
 
-function compartilhar({ texto, url, local, animal }) {
-  const mensagem = encodeURIComponent(texto + " " + url);
+function carregarImagem(src) {
+  return new Promise((ok, erro) => {
+    const img = new Image();
+    img.onload = () => ok(img);
+    img.onerror = erro;
+    img.src = src;
+  });
+}
+
+function arredondado(g, x, y, w, h, r) {
+  g.beginPath();
+  g.moveTo(x + r, y);
+  g.arcTo(x + w, y, x + w, y + h, r);
+  g.arcTo(x + w, y + h, x, y + h, r);
+  g.arcTo(x, y + h, x, y, r);
+  g.arcTo(x, y, x + w, y, r);
+  g.closePath();
+}
+
+async function gerarStory({ foto, titulo, linha }) {
+  await document.fonts.load('800 120px "Fraunces"').catch(() => {});
+  const [img, logo] = await Promise.all([carregarImagem(foto), carregarImagem("logo.png")]);
+  const c = document.createElement("canvas");
+  c.width = 1080;
+  c.height = 1920;
+  const g = c.getContext("2d");
+  const ROXO = "#403287", AMARELO = "#f2cb44";
+  const SANS = "-apple-system, 'Segoe UI', Roboto, sans-serif";
+  g.fillStyle = ROXO;
+  g.fillRect(0, 0, 1080, 1920);
+  // logo no topo, num círculo branco
+  g.fillStyle = "white";
+  g.beginPath();
+  g.arc(540, 190, 95, 0, Math.PI * 2);
+  g.fill();
+  g.drawImage(logo, 455, 105, 170, 170);
+  // foto 4:5 recortada como nos cards (centro na horizontal, 25% do topo)
+  const W = 860, H = 1075, X = 110, Y = 340;
+  const escala = Math.max(W / img.width, H / img.height);
+  const sw = W / escala, sh = H / escala;
+  const sx = (img.width - sw) / 2, sy = (img.height - sh) * 0.25;
+  g.save();
+  g.fillStyle = "white";
+  arredondado(g, X - 14, Y - 14, W + 28, H + 28, 44);
+  g.fill();
+  arredondado(g, X, Y, W, H, 32);
+  g.clip();
+  g.drawImage(img, sx, sy, sw, sh, X, Y, W, H);
+  g.restore();
+  // título (nome do animal), encolhendo até caber
+  g.textAlign = "center";
+  g.fillStyle = AMARELO;
+  let tamanho = 130;
+  do {
+    g.font = `800 ${tamanho}px Fraunces, Georgia, serif`;
+    tamanho -= 6;
+  } while (g.measureText(titulo).width > 940 && tamanho > 60);
+  g.fillText(titulo, 540, 1580);
+  g.fillStyle = "white";
+  g.font = `600 46px ${SANS}`;
+  g.fillText(linha, 540, 1660);
+  // endereço do site num selo amarelo
+  g.fillStyle = AMARELO;
+  arredondado(g, 290, 1730, 500, 96, 48);
+  g.fill();
+  g.fillStyle = ROXO;
+  g.font = `700 46px ${SANS}`;
+  g.fillText("aadarpa.ong.br", 540, 1793);
+  const blob = await new Promise(ok => c.toBlob(ok, "image/jpeg", 0.9));
+  return new File([blob], "aadarpa-stories.jpg", { type: "image/jpeg" });
+}
+
+function prepararStory(chave, dados) {
+  if (!STORIES_OK || chave in STORIES) return;
+  STORIES[chave] = null;
+  gerarStory(dados).then(arquivo => { STORIES[chave] = arquivo; }).catch(() => { delete STORIES[chave]; });
+}
+
+const BOTOES_COMPARTILHAR = [
+  ["copiar", "icone-link", "Copiar link"],
+  ["instagram", "icone-instagram", "Instagram"],
+  ["whatsapp", "icone-whatsapp", "WhatsApp"],
+  ["facebook", "icone-facebook", "Facebook"],
+];
+
+function montarBarrasCompartilhar() {
+  document.querySelectorAll(".compartilhar").forEach(barra => {
+    const botoes = BOTOES_COMPARTILHAR
+      .filter(([acao]) => acao !== "instagram" || STORIES_OK)
+      .map(([acao, icone, nome]) =>
+        `<button type="button" class="compartilhar-${acao}" data-acao="${acao}"><svg aria-hidden="true"><use href="#${icone}"/></svg><span>${nome}</span></button>`)
+      .join("");
+    barra.innerHTML = (barra.hasAttribute("data-sem-rotulo") ? "" : `<span class="compartilhar-rotulo">${barra.dataset.rotulo || "Compartilhar:"}</span>`) +
+      `<div class="compartilhar-botoes">${botoes}</div>`;
+  });
+}
+
+// O que compartilhar, conforme onde está a barra: o animal da ficha ou o site.
+function alvoDaBarra(barra) {
+  const a = barra.dataset.alvo === "ficha" ? fichaAtual : null;
+  if (!a) return {
+    url: "https://aadarpa.ong.br/", chave: "site",
+    texto: "Cães e gatos do abrigo AADARPA estão esperando uma família em Goiânia 🐾 Adote ou ajude:",
+    local: barra.closest("dialog") ? "topo" : "apoio",
+  };
+  const femea = a.sexo === "Fêmea";
+  return {
+    url: `https://aadarpa.ong.br/#${slug(a.nome)}`, chave: "ficha:" + a.nome, local: "ficha", animal: a.nome,
+    texto: `Conheça ${femea ? "a" : "o"} ${a.nome}! ${femea ? "Ela" : "Ele"} está esperando uma família no abrigo AADARPA, em Goiânia 🐾`,
+  };
+}
+
+function compartilharVia(acao, alvo, botao) {
   // registra antes de sair da página (beacon garante a entrega)
-  if (window.gtag) gtag("event", "compartilhar", { local, ...(animal && { animal }), metodo: CELULAR ? "app_whatsapp" : "whatsapp_web", transport_type: "beacon" });
-  if (CELULAR) location.href = "whatsapp://send?text=" + mensagem;
-  else window.open("https://wa.me/?text=" + mensagem, "_blank", "noopener");
+  const registrar = metodo => window.gtag && gtag("event", "compartilhar",
+    { local: alvo.local, ...(alvo.animal && { animal: alvo.animal }), metodo, transport_type: "beacon" });
+  const mensagem = encodeURIComponent(alvo.texto + " " + alvo.url);
+  if (acao === "copiar") {
+    copiarTexto(alvo.url, botao.querySelector("span"));
+    registrar("copiar_link");
+  } else if (acao === "whatsapp") {
+    registrar(CELULAR ? "app_whatsapp" : "whatsapp_web");
+    if (CELULAR) location.href = "whatsapp://send?text=" + mensagem;
+    else window.open("https://wa.me/?text=" + mensagem, "_blank", "noopener");
+  } else if (acao === "facebook") {
+    registrar("facebook");
+    window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(alvo.url), "_blank", "noopener");
+  } else if (acao === "instagram") {
+    // se a imagem do animal falhou ou ainda está sendo gerada, vai a geral
+    const arquivo = STORIES[alvo.chave] || STORIES.site;
+    if (!arquivo || !navigator.canShare({ files: [arquivo] })) return;
+    navigator.share({ files: [arquivo] }).then(() => registrar("instagram_menu")).catch(() => { /* cancelado */ });
+  }
 }
 
 let fichaAtual = null;
@@ -444,6 +579,7 @@ let fichaAtual = null;
 function abrirFicha(a) {
   const ficha = document.getElementById("ficha");
   fichaAtual = a;
+  prepararStory("ficha:" + a.nome, { foto: urlFoto(a.foto), titulo: a.nome, linha: (a.sexo === "Fêmea" ? "Ela" : "Ele") + " está esperando uma família 🐾" });
   const femea = a.sexo === "Fêmea";
   const artigo = femea ? "a" : "o";
   ficha.dataset.sexo = a.sexo || "";
@@ -472,20 +608,17 @@ function abrirFicha(a) {
   ficha.querySelector(".ficha-fechar").addEventListener("click", () => ficha.close());
   // clique no fundo escurecido (fora do conteúdo) também fecha
   ficha.addEventListener("click", e => { if (e.target === ficha) ficha.close(); });
-  document.getElementById("status-ficha").addEventListener("click", () => {
-    const a = fichaAtual;
-    const femea = a.sexo === "Fêmea";
-    compartilhar({
-      texto: `Conheça ${femea ? "a" : "o"} ${a.nome}! ${femea ? "Ela" : "Ele"} está esperando uma família no abrigo AADARPA, em Goiânia 🐾`,
-      url: `https://aadarpa.ong.br/#${slug(a.nome)}`,
-      local: "ficha", animal: a.nome,
-    });
+  montarBarrasCompartilhar();
+  document.addEventListener("click", e => {
+    const botao = e.target.closest(".compartilhar [data-acao]");
+    if (botao) compartilharVia(botao.dataset.acao, alvoDaBarra(botao.closest(".compartilhar")), botao);
   });
-  if (!CELULAR) document.querySelectorAll(".btn-status").forEach(b => { b.lastChild.textContent = "Compartilhar no WhatsApp"; });
-  document.getElementById("status-site").addEventListener("click", () => compartilhar({
-    texto: "Cães e gatos do abrigo AADARPA estão esperando uma família em Goiânia 🐾 Adote ou ajude:",
-    url: "https://aadarpa.ong.br/", local: "apoio",
-  }));
+  // botão geral de compartilhar do topo
+  const caixa = document.getElementById("caixa-compartilhar");
+  document.getElementById("abrir-compartilhar").addEventListener("click", () => caixa.showModal());
+  caixa.querySelector(".ficha-fechar").addEventListener("click", () => caixa.close());
+  caixa.addEventListener("click", e => { if (e.target === caixa) caixa.close(); });
+  addEventListener("load", () => prepararStory("site", { foto: "imagens/caes-do-abrigo.jpg", titulo: "Adote um amigo.", linha: "Cães e gatos esperando uma família em Goiânia" }));
 })();
 
 (async function init() {
