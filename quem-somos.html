@@ -2,6 +2,15 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-154PZY9YF0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+
+  gtag("config", "G-154PZY9YF0");
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quem somos · AADARPA, abrigo de animais em Goiânia</title>
 <meta name="description" content="Há mais de 25 anos a AADARPA resgata cães e gatos abandonados e vítimas de maus-tratos em Goiânia-GO, com abrigo, cuidado veterinário e adoção responsável.">
@@ -172,7 +181,7 @@
       const faixa = document.getElementById("qs-faixa");
       faixa.innerHTML = disponiveis.map(cartao).join("");
       // segunda cópia escondida dos leitores de tela, só pra emendar o loop da animação
-      faixa.insertAdjacentHTML("beforeend", `<div style="display:contents" aria-hidden="true">${disponiveis.map(cartao).join("").replaceAll("<a ", "<a tabindex=\"-1\" ")}</div>`);
+      faixa.insertAdjacentHTML("beforeend", `<div class="qs-copia" aria-hidden="true">${disponiveis.map(cartao).join("").replaceAll("<a ", "<a tabindex=\"-1\" ")}</div>`);
       faixa.closest(".qs-vitrine").hidden = false;
     }).catch(() => {});
   </script>
