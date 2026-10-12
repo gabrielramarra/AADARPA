@@ -86,9 +86,29 @@ body {
 .stats-row {
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: .7rem;
   width: 100%;
   margin-top: 1rem;
 }
+
+/* Atalhos das redes ao lado do "Quero adotar", nas cores de cada marca. */
+.rede {
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
+  transition: transform .15s;
+}
+.rede:hover { transform: translateY(-2px); }
+.rede:focus-visible { outline: 2px solid white; outline-offset: 3px; }
+.rede svg { width: 1.45rem; height: 1.45rem; }
+.rede-instagram { background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7); }
+.rede-tiktok { background: #0d0d0f; }
 
 main { max-width: 96rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 
