@@ -1,4 +1,5 @@
 :root {
+  --serifada: "Fraunces", Georgia, "Times New Roman", serif;
   --creme: #f4f9fc;
   --marrom: #1f3242;
   --terracota: #3aa5da;
@@ -20,6 +21,9 @@
 }
 
 * { box-sizing: border-box; }
+
+/* campos e botões não herdam a fonte da página por padrão */
+button, input { font-family: inherit; }
 
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -68,7 +72,7 @@ body {
 .nome-abrigo { font-weight: 700; font-size: 1rem; margin: 0; }
 .eyebrow { text-transform: uppercase; letter-spacing: .1em; font-size: .7rem; opacity: .85; margin: 0; }
 .divisor-hero { width: 2.5rem; height: 2px; margin: .6rem auto; border: none; background: rgba(255, 255, 255, .5); }
-.hero h1 { font-size: clamp(1.15rem, 2.4vw, 1.5rem); font-style: italic; margin: .2rem 0; text-wrap: balance; }
+.hero h1 { font-family: var(--serifada); font-weight: 600; font-size: clamp(1.35rem, 2.8vw, 1.8rem); font-style: italic; margin: .2rem 0; text-wrap: balance; }
 .subtitle { max-width: 30rem; margin: 0 auto .6rem; opacity: .95; font-size: .85rem; }
 
 .cta {
@@ -195,6 +199,7 @@ main { max-width: 96rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 }
 
 .card {
+  position: relative;
   background: white;
   border: 1px solid var(--borda);
   border-radius: 14px;
@@ -220,7 +225,25 @@ main { max-width: 96rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 .card[data-sexo="Macho"] { border-color: #c6e2f3; }
 .card[data-sexo="Macho"] .card-body { background: #dff0fa; }
 .card[data-sexo="Macho"] .card-body h3 { color: var(--terracota-escuro); }
-.card-body h3 { margin: 0 0 .3rem; font-size: 1.15rem; }
+.card-body h3 { margin: 0 0 .3rem; font-family: var(--serifada); font-weight: 800; font-size: 1.25rem; }
+
+/* Card disponível inteiro clicável: um botão transparente por cima abre a ficha. */
+.card:has(.card-abrir) { transition: transform .2s ease, box-shadow .2s ease; }
+.card:has(.card-abrir):hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(31, 50, 66, .16); }
+.card-abrir {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+.card-abrir:focus-visible { outline: 3px solid var(--terracota-escuro); outline-offset: 2px; }
+.card-ver { display: inline-block; margin-top: .5rem; font-size: .85rem; font-weight: 700; color: var(--terracota-escuro); }
+.card[data-sexo="Fêmea"] .card-ver { color: #b0305f; }
+body.modo-ajuste .card-abrir, body.modo-ajuste .card-ver { display: none; }
 #grid-adotados .card-body { padding: .9rem 1rem; }
 #grid-adotados .card-body h3 { margin: 0; white-space: nowrap; overflow: hidden; }
 .card-meta { color: var(--cinza); font-size: .88rem; display: flex; gap: .5rem; flex-wrap: wrap; }
@@ -316,7 +339,7 @@ body.modo-ajuste .ajuste-info {
   background-size: 220px;
   border: 2px dashed var(--cinza);
 }
-.finais-felizes h2 { margin: 0 0 .2rem; font-size: 1.4rem; color: #4b2a78; }
+.finais-felizes h2 { margin: 0 0 .2rem; font-family: var(--serifada); font-weight: 800; font-size: 1.6rem; color: #4b2a78; }
 .secao-subtitulo { color: var(--cinza); font-size: .9rem; margin: 0 0 1.2rem; }
 .finais-felizes .secao-subtitulo { color: #5b3d86; }
 
@@ -336,7 +359,7 @@ body.modo-ajuste .ajuste-info {
   color: white;
   text-align: center;
 }
-.apoio h2 { margin: 0 0 .5rem; font-size: 1.4rem; }
+.apoio h2 { margin: 0 0 .5rem; font-family: var(--serifada); font-weight: 800; font-size: 1.6rem; }
 .apoio-subtitulo { opacity: .92; max-width: 30rem; margin: 0 0 1.5rem; font-size: .95rem; }
 
 .apoio-grid { display: flex; gap: 2rem; align-items: stretch; justify-content: center; flex-wrap: wrap; }
@@ -432,6 +455,8 @@ body.modo-ajuste .ajuste-info {
 }
 .tiktok h2 {
   margin: 0 0 .5rem;
+  font-family: var(--serifada);
+  font-weight: 800;
   font-size: clamp(1.4rem, 3vw, 2rem);
   line-height: 1.15;
   text-wrap: balance;
@@ -495,6 +520,59 @@ body.modo-ajuste .ajuste-info {
 .politica-data { margin: 0; font-size: .85rem; color: var(--cinza); }
 .politica a { color: var(--terracota-escuro); }
 @media (max-width: 600px) { .politica { margin: 1.5rem 1rem 0; padding: 1.4rem 1.2rem .6rem; } }
+
+/* Ficha do animal (dialog) */
+.ficha {
+  width: min(56rem, calc(100% - 2rem));
+  max-height: calc(100dvh - 2rem);
+  padding: 0;
+  border: 0;
+  border-radius: 22px;
+  overflow: auto;
+  background: white;
+  color: var(--marrom);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .35);
+}
+.ficha::backdrop { background: rgba(20, 30, 40, .62); backdrop-filter: blur(3px); }
+body:has(.ficha[open]) { overflow: hidden; }
+.ficha-corpo { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.ficha-corpo img { display: block; width: 100%; height: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 25%; background: var(--borda); }
+.ficha-info { align-self: center; display: flex; flex-direction: column; align-items: flex-start; gap: .9rem; padding: 2.4rem 2.2rem; }
+.ficha-status { margin: 0; padding: .25rem .7rem; border-radius: 999px; background: var(--verde); color: white; font-size: .75rem; font-weight: 700; }
+.ficha h2 { margin: 0; font-family: var(--serifada); font-weight: 800; font-size: clamp(2.1rem, 4.5vw, 3.2rem); line-height: 1.05; color: var(--terracota-escuro); }
+.ficha[data-sexo="Fêmea"] h2 { color: #b0305f; }
+.ficha-meta { display: flex; flex-wrap: wrap; gap: .45rem; margin: 0; padding: 0; list-style: none; }
+.ficha-meta li { padding: .3rem .8rem; border-radius: 999px; background: #dff0fa; font-size: .9rem; font-weight: 600; }
+.ficha[data-sexo="Fêmea"] .ficha-meta li { background: #fde4ec; }
+.ficha-texto { margin: 0; line-height: 1.65; }
+.ficha-adotar { margin-top: .3rem; }
+.ficha-dica { margin: 0; font-size: .82rem; color: var(--cinza); }
+.ficha-fechar {
+  position: absolute;
+  top: .8rem;
+  right: .8rem;
+  z-index: 1;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .92);
+  color: var(--marrom);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .18);
+}
+.ficha-fechar:focus-visible { outline: 3px solid var(--terracota-escuro); outline-offset: 2px; }
+@media (prefers-reduced-motion: no-preference) {
+  .ficha[open] { animation: ficha-entra .25s ease; }
+  @keyframes ficha-entra { from { opacity: 0; transform: translateY(16px) scale(.98); } }
+}
+@media (max-width: 700px) {
+  .ficha-corpo { grid-template-columns: minmax(0, 1fr); }
+  .ficha-corpo img { aspect-ratio: 4 / 3; height: auto; max-height: 40vh; }
+  .ficha-info { padding: 1.5rem 1.3rem 1.7rem; }
+}
 
 footer {
   text-align: center;

@@ -61,8 +61,10 @@ function cardHTML(a) {
           <span>${a.sexo || ""}</span>
           <span>${a.porte || ""}</span>
           <span>${a.idade || ""}</span>
-        </div>`}
+        </div>
+        <span class="card-ver" aria-hidden="true">Conhecer →</span>`}
       </div>
+      ${adotado ? "" : `<button type="button" class="card-abrir" aria-label="Conhecer ${a.nome}"></button>`}
     </div>`;
 }
 
@@ -414,6 +416,41 @@ function montarPayloadPix(chave, nome, cidade) {
   });
 })();
 
+// Ficha do animal: abre ao tocar num card disponível, com o botão que leva
+// direto a uma conversa com o abrigo no Instagram (ig.me). <dialog> nativo:
+// Esc fecha, o foco fica preso dentro e volta ao card ao fechar.
+function abrirFicha(a) {
+  const ficha = document.getElementById("ficha");
+  const femea = a.sexo === "Fêmea";
+  const artigo = femea ? "a" : "o";
+  ficha.dataset.sexo = a.sexo || "";
+  const foto = document.getElementById("ficha-foto");
+  foto.src = urlFoto(a.foto);
+  foto.alt = `Foto de ${a.nome}`;
+  document.getElementById("ficha-nome").textContent = a.nome;
+  const meta = document.getElementById("ficha-meta");
+  meta.replaceChildren(...[a.sexo, a.porte, a.idade].filter(Boolean).map(v => {
+    const li = document.createElement("li");
+    li.textContent = v;
+    return li;
+  }));
+  document.getElementById("ficha-texto").textContent = a.descricao ||
+    `${femea ? "Ela" : "Ele"} está esperando uma família. Mande uma mensagem e contamos tudo sobre ${femea ? "ela" : "ele"}: jeito, saúde e como funciona a adoção.`;
+  const adotar = document.getElementById("ficha-adotar");
+  adotar.textContent = `Quero adotar ${artigo} ${a.nome}`;
+  adotar.dataset.animal = a.nome;
+  document.getElementById("ficha-dica").textContent =
+    `Abre uma conversa com o abrigo no Instagram. Conte que viu ${artigo} ${a.nome} no site.`;
+  ficha.showModal();
+}
+
+(function configurarFicha() {
+  const ficha = document.getElementById("ficha");
+  ficha.querySelector(".ficha-fechar").addEventListener("click", () => ficha.close());
+  // clique no fundo escurecido (fora do conteúdo) também fecha
+  ficha.addEventListener("click", e => { if (e.target === ficha) ficha.close(); });
+})();
+
 (async function init() {
   let animais;
   try {
@@ -448,6 +485,12 @@ function montarPayloadPix(chave, nome, cidade) {
   document.getElementById("busca").addEventListener("input", e => {
     estado.busca = e.target.value;
     render();
+  });
+  grid.addEventListener("click", e => {
+    const botao = e.target.closest(".card-abrir");
+    if (!botao) return;
+    const animal = animais.find(a => a.nome === botao.closest(".card").dataset.nome);
+    if (animal) abrirFicha(animal);
   });
   montarFiltroBotoes("filtro-sexo", "sexo", estado, render);
   montarFiltroBotoes("filtro-porte", "porte", estado, render);

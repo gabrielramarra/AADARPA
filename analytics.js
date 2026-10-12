@@ -23,11 +23,13 @@
   document.addEventListener("click", e => {
     const link = e.target.closest("a[href]");
     if (!link) return;
-    const rede = /(^|\.)instagram\.com$/.test(link.hostname) ? "instagram"
+    // ig.me é o atalho do Instagram que abre uma conversa (botão da ficha do animal)
+    const rede = /(^|\.)instagram\.com$|^ig\.me$/.test(link.hostname) ? "instagram"
       : /(^|\.)tiktok\.com$/.test(link.hostname) ? "tiktok" : null;
     if (!rede) return;
-    // "Quero adotar" da home leva ao Instagram; os demais são links de rede social.
-    if (link.classList.contains("cta")) enviar("clique_adotar", { destino: rede, origem: location.pathname });
+    // "Quero adotar" (topo da home e ficha do animal) leva ao Instagram; os demais
+    // são links de rede social. Na ficha, também vai o nome do animal.
+    if (link.classList.contains("cta")) enviar("clique_adotar", { destino: rede, origem: location.pathname, ...(link.dataset.animal && { animal: link.dataset.animal }) });
     else enviar("clique_social", { rede });
   }, { capture: true });
 
