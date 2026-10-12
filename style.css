@@ -493,7 +493,10 @@ body.modo-ajuste .ajuste-info {
 .sobre-bloco:first-child { margin-top: 0; }
 .sobre-bloco h2 { margin: 0 0 1rem; font-size: 1.4rem; color: var(--terracota-escuro); }
 .sobre-bloco p { margin: 0 0 .9rem; line-height: 1.65; }
-.sobre-historia { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 2rem; align-items: center; }
+.sobre-galeria { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; align-items: center; margin-top: 1.2rem; }
+.sobre-galeria figure { margin: 0; }
+.sobre-galeria img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 12px; }
+.sobre-galeria figcaption { margin-top: .4rem; font-size: .8rem; color: var(--cinza); }
 .sobre-legado {
   margin: 0;
   padding: 1.5rem;
@@ -525,7 +528,7 @@ body.modo-ajuste .ajuste-info {
 .sobre-nota { font-size: .88rem; color: var(--cinza); }
 
 @media (max-width: 720px) {
-  .sobre-historia { grid-template-columns: minmax(0, 1fr); }
+  .sobre-galeria { grid-template-columns: minmax(0, 1fr); }
   .sobre-bloco { padding: 1.4rem; }
 }
 
