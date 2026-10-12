@@ -14,7 +14,7 @@ import { fileURLToPath } from "url";
 import { execSync } from "child_process";
 
 const raiz = join(dirname(fileURLToPath(import.meta.url)), "..");
-const PAGINAS = ["index.html", "quem-somos.html", "privacidade.html", "doar/index.html"];
+const PAGINAS = ["index.html", "quem-somos.html", "privacidade.html", "doar/index.html", "transparencia/index.html"];
 // src="..." ou href="..." apontando pra .css/.js do próprio site (não http:, não //)
 const REF = /((?:src|href)=")((?!https?:|\/\/)[^"?#]+\.(?:css|js))(?:\?v=[0-9a-f]+)?"/g;
 

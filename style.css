@@ -724,6 +724,45 @@ body.modo-ajuste .felizes-copia { display: none; }
 .doar-card .apadrinhar { color: var(--marrom); background: #fff8e1; }
 .doar-card .apadrinhar strong { color: var(--paleta-roxo); }
 
+/* Página /transparencia: parcerias e recursos públicos (Lei 13.019, art. 11) */
+.transparencia { max-width: 58rem; margin: 2rem auto 0; padding: 0 1.5rem; }
+.transp-intro { margin: 0 0 1.5rem; color: var(--cinza); line-height: 1.6; }
+.parceria { padding: 2rem; border-radius: 18px; background: white; border: 1px solid var(--borda); line-height: 1.6; }
+.parceria-selo { display: inline-block; margin: 0 0 .5rem; padding: .25rem .8rem; border-radius: 999px; background: #ecebf6; color: var(--paleta-roxo); font-size: .78rem; font-weight: 700; }
+.parceria h2 { margin: 0 0 .6rem; font-family: var(--serifada); font-weight: 800; font-size: clamp(1.6rem, 3.4vw, 2.2rem); color: var(--paleta-roxo); }
+.parceria h3 { margin: 2rem 0 .7rem; font-family: var(--serifada); font-weight: 800; font-size: 1.25rem; color: var(--paleta-roxo); }
+.parceria-objeto { margin: 0; }
+.transp-numeros { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .8rem; margin-top: 1.4rem; }
+.transp-numeros div { padding: 1rem; border-radius: 12px; background: #f4f3fa; }
+.transp-numeros span { display: block; font-size: .78rem; color: var(--cinza); }
+.transp-numeros strong { display: block; margin-top: .2rem; font-size: 1.25rem; color: var(--paleta-roxo); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.transp-ficha { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .1rem 2rem; margin: 0; border-top: 2px solid var(--paleta-roxo); }
+.transp-ficha div { padding: .8rem 0; border-bottom: 1px solid var(--borda); }
+.transp-ficha dt { font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--cinza); }
+.transp-ficha dd { margin: .2rem 0 0; }
+.transp-tabela { overflow-x: auto; }
+.transp-tabela table { width: 100%; border-collapse: collapse; font-size: .92rem; font-variant-numeric: tabular-nums; }
+.transp-tabela th { padding: .6rem .7rem; background: var(--paleta-roxo); color: white; font-size: .78rem; text-align: left; white-space: nowrap; }
+.transp-tabela td { padding: .65rem .7rem; border-bottom: 1px solid var(--borda); vertical-align: top; }
+.transp-tabela td:last-child, .transp-tabela th:last-child { text-align: right; white-space: nowrap; }
+.transp-tabela small { color: var(--cinza); }
+.transp-qtd { display: block; font-size: .8rem; color: var(--cinza); }
+.transp-tabela .transp-grupo td { padding-top: 1rem; background: #f4f3fa; text-align: left; white-space: normal; }
+.transp-tabela tfoot td { border-bottom: 0; font-weight: 800; color: var(--paleta-roxo); }
+.transp-tabela tfoot td:first-child { text-align: right; }
+.transp-metas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .8rem; }
+.transp-metas div { padding: 1rem; border-radius: 12px; background: var(--paleta-roxo); color: white; text-align: center; }
+.transp-metas strong { display: block; font-family: var(--serifada); font-weight: 800; font-size: 2rem; line-height: 1.1; color: var(--paleta-amarelo); }
+.transp-metas span { font-size: .85rem; }
+.transp-nota { margin: .8rem 0 0; font-size: .88rem; color: var(--cinza); }
+.transp-contato { margin: 1.4rem 0 0; color: var(--cinza); font-size: .92rem; }
+.transp-contato a { color: var(--paleta-azul); }
+@media (max-width: 720px) {
+  .parceria { padding: 1.4rem 1.1rem; }
+  .transp-numeros, .transp-metas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .transp-ficha { grid-template-columns: minmax(0, 1fr); }
+}
+
 /* Página /doar: card de doação para link de Stories, bio e mensagens */
 body.pagina-doar {
   min-height: 100vh;
