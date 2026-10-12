@@ -242,16 +242,10 @@
 @media (hover: hover) {
   .qs-trilho:hover .qs-faixa { animation-play-state: paused; }
 }
-/* Em tela de toque: sem animação, vitrine de deslizar nativa (fluida no iOS). */
-@media (hover: none) {
-  .qs-faixa { animation: none; will-change: auto; padding: 0 1.5rem; }
-  .qs-copia { display: none; }
-  .qs-trilho { overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: 1.5rem; scrollbar-width: none; }
-  .qs-trilho::-webkit-scrollbar { display: none; }
-  .qs-bicho { scroll-snap-align: start; }
-}
 @keyframes qs-rolar { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
-.qs-bicho { flex: 0 0 10.5rem; color: var(--marrom); text-decoration: none; }
+/* Largura explícita: sem ela o Safari mede a faixa pelo tamanho original das
+   fotos (até 1200px), o -50% da animação passa do fim e sobra espaço vazio. */
+.qs-bicho { flex: none; width: 10.5rem; color: var(--marrom); text-decoration: none; }
 .qs-bicho img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 16px; background: var(--borda); }
 .qs-bicho span { display: block; margin-top: .45rem; font-weight: 700; }
 
