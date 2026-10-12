@@ -380,8 +380,8 @@
     "status": "Adotado",
     "foto": "boneca.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "50% 50%",
+    "zoom": "1.26"
   },
   {
     "id": 36,
@@ -608,8 +608,8 @@
     "status": "Adotado",
     "foto": "nina.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "26% 5%",
+    "zoom": "1.26"
   },
   {
     "id": 56,
@@ -620,8 +620,8 @@
     "status": "Adotado",
     "foto": "nicole.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "100% 0%",
+    "zoom": "1.08"
   },
   {
     "id": 57,
@@ -632,8 +632,8 @@
     "status": "Adotado",
     "foto": "sombra.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "0% 18%",
+    "zoom": "1.17"
   },
   {
     "id": 58,
@@ -644,8 +644,8 @@
     "status": "Adotado",
     "foto": "esperanca.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "39% 19%",
+    "zoom": "1.47"
   },
   {
     "id": 59,
@@ -656,8 +656,8 @@
     "status": "Adotado",
     "foto": "faisca.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "70% 6%",
+    "zoom": "1.26"
   },
   {
     "id": 60,
@@ -668,8 +668,8 @@
     "status": "Adotado",
     "foto": "ferrugem.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "0% 49%",
+    "zoom": "1.36"
   },
   {
     "id": 61,
@@ -680,8 +680,8 @@
     "status": "Adotado",
     "foto": "radije.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "54% 58%",
+    "zoom": "1.47"
   },
   {
     "id": 62,
@@ -704,8 +704,8 @@
     "status": "Adotado",
     "foto": "gaspar.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "42% 46%",
+    "zoom": "1.26"
   },
   {
     "id": 64,
@@ -740,8 +740,8 @@
     "status": "Adotado",
     "foto": "luiz.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "47% 31%",
+    "zoom": "1.36"
   },
   {
     "id": 67,
@@ -764,8 +764,8 @@
     "status": "Adotado",
     "foto": "marlboro.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "53% 60%",
+    "zoom": "1.47"
   },
   {
     "id": 69,
