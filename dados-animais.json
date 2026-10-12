@@ -550,5 +550,41 @@
     "descricao": "",
     "enquadramento": "",
     "zoom": ""
+  },
+  {
+    "id": 51,
+    "nome": "Duque",
+    "sexo": "Macho",
+    "idade": "5 anos",
+    "porte": "Médio",
+    "status": "Disponível",
+    "foto": "duque.jpeg",
+    "descricao": "",
+    "enquadramento": "",
+    "zoom": ""
+  },
+  {
+    "id": 52,
+    "nome": "Tadeu",
+    "sexo": "Macho",
+    "idade": "2 anos",
+    "porte": "Médio",
+    "status": "Disponível",
+    "foto": "tadeu.jpeg",
+    "descricao": "",
+    "enquadramento": "",
+    "zoom": ""
+  },
+  {
+    "id": 53,
+    "nome": "Poison (Malinois)",
+    "sexo": "Macho",
+    "idade": "7 anos",
+    "porte": "Grande",
+    "status": "Disponível",
+    "foto": "poison.jpeg",
+    "descricao": "",
+    "enquadramento": "",
+    "zoom": ""
   }
 ]
