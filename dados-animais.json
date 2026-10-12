@@ -56,8 +56,8 @@
     "status": "Disponível",
     "foto": "fiona.jpeg",
     "descricao": "",
-    "enquadramento": "100% 98%",
-    "zoom": "1.36"
+    "enquadramento": "40% 97%",
+    "zoom": "1.59"
   },
   {
     "id": 9,
@@ -500,8 +500,8 @@
     "status": "Disponível",
     "foto": "vitoria.jpeg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "82% 7%",
+    "zoom": "1.59"
   },
   {
     "id": 46,
@@ -512,8 +512,8 @@
     "status": "Disponível",
     "foto": "afonso.jpeg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "100% 0%",
+    "zoom": "1.17"
   },
   {
     "id": 47,
@@ -524,8 +524,8 @@
     "status": "Disponível",
     "foto": "bidu.jpeg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "59% 0%",
+    "zoom": "1.26"
   },
   {
     "id": 48,
@@ -536,8 +536,8 @@
     "status": "Disponível",
     "foto": "isa.jpeg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "50% 34%",
+    "zoom": "1.17"
   },
   {
     "id": 49,
@@ -548,8 +548,8 @@
     "status": "Disponível",
     "foto": "marrenta.jpeg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "100% 42%",
+    "zoom": "1.59"
   },
   {
     "id": 51,
@@ -560,8 +560,8 @@
     "status": "Disponível",
     "foto": "duque.jpeg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "54% 59%",
+    "zoom": "1.26"
   },
   {
     "id": 52,
@@ -572,8 +572,8 @@
     "status": "Disponível",
     "foto": "tadeu.jpeg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "0% 24%",
+    "zoom": "1.26"
   },
   {
     "id": 53,
@@ -584,7 +584,7 @@
     "status": "Disponível",
     "foto": "poison.jpeg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "0% 10%",
+    "zoom": "1.26"
   }
 ]
