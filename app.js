@@ -497,4 +497,13 @@ function abrirFicha(a) {
   const alvo = decodeURIComponent(location.hash.slice(1));
   const doLink = alvo && !MODO_AJUSTE && animais.find(a => a.status === "Disponível" && slug(a.nome) === alvo);
   if (doLink) abrirFicha(doLink);
+  // Âncora vinda de outra página (ex.: /#doar): o navegador rola antes de a lista
+  // de animais existir, e os cards empurram o bloco pra baixo. Rola de novo agora,
+  // e outra vez quando a fonte dos títulos termina de carregar.
+  const ancora = !doLink && alvo && document.getElementById(alvo);
+  if (ancora) {
+    const irParaAncora = () => ancora.scrollIntoView({ behavior: "instant", block: "start" });
+    irParaAncora();
+    document.fonts.ready.then(irParaAncora);
+  }
 })();
