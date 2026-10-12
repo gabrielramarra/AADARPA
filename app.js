@@ -430,9 +430,13 @@ function slug(nome) {
 // arquivo; ela é baixada antes do toque porque o Safari só permite abrir o
 // menu de imediato, sem esperar download. Sem esse menu (computador), abre o
 // WhatsApp Web com o texto pronto.
+// Status só se posta pelo celular: no computador o Chrome/Edge também têm
+// navigator.share, mas ele abre a janela de compartilhar do Windows, sem
+// WhatsApp. Por isso a decisão é pelo tipo de tela, não pela existência da API.
+const CELULAR = matchMedia("(pointer: coarse)").matches;
 const ARQUIVOS = new Map(); // url da imagem -> File já baixado
 function prepararArquivo(url) {
-  if (!url || ARQUIVOS.has(url) || !navigator.canShare) return;
+  if (!CELULAR || !url || ARQUIVOS.has(url) || !navigator.canShare) return;
   ARQUIVOS.set(url, null);
   fetch(url).then(r => r.blob()).then(blob => {
     ARQUIVOS.set(url, new File([blob], url.split("/").pop(), { type: blob.type || "image/jpeg" }));
@@ -444,7 +448,7 @@ function compartilhar({ texto, url, imagem, local, animal }) {
 ${url}`;
   const params = { local, ...(animal && { animal }) };
   const registrar = metodo => window.gtag && gtag("event", "compartilhar", { ...params, metodo });
-  if (!navigator.share) {
+  if (!CELULAR || !navigator.share) {
     window.open(`https://wa.me/?text=${encodeURIComponent(mensagem)}`, "_blank", "noopener");
     registrar("whatsapp_web");
     return;
@@ -497,6 +501,7 @@ function abrirFicha(a) {
       imagem: urlFoto(a.foto), local: "ficha", animal: a.nome,
     });
   });
+  if (!CELULAR) document.querySelectorAll(".btn-status").forEach(b => { b.lastChild.textContent = "Compartilhar no WhatsApp"; });
   const imagemSite = "imagens/compartilhar.jpg";
   addEventListener("load", () => prepararArquivo(imagemSite));
   document.getElementById("status-site").addEventListener("click", () => compartilhar({
