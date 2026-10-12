@@ -45,7 +45,7 @@ function cardHTML(a) {
   const zoom = ajuste ? ajuste.zoom : Math.max(1, parseFloat(a.zoom) || 1);
   const estilo = `transform:scale(${zoom}); transform-origin:${x}% ${y}%;`;
   return `
-    <div class="card" data-nome="${a.nome}" data-id="${a.id ?? ""}">
+    <div class="card" data-nome="${a.nome}" data-id="${a.id ?? ""}" data-sexo="${a.sexo || ""}">
       <div class="card-photo">
         <span class="badge ${adotado ? "adotado" : "disponivel"}">${adotado ? "Adotado(a)" : "Disponível"}</span>
         <img src="${urlFoto(a.foto)}" alt="Foto de ${a.nome}" loading="lazy" draggable="false" style="${estilo}">

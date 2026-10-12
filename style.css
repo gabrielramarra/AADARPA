@@ -16,9 +16,13 @@
   --grafite: #2b2f36;
   --cinza-claro: #e7e6e3;
   --rosa-claro: #fbeef2;
+  --roxo-claro: #cbb3ec;
 }
 
 * { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
   margin: 0;
@@ -81,6 +85,7 @@ body {
   box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
   transition: transform .15s, box-shadow .15s;
 }
+.cta-doar { background: var(--laranja); }
 .cta:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0, 0, 0, .3); }
 
 .stats-row {
@@ -88,9 +93,12 @@ body {
   justify-content: center;
   align-items: center;
   gap: .7rem;
+  flex-wrap: wrap;
   width: 100%;
   margin-top: 1rem;
 }
+
+.redes { display: inline-flex; gap: .7rem; }
 
 /* Atalhos das redes ao lado do "Quero adotar", nas cores de cada marca. */
 .rede {
@@ -205,6 +213,11 @@ main { max-width: 96rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 }
 
 .card-body { padding: .9rem 1rem 1.1rem; }
+/* Faixa do nome tingida pelo sexo: rosa para fêmeas, azul para machos. */
+.card[data-sexo="Fêmea"] .card-body { background: #fde4ec; }
+.card[data-sexo="Fêmea"] .card-body h3 { color: #b0305f; }
+.card[data-sexo="Macho"] .card-body { background: #dff0fa; }
+.card[data-sexo="Macho"] .card-body h3 { color: var(--terracota-escuro); }
 .card-body h3 { margin: 0 0 .3rem; font-size: 1.15rem; }
 #grid-adotados .card-body { padding: .9rem 1rem; }
 #grid-adotados .card-body h3 { margin: 0; white-space: nowrap; overflow: hidden; }
@@ -293,16 +306,17 @@ body.modo-ajuste .ajuste-info {
   margin-top: 3rem;
   padding: 2rem 1.5rem;
   border-radius: 16px;
-  background-color: var(--rosa-claro);
+  background-color: var(--roxo-claro);
   background-image:
-    linear-gradient(rgba(251, 238, 242, .65), rgba(251, 238, 242, .65)),
+    linear-gradient(rgba(203, 179, 236, .88), rgba(203, 179, 236, .88)),
     url('https://images.unsplash.com/photo-1682587368650-40a601316178?q=80&w=1486&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
   background-repeat: repeat;
   background-size: 220px;
   border: 2px dashed var(--cinza);
 }
-.finais-felizes h2 { margin: 0 0 .2rem; font-size: 1.4rem; color: var(--vermelho-coracao); }
+.finais-felizes h2 { margin: 0 0 .2rem; font-size: 1.4rem; color: #4b2a78; }
 .secao-subtitulo { color: var(--cinza); font-size: .9rem; margin: 0 0 1.2rem; }
+.finais-felizes .secao-subtitulo { color: #5b3d86; }
 
 .apoio-moldura {
   margin: 3rem auto 0;
@@ -463,6 +477,8 @@ footer a { color: var(--terracota-escuro); }
      junto, pra manter os dois grupos com a mesma cara). */
   .filter-group { gap: .3rem; }
   .filter-group button { padding: .45rem .6rem; font-size: .82rem; }
+  /* "Quero adotar" e "Quero doar" juntos na 1ª linha, ícones das redes na 2ª. */
+  .cta { padding: .55rem 1.1rem; font-size: .85rem; }
   .apoio { padding: 2rem 1.25rem; }
   .pix-box { padding: 1rem; }
   .instagram-handle { font-size: .72rem; }
