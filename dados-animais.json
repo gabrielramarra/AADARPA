@@ -68,8 +68,8 @@
     "status": "Disponível",
     "foto": "glorinha.jpg",
     "descricao": "",
-    "enquadramento": "28% 100%",
-    "zoom": "1.36"
+    "enquadramento": "",
+    "zoom": ""
   },
   {
     "id": 10,
@@ -152,8 +152,8 @@
     "status": "Disponível",
     "foto": "apolo.jpg",
     "descricao": "",
-    "enquadramento": "43% 0%",
-    "zoom": "1.26"
+    "enquadramento": "",
+    "zoom": ""
   },
   {
     "id": 17,
@@ -272,8 +272,8 @@
     "status": "Disponível",
     "foto": "pandi.jpg",
     "descricao": "",
-    "enquadramento": "51% 1%",
-    "zoom": "1.47"
+    "enquadramento": "",
+    "zoom": ""
   },
   {
     "id": 27,
@@ -284,8 +284,8 @@
     "status": "Disponível",
     "foto": "pingo-preto.jpg",
     "descricao": "",
-    "enquadramento": "61% 93%",
-    "zoom": "1.26"
+    "enquadramento": "",
+    "zoom": ""
   },
   {
     "id": 28,
