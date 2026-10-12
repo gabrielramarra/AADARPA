@@ -461,6 +461,74 @@ body.modo-ajuste .ajuste-info {
   .tiktok-qr { display: none; }
 }
 
+/* Link discreto no canto do topo, entre a página de adoção e "Quem somos". */
+.hero-nav {
+  position: absolute;
+  top: .8rem;
+  right: 1rem;
+  z-index: 2;
+  padding: .35rem .9rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .18);
+  color: white;
+  font-size: .82rem;
+  font-weight: 600;
+  text-decoration: none;
+  backdrop-filter: blur(4px);
+}
+.hero-nav:hover { background: rgba(255, 255, 255, .3); }
+@media (max-width: 560px) {
+  .hero-nav { position: relative; top: auto; right: auto; display: inline-block; margin-bottom: .6rem; }
+}
+
+/* Página "Quem somos" */
+.sobre { max-width: 62rem; }
+.sobre-bloco {
+  margin-top: 1.5rem;
+  padding: 2rem;
+  border-radius: 16px;
+  background: white;
+  border: 1px solid var(--borda);
+}
+.sobre-bloco:first-child { margin-top: 0; }
+.sobre-bloco h2 { margin: 0 0 1rem; font-size: 1.4rem; color: var(--terracota-escuro); }
+.sobre-bloco p { margin: 0 0 .9rem; line-height: 1.65; }
+.sobre-historia { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 2rem; align-items: center; }
+.sobre-legado {
+  margin: 0;
+  padding: 1.5rem;
+  border-radius: 14px;
+  background: var(--roxo-claro);
+  color: #4b2a78;
+  font-size: 1.1rem;
+  font-style: italic;
+  font-weight: 600;
+}
+.sobre-legado p { margin: 0; }
+.sobre-missao { font-size: 1.08rem; }
+.sobre-grade { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1rem; }
+.sobre-card { padding: 1.2rem; border-radius: 12px; background: var(--creme); border: 1px solid var(--borda); }
+.sobre-card h3 { margin: .2rem 0 .4rem; font-size: 1.05rem; }
+.sobre-card p { margin: 0; font-size: .92rem; color: var(--cinza); line-height: 1.5; }
+.sobre-icone { font-size: 1.6rem; }
+.sobre-acao { color: inherit; text-decoration: none; transition: transform .15s, border-color .15s; }
+.sobre-acao:hover { transform: translateY(-2px); border-color: var(--terracota); }
+.sobre-acao h3 { color: var(--terracota-escuro); }
+.sobre-numeros { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: 1rem; }
+.sobre-numeros div { padding: 1.2rem; border-radius: 12px; background: var(--creme); text-align: center; }
+.sobre-numeros strong { display: block; font-size: 2.2rem; color: var(--laranja-escuro); font-variant-numeric: tabular-nums; }
+.sobre-numeros span { font-size: .88rem; color: var(--cinza); }
+.sobre-dados { margin: 0 0 1rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: .8rem 1.5rem; }
+.sobre-dados dt { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--cinza); }
+.sobre-dados dd { margin: .15rem 0 0; }
+.sobre-dados a { color: var(--terracota-escuro); }
+.sobre-nota { font-size: .88rem; color: var(--cinza); }
+
+@media (max-width: 720px) {
+  .sobre-historia { grid-template-columns: minmax(0, 1fr); }
+  .sobre-bloco { padding: 1.4rem; }
+}
+
 footer {
   text-align: center;
   padding: 2rem 1.5rem 3rem;
