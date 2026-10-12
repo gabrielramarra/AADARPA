@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<script src="/analytics.js" defer></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doe para o abrigo · AADARPA</title>
+<meta name="description" content="Doe via PIX para o abrigo AADARPA, que resgata cães e gatos em Goiânia-GO. Copie a chave ou o código Pix Copia e Cola.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="AADARPA">
+<meta property="og:title" content="Doe para o abrigo AADARPA">
+<meta property="og:description" content="Cada doação vira ração, remédio e castração para cães e gatos resgatados em Goiânia. Doe via PIX.">
+<meta property="og:url" content="https://aadarpa.ong.br/doar/">
+<meta property="og:image" content="https://aadarpa.ong.br/imagens/doar-compartilhar.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,800;1,9..144,600&display=swap">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body class="pagina-doar">
+  <main class="doar-card">
+    <img class="doar-logo" src="/logo.png" alt="Logo da AADARPA" width="96" height="96">
+    <h1>Ajude o abrigo AADARPA</h1>
+    <p class="doar-lead">Cada doação vira ração, remédio e castração para cães e gatos resgatados em Goiânia. Qualquer valor faz diferença.</p>
+
+    <section class="doar-pix" aria-label="Doar via PIX">
+      <span class="doar-rotulo">Chave PIX (e-mail)</span>
+      <p class="doar-chave">aadarpagoiania@gmail.com</p>
+      <button type="button" class="doar-botao doar-botao-principal" id="pix-copiar" data-copiar="aadarpagoiania@gmail.com">Copiar chave PIX</button>
+      <button type="button" class="doar-botao" id="pix-copiar-codigo" data-copiar="00020101021126460014BR.GOV.BCB.PIX0124aadarpagoiania@gmail.com5204000053039865802BR5907AADARPA6007GOIANIA62070503***6304F575">Copiar código Pix Copia e Cola</button>
+      <p class="doar-dica">No app do banco, escolha <strong>Pix Copia e Cola</strong> e cole o código, ou use a chave em <strong>Pagar com chave</strong>.</p>
+      <figure class="doar-qr">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&amp;data=00020101021126460014BR.GOV.BCB.PIX0124aadarpagoiania%40gmail.com5204000053039865802BR5907AADARPA6007GOIANIA62070503***6304F575" width="180" height="180" alt="QR Code para doar via PIX">
+        <figcaption>Ou aponte a câmera do app do banco</figcaption>
+      </figure>
+    </section>
+
+    <p class="doar-favorecido">Favorecido: AADARPA Associação Abrigo dos Animais Refugados Proteção Animal · CNPJ 42.536.111/0001-67</p>
+    <a class="doar-voltar" href="/">Conheça os animais para adoção →</a>
+  </main>
+
+  <script>
+    // Copiar chave ou código Pix. O aviso "aadarpa:copiou" faz o analytics.js
+    // contar copiar_pix (evento-chave) só quando a cópia deu certo.
+    document.querySelectorAll("[data-copiar]").forEach(botao => {
+      botao.addEventListener("click", async () => {
+        const texto = botao.dataset.copiar;
+        let copiou = false;
+        try {
+          await navigator.clipboard.writeText(texto);
+          copiou = true;
+        } catch {
+          const campo = document.createElement("textarea");
+          campo.value = texto;
+          document.body.appendChild(campo);
+          campo.select();
+          copiou = document.execCommand("copy");
+          campo.remove();
+        }
+        if (!copiou) return;
+        document.dispatchEvent(new CustomEvent("aadarpa:copiou", { detail: { botao } }));
+        const original = botao.textContent;
+        botao.textContent = "Copiado! Agora cole no app do banco";
+        setTimeout(() => { botao.textContent = original; }, 2500);
+      });
+    });
+  </script>
+</body>
+</html>

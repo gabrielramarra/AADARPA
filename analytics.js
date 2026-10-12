@@ -34,6 +34,8 @@
   }, { capture: true });
 
   document.addEventListener("aadarpa:copiou", e => {
-    if (e.detail && e.detail.botao && e.detail.botao.id === "pix-copiar") enviar("copiar_pix", {});
+    // chave ou código Pix Copia e Cola, na página de adoção ou em /doar
+    const id = e.detail && e.detail.botao && e.detail.botao.id;
+    if (id && id.startsWith("pix-copiar")) enviar("copiar_pix", { forma: id === "pix-copiar-codigo" ? "codigo" : "chave", origem: location.pathname });
   });
 })();
