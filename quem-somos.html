@@ -6,7 +6,12 @@
 <title>Quem somos · AADARPA, abrigo de animais em Goiânia</title>
 <meta name="description" content="Há mais de 25 anos a AADARPA resgata cães e gatos abandonados e vítimas de maus-tratos em Goiânia-GO, com abrigo, cuidado veterinário e adoção responsável.">
 <link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,800;1,9..144,600&display=swap">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="quem-somos.css">
+<script>document.documentElement.classList.add("qs-anim");</script>
 </head>
 <body>
   <header class="hero">
@@ -42,66 +47,89 @@
     </div>
   </header>
 
-  <main class="sobre">
-    <section class="sobre-bloco sobre-historia">
-      <h2>Nossa história</h2>
-      <p>O abrigo foi fundado pela protetora Lívia Denise Camargo Borges dos Passos, que há mais de 25 anos iniciou seu trabalho resgatando animais abandonados em sua rua. Desde então, suas portas sempre estiveram abertas para cães e gatos em situação de abandono e maus-tratos.</p>
-      <p>Com o passar dos anos, seu trabalho ganhou força, contando com o apoio de voluntários que abraçaram sua causa, enquanto Lívia dedicava-se integralmente a proporcionar dignidade e cuidado aos animais que cruzavam seu caminho.</p>
-      <p>Infelizmente, em agosto de 2021, ela faleceu em decorrência de complicações da Covid-19. Desde então, o trabalho vem sendo conduzido pelos voluntários que sempre estiveram ao seu lado.</p>
-      <div class="sobre-galeria">
-        <figure><img src="imagens/livia-com-os-caes.jpg" width="886" height="555" alt="Lívia sentada na escada do abrigo, acariciando dois cães" loading="lazy"><figcaption>Lívia com os cães do abrigo</figcaption></figure>
-        <figure><img src="imagens/livia-no-abrigo.jpg" width="800" height="533" alt="Lívia, à esquerda, no canil cercada de cães" loading="lazy"><figcaption>Lívia (à esquerda) no dia a dia do abrigo</figcaption></figure>
-        <blockquote class="sobre-legado">
-          <p>Temos como maior missão manter vivo o legado de amor e dedicação que Lívia deixou, continuando a acolher e cuidar dos animais mais necessitados.</p>
-        </blockquote>
+  <main class="qs">
+    <section class="qs-abertura qs-revela">
+      <div class="qs-abertura-texto">
+        <p class="qs-kicker">Desde uma rua de Goiânia</p>
+        <h2 class="qs-display">Mais de <em>25 anos</em> abrindo a porta para quem foi deixado para trás.</h2>
+        <p class="qs-lead">O que começou com uma protetora resgatando os animais abandonados da própria rua virou um abrigo mantido por voluntários, que já tirou mais de mil cães e gatos do abandono.</p>
+      </div>
+      <div class="qs-colagem">
+        <figure class="qs-polaroid qs-p1"><img src="imagens/livia-com-os-caes.jpg" width="886" height="555" alt="Lívia sentada na escada do abrigo, acariciando dois cães"><figcaption>Lívia e os cães</figcaption></figure>
+        <figure class="qs-polaroid qs-p2"><img src="imagens/livia-no-abrigo.jpg" width="800" height="533" alt="Lívia, à esquerda, no canil cercada de cães"><figcaption>Lívia (à esquerda) no abrigo</figcaption></figure>
       </div>
     </section>
 
-    <section class="sobre-bloco">
-      <h2>Nossa missão</h2>
-      <p class="sobre-missao">Resgatar cães e gatos abandonados e vítimas de maus-tratos em Goiânia, oferecendo abrigo, alimentação, cuidado veterinário, castração e vacinação até que cada um encontre uma família responsável. Além do cuidado direto, atuamos pela saúde pública e pelo meio ambiente: prevenimos zoonoses, ajudamos a reduzir o número de animais nas ruas e incentivamos a adoção e a guarda responsável.</p>
+    <section class="qs-secao">
+      <h2 class="qs-titulo qs-revela"><span>01</span>Nossa história</h2>
+      <ol class="qs-linha">
+        <li class="qs-revela"><span class="qs-marco">O começo</span><p>O abrigo foi fundado pela protetora Lívia Denise Camargo Borges dos Passos, que há mais de 25 anos iniciou seu trabalho resgatando animais abandonados em sua rua. Desde então, suas portas sempre estiveram abertas para cães e gatos em situação de abandono e maus-tratos.</p></li>
+        <li class="qs-revela"><span class="qs-marco">A causa cresce</span><p>Com o passar dos anos, seu trabalho ganhou força, contando com o apoio de voluntários que abraçaram sua causa, enquanto Lívia dedicava-se integralmente a proporcionar dignidade e cuidado aos animais que cruzavam seu caminho.</p></li>
+        <li class="qs-revela"><span class="qs-marco">2018</span><p>O trabalho se formaliza como associação sem fins lucrativos: nasce a AADARPA.</p></li>
+        <li class="qs-revela"><span class="qs-marco">2021</span><p>Infelizmente, em agosto de 2021, Lívia faleceu em decorrência de complicações da Covid-19. Desde então, o trabalho vem sendo conduzido pelos voluntários que sempre estiveram ao seu lado.</p></li>
+        <li class="qs-revela"><span class="qs-marco">2026</span><p>A AADARPA é declarada de utilidade pública pelo Estado de Goiás.</p></li>
+      </ol>
     </section>
 
-    <section class="sobre-bloco">
-      <h2>O que fazemos</h2>
-      <div class="sobre-grade">
-        <div class="sobre-card"><span class="sobre-icone" aria-hidden="true">🚑</span><h3>Resgate</h3><p>Acolhemos cães e gatos abandonados, feridos ou vítimas de maus-tratos.</p></div>
-        <div class="sobre-card"><span class="sobre-icone" aria-hidden="true">🩺</span><h3>Cuidado veterinário</h3><p>Todos recebem tratamento, vacinação e vermifugação, e saem castrados ou com vale-castração.</p></div>
-        <div class="sobre-card"><span class="sobre-icone" aria-hidden="true">🏡</span><h3>Adoção responsável</h3><p>Buscamos para cada animal um lar seguro e definitivo.</p></div>
-        <div class="sobre-card"><span class="sobre-icone" aria-hidden="true">🌱</span><h3>Saúde pública</h3><p>Castração e vacinação previnem zoonoses e o crescimento da população de animais nas ruas.</p></div>
+    <section class="qs-legado qs-revela">
+      <blockquote>
+        <p>Temos como maior missão manter vivo o legado de amor e dedicação que Lívia deixou, continuando a acolher e cuidar dos animais mais necessitados.</p>
+      </blockquote>
+    </section>
+
+    <section class="qs-secao">
+      <h2 class="qs-titulo qs-revela"><span>02</span>Nossa missão</h2>
+      <p class="qs-manifesto qs-revela">Resgatar cães e gatos abandonados e vítimas de maus-tratos em Goiânia, oferecendo <mark>abrigo, alimentação e cuidado veterinário</mark> até que cada um encontre <mark>uma família responsável</mark>. E, além do cuidado direto, atuar pela <mark>saúde pública e pelo meio ambiente</mark>: prevenir zoonoses, reduzir o número de animais nas ruas e incentivar a adoção e a guarda responsável.</p>
+    </section>
+
+    <section class="qs-secao">
+      <h2 class="qs-titulo qs-revela"><span>03</span>O que fazemos</h2>
+      <div class="qs-bento">
+        <div class="qs-tile qs-tile-foto qs-revela">
+          <img src="imagens/caes-do-abrigo.jpg" width="1024" height="768" alt="Cães do abrigo olhando para a câmera" loading="lazy">
+          <div><h3>Resgate</h3><p>Acolhemos cães e gatos abandonados, feridos ou vítimas de maus-tratos.</p></div>
+        </div>
+        <div class="qs-tile qs-tile-azul qs-revela"><span class="qs-emoji" aria-hidden="true">🩺</span><h3>Cuidado veterinário</h3><p>Todos recebem tratamento, vacinação e vermifugação, e saem castrados ou com vale-castração.</p></div>
+        <div class="qs-tile qs-tile-laranja qs-revela"><span class="qs-emoji" aria-hidden="true">🏡</span><h3>Adoção responsável</h3><p>Buscamos para cada animal um lar seguro e definitivo.</p></div>
+        <div class="qs-tile qs-tile-verde qs-revela"><span class="qs-emoji" aria-hidden="true">🌱</span><h3>Saúde pública</h3><p>Castração e vacinação previnem zoonoses e o crescimento da população de animais nas ruas.</p></div>
       </div>
     </section>
 
-    <section class="sobre-bloco">
-      <h2>Em números</h2>
-      <div class="sobre-numeros">
-        <div><strong>+25</strong><span>anos de trabalho</span></div>
-        <div><strong>+1.000</strong><span>animais resgatados desde a fundação</span></div>
-        <div><strong id="num-adotados">…</strong><span>finais felizes registrados no site</span></div>
-        <div><strong>2018</strong><span>ano em que nos formalizamos como associação</span></div>
-      </div>
+    <section class="qs-numeros">
+      <div class="qs-revela"><strong data-contar="1000" data-prefixo="+">+1.000</strong><span>animais resgatados desde a fundação</span></div>
+      <div class="qs-revela"><strong data-contar="25" data-prefixo="+">+25</strong><span>anos de trabalho</span></div>
+      <div class="qs-revela"><strong id="num-adotados">…</strong><span>finais felizes registrados no site</span></div>
+      <div class="qs-revela"><strong>2018</strong><span>ano em que nos formalizamos como associação</span></div>
     </section>
 
-    <section class="sobre-bloco">
-      <h2>Transparência</h2>
-      <dl class="sobre-dados">
+    <section class="qs-vitrine" aria-label="Animais esperando adoção" hidden>
+      <div class="qs-vitrine-topo">
+        <p class="qs-kicker">Agora mesmo</p>
+        <a href="./">Eles estão esperando uma família &rarr;</a>
+      </div>
+      <div class="qs-trilho"><div class="qs-faixa" id="qs-faixa"></div></div>
+    </section>
+
+    <section class="qs-secao">
+      <h2 class="qs-titulo qs-revela"><span>04</span>Transparência</h2>
+      <dl class="qs-ficha qs-revela">
         <div><dt>Razão social</dt><dd>AADARPA Associação Abrigo dos Animais Refugados Proteção Animal</dd></div>
-        <div><dt>CNPJ</dt><dd>42.536.111/0001-67</dd></div>
+        <div><dt>CNPJ</dt><dd class="qs-mono">42.536.111/0001-67</dd></div>
         <div><dt>Natureza jurídica</dt><dd>Associação privada sem fins lucrativos, desde 11/09/2018</dd></div>
-        <div><dt>Utilidade pública</dt><dd>Declarada de utilidade pública estadual pela Lei nº 24.351, de 15/06/2026 (Goiás)</dd></div>
+        <div><dt>Utilidade pública</dt><dd>Estadual, pela Lei nº 24.351, de 15/06/2026 (Goiás)</dd></div>
         <div><dt>Sede</dt><dd>Goiânia-GO</dd></div>
         <div><dt>Contato</dt><dd><a href="mailto:aadarpagoiania@gmail.com">aadarpagoiania@gmail.com</a></dd></div>
       </dl>
-      <p class="sobre-nota">Por segurança dos animais, não divulgamos o endereço do abrigo: abandonos na porta colocam em risco os que chegam e os que já estão lá. Visitas e adoções são combinadas pelo Instagram.</p>
+      <p class="qs-nota qs-revela">Por segurança dos animais, não divulgamos o endereço do abrigo: abandonos na porta colocam em risco os que chegam e os que já estão lá. Visitas e adoções são combinadas pelo Instagram.</p>
     </section>
 
-    <section class="sobre-bloco">
-      <h2>Como ajudar</h2>
-      <div class="sobre-grade">
-        <a class="sobre-card sobre-acao" href="./"><h3>Adote</h3><p>Conheça os animais que estão esperando uma família.</p></a>
-        <a class="sobre-card sobre-acao" href="./#doar"><h3>Doe</h3><p>Ração, remédios e castrações dependem de doações. Qualquer valor via PIX ajuda.</p></a>
-        <a class="sobre-card sobre-acao" href="https://www.instagram.com/abrigodosanimaisrefugados/" target="_blank" rel="noopener"><h3>Seja voluntário</h3><p>Mande uma mensagem no Instagram e conte como você pode ajudar.</p></a>
-        <a class="sobre-card sobre-acao" href="https://www.tiktok.com/@aadarpagoiania" target="_blank" rel="noopener"><h3>Divulgue</h3><p>Siga e compartilhe nossos posts: cada compartilhamento aproxima um animal de casa.</p></a>
+    <section class="qs-secao">
+      <h2 class="qs-titulo qs-revela"><span>05</span>Como ajudar</h2>
+      <div class="qs-acoes">
+        <a class="qs-acao qs-revela" href="./"><strong>Adote</strong><span>Conheça os animais que estão esperando uma família.</span><i aria-hidden="true">&rarr;</i></a>
+        <a class="qs-acao qs-revela" href="./#doar"><strong>Doe</strong><span>Ração, remédios e castrações dependem de doações. Qualquer valor via PIX ajuda.</span><i aria-hidden="true">&rarr;</i></a>
+        <a class="qs-acao qs-revela" href="https://www.instagram.com/abrigodosanimaisrefugados/" target="_blank" rel="noopener"><strong>Seja voluntário</strong><span>Mande uma mensagem no Instagram e conte como você pode ajudar.</span><i aria-hidden="true">&rarr;</i></a>
+        <a class="qs-acao qs-revela" href="https://www.tiktok.com/@aadarpagoiania" target="_blank" rel="noopener"><strong>Divulgue</strong><span>Siga e compartilhe nossos posts: cada compartilhamento aproxima um animal de casa.</span><i aria-hidden="true">&rarr;</i></a>
       </div>
     </section>
   </main>
@@ -112,9 +140,42 @@
   </footer>
 
   <script>
-    // Números ao vivo a partir dos mesmos dados da página de adoção.
+    // Entrada suave dos blocos conforme aparecem na tela.
+    const revelar = new IntersectionObserver(entradas => {
+      for (const e of entradas) if (e.isIntersecting) { e.target.classList.add("qs-visivel"); revelar.unobserve(e.target); }
+    }, { threshold: .15 });
+    document.querySelectorAll(".qs-revela").forEach(el => revelar.observe(el));
+
+    // Contagem de 0 até o número quando a faixa escura aparece.
+    const semMovimento = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const contar = new IntersectionObserver(entradas => {
+      for (const e of entradas) {
+        if (!e.isIntersecting) continue;
+        contar.unobserve(e.target);
+        const alvo = Number(e.target.dataset.contar), prefixo = e.target.dataset.prefixo || "";
+        if (semMovimento) continue;
+        const inicio = performance.now();
+        const passo = agora => {
+          const t = Math.min(1, (agora - inicio) / 1400), suave = 1 - Math.pow(1 - t, 3);
+          e.target.textContent = prefixo + Math.round(alvo * suave).toLocaleString("pt-BR");
+          if (t < 1) requestAnimationFrame(passo);
+        };
+        requestAnimationFrame(passo);
+      }
+    }, { threshold: .6 });
+    document.querySelectorAll("[data-contar]").forEach(el => contar.observe(el));
+
+    // Adotados ao vivo e faixa com os animais disponíveis, dos mesmos dados da página de adoção.
     fetch("dados-animais.json").then(r => r.json()).then(animais => {
       document.getElementById("num-adotados").textContent = animais.filter(a => a.status === "Adotado").length;
+      const disponiveis = animais.filter(a => a.status === "Disponível" && a.foto).sort(() => Math.random() - .5).slice(0, 14);
+      if (!disponiveis.length) return;
+      const cartao = a => `<a class="qs-bicho" href="./"><img src="fotos/${a.foto}" alt="${a.nome}" loading="lazy"${a.enquadramento ? ` style="object-position:${a.enquadramento}"` : ""}><span>${a.nome}</span></a>`;
+      const faixa = document.getElementById("qs-faixa");
+      faixa.innerHTML = disponiveis.map(cartao).join("");
+      // segunda cópia escondida dos leitores de tela, só pra emendar o loop da animação
+      faixa.insertAdjacentHTML("beforeend", `<div style="display:contents" aria-hidden="true">${disponiveis.map(cartao).join("").replaceAll("<a ", "<a tabindex=\"-1\" ")}</div>`);
+      faixa.closest(".qs-vitrine").hidden = false;
     }).catch(() => {});
   </script>
 </body>
