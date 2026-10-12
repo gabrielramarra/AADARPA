@@ -425,101 +425,18 @@ function slug(nome) {
 }
 
 // Barra "Compartilhar:" (ficha do animal, bloco de doação e janela do topo):
-// copiar link, Instagram, WhatsApp e Facebook. Nenhum site posta direto no
-// Status do WhatsApp nem nos Stories do Instagram, então:
-// - WhatsApp: no celular abre o app (whatsapp://) na tela "Enviar para...",
-//   onde "Meu status" aparece no topo; no computador, o WhatsApp Web (wa.me).
-// - Instagram: no celular geramos uma imagem 1080x1920 e abrimos o menu de
-//   compartilhar, onde o Instagram oferece Story, Feed ou Direct. A imagem fica
-//   pronta antes do toque porque o Safari só abre esse menu de imediato. No
-//   computador não há como postar no Instagram, então o botão nem aparece.
-// A escolha é pelo tipo de tela: Chrome/Edge no Windows também têm
-// navigator.share, mas ele abre a janela de compartilhar do Windows.
+// copiar link, X, WhatsApp e Facebook. Nenhum site posta direto no Status do
+// WhatsApp: no celular abrimos o app (whatsapp://) na tela "Enviar para...",
+// onde "Meu status" aparece no topo; no computador, o WhatsApp Web (wa.me).
+// A escolha é pelo tipo de tela, não pela existência de navigator.share
+// (Chrome/Edge no Windows também têm, mas abre a janela do Windows).
+// O Instagram ficou de fora: o iPhone não o oferece para imagens de sites e
+// não há link que poste nos Stories.
 const CELULAR = matchMedia("(pointer: coarse)").matches;
-const STORIES_OK = CELULAR && !!navigator.canShare;
-const STORIES = {}; // chave -> File pronto ("site" ou "ficha:<nome>")
-
-function carregarImagem(src) {
-  return new Promise((ok, erro) => {
-    const img = new Image();
-    img.onload = () => ok(img);
-    img.onerror = erro;
-    img.src = src;
-  });
-}
-
-function arredondado(g, x, y, w, h, r) {
-  g.beginPath();
-  g.moveTo(x + r, y);
-  g.arcTo(x + w, y, x + w, y + h, r);
-  g.arcTo(x + w, y + h, x, y + h, r);
-  g.arcTo(x, y + h, x, y, r);
-  g.arcTo(x, y, x + w, y, r);
-  g.closePath();
-}
-
-async function gerarStory({ foto, titulo, linha }) {
-  await document.fonts.load('800 120px "Fraunces"').catch(() => {});
-  const [img, logo] = await Promise.all([carregarImagem(foto), carregarImagem("logo.png")]);
-  const c = document.createElement("canvas");
-  c.width = 1080;
-  c.height = 1920;
-  const g = c.getContext("2d");
-  const ROXO = "#403287", AMARELO = "#f2cb44";
-  const SANS = "-apple-system, 'Segoe UI', Roboto, sans-serif";
-  g.fillStyle = ROXO;
-  g.fillRect(0, 0, 1080, 1920);
-  // logo no topo, num círculo branco
-  g.fillStyle = "white";
-  g.beginPath();
-  g.arc(540, 190, 95, 0, Math.PI * 2);
-  g.fill();
-  g.drawImage(logo, 455, 105, 170, 170);
-  // foto 4:5 recortada como nos cards (centro na horizontal, 25% do topo)
-  const W = 860, H = 1075, X = 110, Y = 340;
-  const escala = Math.max(W / img.width, H / img.height);
-  const sw = W / escala, sh = H / escala;
-  const sx = (img.width - sw) / 2, sy = (img.height - sh) * 0.25;
-  g.save();
-  g.fillStyle = "white";
-  arredondado(g, X - 14, Y - 14, W + 28, H + 28, 44);
-  g.fill();
-  arredondado(g, X, Y, W, H, 32);
-  g.clip();
-  g.drawImage(img, sx, sy, sw, sh, X, Y, W, H);
-  g.restore();
-  // título (nome do animal), encolhendo até caber
-  g.textAlign = "center";
-  g.fillStyle = AMARELO;
-  let tamanho = 130;
-  do {
-    g.font = `800 ${tamanho}px Fraunces, Georgia, serif`;
-    tamanho -= 6;
-  } while (g.measureText(titulo).width > 940 && tamanho > 60);
-  g.fillText(titulo, 540, 1580);
-  g.fillStyle = "white";
-  g.font = `600 46px ${SANS}`;
-  g.fillText(linha, 540, 1660);
-  // endereço do site num selo amarelo
-  g.fillStyle = AMARELO;
-  arredondado(g, 290, 1730, 500, 96, 48);
-  g.fill();
-  g.fillStyle = ROXO;
-  g.font = `700 46px ${SANS}`;
-  g.fillText("aadarpa.ong.br", 540, 1793);
-  const blob = await new Promise(ok => c.toBlob(ok, "image/jpeg", 0.9));
-  return new File([blob], "aadarpa-stories.jpg", { type: "image/jpeg" });
-}
-
-function prepararStory(chave, dados) {
-  if (!STORIES_OK || chave in STORIES) return;
-  STORIES[chave] = null;
-  gerarStory(dados).then(arquivo => { STORIES[chave] = arquivo; }).catch(() => { delete STORIES[chave]; });
-}
 
 const BOTOES_COMPARTILHAR = [
   ["copiar", "icone-link", "Copiar link"],
-  ["instagram", "icone-instagram", "Instagram"],
+  ["x", "icone-x", "X"],
   ["whatsapp", "icone-whatsapp", "WhatsApp"],
   ["facebook", "icone-facebook", "Facebook"],
 ];
@@ -527,7 +444,6 @@ const BOTOES_COMPARTILHAR = [
 function montarBarrasCompartilhar() {
   document.querySelectorAll(".compartilhar").forEach(barra => {
     const botoes = BOTOES_COMPARTILHAR
-      .filter(([acao]) => acao !== "instagram" || STORIES_OK)
       .map(([acao, icone, nome]) =>
         `<button type="button" class="compartilhar-${acao}" data-acao="${acao}"><svg aria-hidden="true"><use href="#${icone}"/></svg><span>${nome}</span></button>`)
       .join("");
@@ -540,13 +456,13 @@ function montarBarrasCompartilhar() {
 function alvoDaBarra(barra) {
   const a = barra.dataset.alvo === "ficha" ? fichaAtual : null;
   if (!a) return {
-    url: "https://aadarpa.ong.br/", chave: "site",
+    url: "https://aadarpa.ong.br/",
     texto: "Cães e gatos do abrigo AADARPA estão esperando uma família em Goiânia 🐾 Adote ou ajude:",
     local: barra.closest("dialog") ? "topo" : "apoio",
   };
   const femea = a.sexo === "Fêmea";
   return {
-    url: `https://aadarpa.ong.br/#${slug(a.nome)}`, chave: "ficha:" + a.nome, local: "ficha", animal: a.nome,
+    url: `https://aadarpa.ong.br/#${slug(a.nome)}`, local: "ficha", animal: a.nome,
     texto: `Conheça ${femea ? "a" : "o"} ${a.nome}! ${femea ? "Ela" : "Ele"} está esperando uma família no abrigo AADARPA, em Goiânia 🐾`,
   };
 }
@@ -554,20 +470,6 @@ function alvoDaBarra(barra) {
 // registra antes de sair da página (beacon garante a entrega)
 function registrarCompartilhar(alvo, metodo) {
   if (window.gtag) gtag("event", "compartilhar", { local: alvo.local, ...(alvo.animal && { animal: alvo.animal }), metodo, transport_type: "beacon" });
-}
-
-// No iPhone o Instagram não aparece no menu de compartilhar para imagens
-// vindas de um site. Então a janela "Postar nos Stories" faz em dois passos:
-// salvar a imagem (menu do sistema, "Salvar Imagem") e abrir a câmera de
-// Stories do Instagram (instagram://story-camera), onde a foto salva aparece.
-let storiesAtual = null; // { alvo, arquivo, previa }
-function abrirCaixaStories(alvo) {
-  const arquivo = STORIES[alvo.chave] || STORIES.site;
-  if (!arquivo) return;
-  if (storiesAtual) URL.revokeObjectURL(storiesAtual.previa);
-  storiesAtual = { alvo, arquivo, previa: URL.createObjectURL(arquivo) };
-  document.getElementById("stories-previa").src = storiesAtual.previa;
-  document.getElementById("caixa-stories").showModal();
 }
 
 function compartilharVia(acao, alvo, botao) {
@@ -583,9 +485,9 @@ function compartilharVia(acao, alvo, botao) {
   } else if (acao === "facebook") {
     registrar("facebook");
     window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(alvo.url), "_blank", "noopener");
-  } else if (acao === "instagram") {
-    registrar("instagram_abrir");
-    abrirCaixaStories(alvo);
+  } else if (acao === "x") {
+    registrar("x");
+    window.open("https://x.com/intent/post?text=" + encodeURIComponent(alvo.texto) + "&url=" + encodeURIComponent(alvo.url), "_blank", "noopener");
   }
 }
 
@@ -594,7 +496,6 @@ let fichaAtual = null;
 function abrirFicha(a) {
   const ficha = document.getElementById("ficha");
   fichaAtual = a;
-  prepararStory("ficha:" + a.nome, { foto: urlFoto(a.foto), titulo: a.nome, linha: (a.sexo === "Fêmea" ? "Ela" : "Ele") + " está esperando uma família 🐾" });
   const femea = a.sexo === "Fêmea";
   const artigo = femea ? "a" : "o";
   ficha.dataset.sexo = a.sexo || "";
@@ -628,25 +529,11 @@ function abrirFicha(a) {
     const botao = e.target.closest(".compartilhar [data-acao]");
     if (botao) compartilharVia(botao.dataset.acao, alvoDaBarra(botao.closest(".compartilhar")), botao);
   });
-  // janela "Postar nos Stories"
-  const caixaStories = document.getElementById("caixa-stories");
-  caixaStories.querySelector(".ficha-fechar").addEventListener("click", () => caixaStories.close());
-  caixaStories.addEventListener("click", e => { if (e.target === caixaStories) caixaStories.close(); });
-  document.getElementById("stories-salvar").addEventListener("click", () => {
-    const { alvo, arquivo } = storiesAtual;
-    if (!navigator.canShare({ files: [arquivo] })) return;
-    navigator.share({ files: [arquivo] }).then(() => registrarCompartilhar(alvo, "stories_salvar")).catch(() => { /* cancelado */ });
-  });
-  document.getElementById("stories-abrir").addEventListener("click", () => {
-    registrarCompartilhar(storiesAtual.alvo, "stories_abrir_instagram");
-    location.href = "instagram://story-camera";
-  });
   // botão geral de compartilhar do topo
   const caixa = document.getElementById("caixa-compartilhar");
   document.getElementById("abrir-compartilhar").addEventListener("click", () => caixa.showModal());
   caixa.querySelector(".ficha-fechar").addEventListener("click", () => caixa.close());
   caixa.addEventListener("click", e => { if (e.target === caixa) caixa.close(); });
-  addEventListener("load", () => prepararStory("site", { foto: "imagens/caes-do-abrigo.jpg", titulo: "Adote um amigo.", linha: "Cães e gatos esperando uma família em Goiânia" }));
 })();
 
 (async function init() {

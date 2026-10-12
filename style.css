@@ -560,7 +560,7 @@ body.modo-ajuste .ajuste-info {
 .compartilhar-botoes button:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; border-radius: 8px; }
 /* cores das marcas; ícone escuro no verde do WhatsApp por contraste */
 .compartilhar-copiar svg { background: var(--paleta-amarelo); color: var(--paleta-roxo); }
-.compartilhar-instagram svg { background: linear-gradient(45deg, #f9ce34, #ee2a7b 50%, #6228d7); color: white; }
+.compartilhar-x svg { background: #000; color: white; }
 .compartilhar-whatsapp svg { background: #25d366; color: #063b2a; }
 .compartilhar-facebook svg { background: #1877f2; color: white; }
 /* na ficha, separada do "Quero adotar" (que abre o Instagram) */
@@ -584,23 +584,6 @@ body.modo-ajuste .ajuste-info {
 .caixa-compartilhar h2 { margin: 0 0 .3rem; font-family: var(--serifada); font-weight: 800; font-size: 1.45rem; color: var(--paleta-roxo); }
 .caixa-compartilhar p { margin: 0; color: var(--cinza); font-size: .92rem; }
 .caixa-compartilhar .compartilhar-botoes { justify-content: center; }
-
-/* Janela "Postar nos Stories" */
-.caixa-stories img { display: block; height: min(38vh, 22rem); aspect-ratio: 9 / 16; margin: 1rem auto; border-radius: 14px; box-shadow: 0 10px 28px rgba(0, 0, 0, .25); background: var(--borda); }
-.stories-passos { display: grid; gap: .9rem; margin: 0; padding: 0; list-style: none; text-align: left; }
-.stories-passos button {
-  width: 100%;
-  min-height: 2.9rem;
-  border: 0;
-  border-radius: 999px;
-  color: white;
-  font-weight: 700;
-  font-size: .98rem;
-  cursor: pointer;
-}
-#stories-salvar { background: var(--paleta-roxo); }
-#stories-abrir { background: linear-gradient(90deg, #d62976 0%, #962fbf 100%); }
-.stories-passos span { display: block; margin-top: .35rem; font-size: .8rem; color: var(--cinza); }
 
 /* Banner do Instagram, no mesmo formato do banner do TikTok */
 .insta {
