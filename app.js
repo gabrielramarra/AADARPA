@@ -112,17 +112,21 @@ function montarFiltroBotoes(id, atributo, estado, render) {
 }
 
 async function copiarTexto(texto, botao) {
+  let copiou = false;
   try {
     await navigator.clipboard.writeText(texto);
+    copiou = true;
   } catch {
     // navegador sem permissão de área de transferência (ou página sem https)
     const campo = document.createElement("textarea");
     campo.value = texto;
     document.body.appendChild(campo);
     campo.select();
-    document.execCommand("copy");
+    copiou = document.execCommand("copy");
     campo.remove();
   }
+  // analytics.js escuta isto pra contar copiar_pix só quando a cópia deu certo
+  if (copiou) document.dispatchEvent(new CustomEvent("aadarpa:copiou", { detail: { botao } }));
   if (!botao) return;
   const original = botao.textContent;
   botao.textContent = "Copiado!";

@@ -1,0 +1,37 @@
+// Google Analytics 4 e os eventos de conversão, num lugar só para todas as
+// páginas. As páginas carregam este arquivo com defer, e ele injeta o gtag.js
+// do Google de forma assíncrona: nada aqui bloqueia a renderização.
+// Só observa: não chama preventDefault nem muda o comportamento de nada.
+// Abra qualquer página com ?debug_ga no fim da URL para ver os eventos no
+// DebugView do GA4.
+(function () {
+  const ID = "G-154PZY9YF0";
+
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = "https://www.googletagmanager.com/gtag/js?id=" + ID;
+  document.head.appendChild(script);
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { dataLayer.push(arguments); };
+  gtag("js", new Date());
+  gtag("config", ID, new URLSearchParams(location.search).has("debug_ga") ? { debug_mode: true } : {});
+
+  // Cliques de saída: beacon entrega o hit mesmo se a página for descarregada.
+  const enviar = (nome, params) => gtag("event", nome, { ...params, transport_type: "beacon" });
+
+  document.addEventListener("click", e => {
+    const link = e.target.closest("a[href]");
+    if (!link) return;
+    const rede = /(^|\.)instagram\.com$/.test(link.hostname) ? "instagram"
+      : /(^|\.)tiktok\.com$/.test(link.hostname) ? "tiktok" : null;
+    if (!rede) return;
+    // "Quero adotar" da home leva ao Instagram; os demais são links de rede social.
+    if (link.classList.contains("cta")) enviar("clique_adotar", { destino: rede, origem: location.pathname });
+    else enviar("clique_social", { rede });
+  }, { capture: true });
+
+  document.addEventListener("aadarpa:copiou", e => {
+    if (e.detail && e.detail.botao && e.detail.botao.id === "pix-copiar") enviar("copiar_pix", {});
+  });
+})();

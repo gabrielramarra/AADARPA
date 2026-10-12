@@ -481,6 +481,21 @@ body.modo-ajuste .ajuste-info {
   .hero-nav { position: relative; top: auto; right: auto; display: inline-block; margin-bottom: .6rem; }
 }
 
+/* Página de política de privacidade */
+.politica {
+  max-width: 46rem;
+  margin: 2rem auto 0;
+  padding: 2rem 2rem 1rem;
+  border-radius: 16px;
+  background: white;
+  border: 1px solid var(--borda);
+  line-height: 1.65;
+}
+.politica h2 { margin: 1.6rem 0 .4rem; font-size: 1.15rem; color: var(--terracota-escuro); }
+.politica-data { margin: 0; font-size: .85rem; color: var(--cinza); }
+.politica a { color: var(--terracota-escuro); }
+@media (max-width: 600px) { .politica { margin: 1.5rem 1rem 0; padding: 1.4rem 1.2rem .6rem; } }
+
 footer {
   text-align: center;
   padding: 2rem 1.5rem 3rem;
@@ -488,6 +503,7 @@ footer {
   font-size: .9rem;
 }
 footer a { color: var(--terracota-escuro); }
+.aviso-cookies { margin-top: 1rem; font-size: .78rem; }
 
 /* Em tela estreita, a pilha de espaçamentos (moldura + banner + caixa do
    PIX + botão) não deixa espaço suficiente pro e-mail aparecer inteiro, e o
