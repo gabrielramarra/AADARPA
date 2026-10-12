@@ -1,0 +1,3 @@
+#!/bin/sh
+# Atualiza a versão dos CSS/JS nas páginas antes de cada commit (scripts/versionar.mjs).
+node scripts/versionar.mjs --git-add
