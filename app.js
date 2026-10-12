@@ -435,7 +435,7 @@ function abrirFicha(a) {
     return li;
   }));
   document.getElementById("ficha-texto").textContent = a.descricao ||
-    `${femea ? "Ela" : "Ele"} está esperando uma família. Mande uma mensagem e contamos tudo sobre ${femea ? "ela" : "ele"}: jeito, saúde e como funciona a adoção.`;
+    `${femea ? "Ela" : "Ele"} está esperando uma família. Mande uma mensagem e contamos tudo sobre ${femea ? "ela" : "ele"}: personalidade, saúde e como funciona a adoção.`;
   const adotar = document.getElementById("ficha-adotar");
   adotar.textContent = `Quero adotar ${artigo} ${a.nome}`;
   adotar.dataset.animal = a.nome;
