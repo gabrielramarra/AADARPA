@@ -790,5 +790,29 @@
     "descricao": "",
     "enquadramento": "100% 40%",
     "zoom": "1.17"
+  },
+  {
+    "id": 71,
+    "nome": "Ted",
+    "sexo": "Macho",
+    "idade": "12 anos",
+    "porte": "Grande",
+    "status": "Disponível",
+    "foto": "ted.jpg",
+    "descricao": "",
+    "enquadramento": "",
+    "zoom": ""
+  },
+  {
+    "id": 72,
+    "nome": "Jade",
+    "sexo": "Fêmea",
+    "idade": "4 meses",
+    "porte": "Médio",
+    "status": "Disponível",
+    "foto": "jade.jpg",
+    "descricao": "",
+    "enquadramento": "",
+    "zoom": ""
   }
 ]
