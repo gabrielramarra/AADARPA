@@ -164,8 +164,8 @@
     "status": "Disponível",
     "foto": "bob.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "0% 100%",
+    "zoom": "1.26"
   },
   {
     "id": 18,
