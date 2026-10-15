@@ -1,0 +1,3 @@
+#!/bin/sh
+# Guarda no Dropbox as fotos que saíram do site (scripts/arquivar-fotos.mjs).
+node scripts/arquivar-fotos.mjs || true
