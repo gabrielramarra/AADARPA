@@ -800,8 +800,8 @@
     "status": "Disponível",
     "foto": "ted.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "82% 0%",
+    "zoom": "1.08"
   },
   {
     "id": 72,
@@ -812,7 +812,7 @@
     "status": "Disponível",
     "foto": "jade.jpg",
     "descricao": "",
-    "enquadramento": "",
-    "zoom": ""
+    "enquadramento": "93% 12%",
+    "zoom": "1.17"
   }
 ]
