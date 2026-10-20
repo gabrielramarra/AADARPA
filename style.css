@@ -921,3 +921,117 @@ footer a { color: var(--terracota-escuro); }
   #grid-adotados .card-body { padding: .6rem .7rem; }
   #grid-adotados .card-body h3 { font-size: 1rem; }
 }
+
+/* Rifa da clínica: campanha temporária até 30/10/2026 (rifa.js). Apagar este bloco quando acabar. */
+.rifa-faixa {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem .9rem;
+  padding: .6rem 3rem .6rem 1rem;
+  background: var(--paleta-amarelo);
+  color: var(--paleta-roxo);
+  font-size: .95rem;
+  line-height: 1.35;
+  text-align: center;
+}
+.rifa-faixa p { margin: 0; }
+.rifa-faixa-bilhete { display: inline-block; animation: rifa-balanco 1.8s ease-in-out infinite; }
+.rifa-faixa-botao {
+  display: inline-block;
+  padding: .4rem 1.1rem;
+  border-radius: 999px;
+  background: var(--paleta-roxo);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  animation: rifa-pulso 1.8s ease-in-out infinite;
+}
+.rifa-faixa-botao:focus-visible { outline: 3px solid var(--paleta-roxo); outline-offset: 3px; }
+.rifa-faixa-fechar {
+  position: absolute;
+  top: 50%;
+  right: .5rem;
+  transform: translateY(-50%);
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--paleta-roxo);
+  font-size: 1rem;
+  cursor: pointer;
+}
+.rifa-faixa-fechar:hover, .rifa-faixa-fechar:focus-visible { background: rgba(64, 50, 135, .14); outline: none; }
+
+.rifa-destaque {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+  max-width: 52rem;
+  margin: 0 auto 1.8rem;
+  padding: 1rem 1.25rem;
+  border: 3px solid var(--paleta-amarelo);
+  border-radius: 18px;
+  background: #f9f5ea;
+  color: #1f1a3d;
+  text-align: left;
+  text-decoration: none;
+  transition: transform .2s;
+}
+.rifa-destaque:hover { transform: translateY(-2px); }
+.rifa-destaque:focus-visible { outline: 3px solid var(--paleta-amarelo); outline-offset: 3px; }
+.rifa-arte { width: 8.5rem; height: auto; }
+.rifa-texto { display: grid; gap: .35rem; }
+.rifa-rotulo { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--paleta-azul); }
+.rifa-titulo { font-family: var(--serifada); font-weight: 800; font-size: 1.5rem; line-height: 1.15; color: var(--paleta-roxo); text-wrap: balance; }
+.rifa-descricao { font-size: .92rem; line-height: 1.45; color: #3b3557; }
+.rifa-botao {
+  justify-self: start;
+  margin-top: .3rem;
+  padding: .55rem 1.3rem;
+  border-radius: 999px;
+  background: var(--paleta-roxo);
+  color: #fff;
+  font-weight: 700;
+  animation: rifa-pulso 1.8s ease-in-out infinite;
+}
+@media (min-width: 760px) {
+  /* no quadro de doação, a arte larga vira o fundo e o texto ocupa o espaço vazio à esquerda */
+  .apoio .rifa-destaque {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 16rem;
+    padding: 1.5rem 1.75rem;
+    background: #f9f5ea url(imagens/rifa-larga.jpg) no-repeat right center / auto 100%;
+  }
+  .apoio .rifa-arte { display: none; }
+  .apoio .rifa-texto { max-width: 46%; }
+}
+@media (max-width: 480px) {
+  .rifa-destaque { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; }
+  .rifa-arte { width: 10rem; }
+  .rifa-botao { justify-self: center; }
+}
+.doar-card .rifa-destaque { grid-template-columns: minmax(0, 1fr); justify-items: center; margin: 0 0 1.2rem; text-align: center; }
+.doar-card .rifa-arte { width: 10rem; }
+.doar-card .rifa-botao { justify-self: center; }
+
+/* chama atenção sem piscar: o botão pulsa com um brilho e o bilhete balança */
+@keyframes rifa-pulso {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(64, 50, 135, .5); }
+  50% { transform: scale(1.06); box-shadow: 0 0 0 8px rgba(64, 50, 135, 0); }
+}
+@keyframes rifa-balanco {
+  0%, 100% { transform: rotate(0); }
+  20% { transform: rotate(-14deg); }
+  40% { transform: rotate(12deg); }
+  60% { transform: rotate(-6deg); }
+  80% { transform: rotate(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rifa-faixa-botao, .rifa-faixa-bilhete, .rifa-botao { animation: none; }
+  .rifa-destaque { transition: none; }
+}
