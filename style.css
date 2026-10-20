@@ -999,17 +999,7 @@ footer a { color: var(--terracota-escuro); }
   font-weight: 700;
   animation: rifa-pulso 1.8s ease-in-out infinite;
 }
-@media (min-width: 760px) {
-  /* no quadro de doação, a arte larga vira o fundo e o texto ocupa o espaço vazio à esquerda */
-  .apoio .rifa-destaque {
-    grid-template-columns: minmax(0, 1fr);
-    min-height: 16rem;
-    padding: 1.5rem 1.75rem;
-    background: #f9f5ea url(imagens/rifa-larga.jpg) no-repeat right center / auto 100%;
-  }
-  .apoio .rifa-arte { display: none; }
-  .apoio .rifa-texto { max-width: 46%; }
-}
+.apoio-texto .rifa-destaque { margin: 0 0 1.25rem; }
 @media (max-width: 480px) {
   .rifa-destaque { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; }
   .rifa-arte { width: 10rem; }
