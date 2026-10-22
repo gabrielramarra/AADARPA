@@ -32,8 +32,8 @@
     "status": "Disponível",
     "foto": "cristal.jpg",
     "descricao": "",
-    "enquadramento": "89% 100%",
-    "zoom": "1.36"
+    "enquadramento": "",
+    "zoom": ""
   },
   {
     "id": 7,
@@ -68,8 +68,8 @@
     "status": "Disponível",
     "foto": "glorinha.jpg",
     "descricao": "",
-    "enquadramento": "55% 100%",
-    "zoom": "1.26"
+    "enquadramento": "",
+    "zoom": ""
   },
   {
     "id": 10,
@@ -524,8 +524,8 @@
     "status": "Disponível",
     "foto": "bidu.jpeg",
     "descricao": "",
-    "enquadramento": "59% 0%",
-    "zoom": "1.26"
+    "enquadramento": "",
+    "zoom": ""
   },
   {
     "id": 48,
