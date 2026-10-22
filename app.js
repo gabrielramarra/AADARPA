@@ -404,7 +404,7 @@ function slug(nome) {
 
 let fichaAtual = null;
 
-function abrirFicha(a) {
+function abrirFicha(a, origem = "card") {
   const ficha = document.getElementById("ficha");
   fichaAtual = a;
   const femea = a.sexo === "Fêmea";
@@ -428,6 +428,8 @@ function abrirFicha(a) {
   document.getElementById("ficha-dica").textContent =
     `Abre uma conversa com o abrigo no Instagram. Conte que viu ${artigo} ${a.nome} no site.`;
   ficha.showModal();
+  // analytics.js transforma isto no evento ver_animal (quais animais as pessoas mais abrem)
+  document.dispatchEvent(new CustomEvent("aadarpa:ficha", { detail: { animal: a.nome, origem } }));
 }
 
 (function configurarFicha() {
@@ -526,7 +528,7 @@ function abrirFicha(a) {
   // link compartilhado de um animal (aadarpa.ong.br/#nome) abre a ficha dele
   const alvo = decodeURIComponent(location.hash.slice(1));
   const doLink = alvo && !MODO_AJUSTE && animais.find(a => a.status === "Disponível" && slug(a.nome) === alvo);
-  if (doLink) abrirFicha(doLink);
+  if (doLink) abrirFicha(doLink, "link");
   // Âncora vinda de outra página (ex.: /#doar): o navegador rola antes de a lista
   // de animais existir, e os cards empurram o bloco pra baixo. Rola de novo agora,
   // e outra vez quando a fonte dos títulos termina de carregar.

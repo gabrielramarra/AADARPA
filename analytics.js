@@ -44,4 +44,7 @@
     const id = e.detail && e.detail.botao && e.detail.botao.id;
     if (id && id.startsWith("pix-copiar")) enviar("copiar_pix", { forma: id === "pix-copiar-codigo" ? "codigo" : "chave", origem: location.pathname });
   });
+
+  // ficha de um animal aberta: pelo card ("card") ou por link compartilhado ("link")
+  document.addEventListener("aadarpa:ficha", e => enviar("ver_animal", { animal: e.detail.animal, origem: e.detail.origem }));
 })();
