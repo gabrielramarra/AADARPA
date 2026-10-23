@@ -30,13 +30,14 @@ jobs:
 
       - name: Publicar se algo mudou
         run: |
-          if git diff --quiet -- dados-animais.json; then
+          # a/ = páginas de compartilhamento de cada animal (foto na pré-visualização)
+          git add -A dados-animais.json a
+          if git diff --cached --quiet; then
             echo "Sem mudanças, nada a publicar."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add dados-animais.json
           git commit -m "Sincroniza dados-animais.json com o Baserow"
           # se outro commit chegou no meio, o JSON recém-gerado do Baserow prevalece
           git pull --rebase -X theirs

@@ -3,7 +3,8 @@
 // vacinas). Uso: node scripts/gerar-dados.mjs
 // Precisa de BASEROW_TOKEN e BASEROW_TABLE_ID no ambiente: localmente, via
 // .env na raiz do repositório; no GitHub Actions, via secrets do workflow.
-import { existsSync, readFileSync, writeFileSync } from "fs";
+import { createHash } from "crypto";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
@@ -58,6 +59,61 @@ async function main() {
   const destino = join(raiz, "dados-animais.json");
   writeFileSync(destino, JSON.stringify(animais, null, 2) + "\n");
   console.log(`${animais.length} animais escritos em dados-animais.json`);
+  gerarPaginasDeCompartilhamento(animais);
+}
+
+// mesma regra do slug() do app.js: "Poison (Malinois)" -> "poison-malinois"
+const slug = nome => nome.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const html = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+
+// WhatsApp, Facebook etc. não leem o "#" do endereço nem rodam JavaScript, então
+// aadarpa.ong.br/#jade sempre mostrava a imagem geral do site. Cada animal disponível
+// ganha aadarpa.ong.br/a/<slug>/ com a foto dele na pré-visualização; quem abre o
+// link é levado na hora para a ficha (/#<slug>). A pasta a/ é refeita a cada geração.
+function gerarPaginasDeCompartilhamento(animais) {
+  const pasta = join(raiz, "a");
+  rmSync(pasta, { recursive: true, force: true });
+  let n = 0;
+  for (const a of animais) {
+    if (a.status !== "Disponível" || !a.nome || !a.foto) continue;
+    const s = slug(a.nome);
+    const arquivoFoto = join(raiz, "fotos", a.foto);
+    // versão da foto no endereço: se a foto for trocada, o WhatsApp busca a nova
+    const versao = existsSync(arquivoFoto) ? "?v=" + createHash("sha256").update(readFileSync(arquivoFoto)).digest("hex").slice(0, 8) : "";
+    const femea = a.sexo === "Fêmea";
+    const titulo = `Adote ${femea ? "a" : "o"} ${a.nome} · AADARPA`;
+    const resumo = [a.sexo, a.porte && `porte ${a.porte.toLowerCase()}`, a.idade].filter(Boolean).join(" · ");
+    const descricao = `${resumo ? resumo + ". " : ""}${femea ? "Ela" : "Ele"} está esperando uma família no abrigo AADARPA, em Goiânia-GO.`;
+    mkdirSync(join(pasta, s), { recursive: true });
+    writeFileSync(join(pasta, s, "index.html"), `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${html(titulo)}</title>
+<meta name="description" content="${html(descricao)}">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://aadarpa.ong.br/#${s}">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="AADARPA">
+<meta property="og:title" content="${html(titulo)}">
+<meta property="og:description" content="${html(descricao)}">
+<meta property="og:url" content="https://aadarpa.ong.br/a/${s}/">
+<meta property="og:image" content="https://aadarpa.ong.br/fotos/${html(a.foto)}${versao}">
+<meta property="og:image:alt" content="Foto de ${html(a.nome)}">
+<meta name="twitter:card" content="summary_large_image">
+<meta http-equiv="refresh" content="0; url=/#${s}">
+<script>location.replace("/#${s}");</script>
+</head>
+<body>
+<p>Abrindo a ficha de ${html(a.nome)}… <a href="/#${s}">Ver no site</a></p>
+</body>
+</html>
+`);
+    n++;
+  }
+  console.log(`${n} páginas de compartilhamento em a/`);
 }
 
 // node scripts/gerar-dados.mjs --testar  confere o cálculo de idade sem chamar o Baserow

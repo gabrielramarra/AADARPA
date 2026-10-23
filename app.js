@@ -443,7 +443,7 @@ function abrirFicha(a, origem = "card") {
     if (!a) return null;
     const femea = a.sexo === "Fêmea";
     return {
-      url: `https://aadarpa.ong.br/#${slug(a.nome)}`, local: "ficha", animal: a.nome,
+      url: `https://aadarpa.ong.br/a/${slug(a.nome)}/`, local: "ficha", animal: a.nome,   // página com a foto dele na pré-visualização (scripts/gerar-dados.mjs)
       texto: `Conheça ${femea ? "a" : "o"} ${a.nome}! ${femea ? "Ela" : "Ele"} está esperando uma família no abrigo AADARPA, em Goiânia 🐾`,
     };
   };
