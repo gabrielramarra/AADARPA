@@ -1025,3 +1025,34 @@ footer a { color: var(--terracota-escuro); }
   .rifa-faixa-botao, .rifa-faixa-bilhete, .rifa-botao { animation: none; }
   .rifa-destaque { transition: none; }
 }
+
+/* Botão líquido (liquido.js): a camada .liquido desenha a pílula e a gota sob o texto.
+   Cores por botão nas variáveis; sem o script, o .cta continua como antes. */
+.cta { --liq-fundo: linear-gradient(180deg, #f6d96e 0%, var(--paleta-amarelo) 100%);
+       --liq-ativo: linear-gradient(115deg, var(--paleta-amarelo) 0%, #f5a54a 55%, var(--paleta-laranja) 100%);
+       --liq-brilho: rgba(243, 143, 34, .55); --liq-sombra: rgba(64, 50, 135, .3); }
+.cta-doar { --liq-fundo: linear-gradient(180deg, #4d3e9b 0%, var(--paleta-roxo) 100%);
+            --liq-ativo: linear-gradient(115deg, var(--paleta-roxo) 0%, var(--paleta-azul) 55%, #4a97d8 100%);
+            --liq-brilho: rgba(86, 179, 240, .6); --liq-sombra: rgba(31, 26, 61, .35); }
+.cta.cta-liquida { position: relative; isolation: isolate; background: none; box-shadow: none; }
+.cta.cta-liquida:hover, .cta.cta-liquida:active { transform: none; box-shadow: none; }
+.liquido {
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  filter: url(#cta-liquido) drop-shadow(0 8px 14px var(--liq-sombra));
+  transition: filter .35s ease;
+}
+.liquido-base, .liquido-gota span { position: absolute; background: var(--liq-fundo); }
+.liquido-base { inset: 0; border-radius: 999px; }
+.liquido-base::after, .liquido-gota span::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  background: var(--liq-ativo); opacity: 0; transition: opacity .35s ease;
+}
+.liquido-gota { position: absolute; left: 0; top: 0; width: 0; height: 0; }
+.liquido-gota span {
+  left: -1.2rem; top: -1.2rem; width: 2.4rem; height: 2.4rem; border-radius: 50%;
+  transform: scale(0); transition: transform .45s cubic-bezier(.34, 1.56, .64, 1);
+}
+.liquido-ativo .liquido { filter: url(#cta-liquido) drop-shadow(0 0 16px var(--liq-brilho)) drop-shadow(0 10px 22px var(--liq-sombra)); }
+.liquido-ativo .liquido-gota span { transform: scale(1); }
+.liquido-ativo .liquido-base::after, .liquido-ativo .liquido-gota span::after { opacity: 1; }
+.cta.cta-liquida:active .liquido-base { transform: scale(.97); }
