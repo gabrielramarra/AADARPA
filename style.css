@@ -1029,8 +1029,8 @@ footer a { color: var(--terracota-escuro); }
 /* Botão líquido (liquido.js): a camada .liquido desenha a pílula e a gota sob o texto.
    Cores por botão nas variáveis; sem o script, o .cta continua como antes. */
 .cta { --liq-fundo: linear-gradient(180deg, #f6d96e 0%, var(--paleta-amarelo) 100%);
-       --liq-ativo: linear-gradient(115deg, var(--paleta-amarelo) 0%, #f5a54a 55%, var(--paleta-laranja) 100%);
-       --liq-brilho: rgba(243, 143, 34, .55); --liq-sombra: rgba(64, 50, 135, .3); }
+       --liq-ativo: linear-gradient(115deg, #fbe7a1 0%, var(--paleta-amarelo) 50%, #f7dc78 100%);
+       --liq-brilho: rgba(242, 203, 68, .7); --liq-sombra: rgba(64, 50, 135, .3); }
 .cta-doar { --liq-fundo: linear-gradient(180deg, #4d3e9b 0%, var(--paleta-roxo) 100%);
             --liq-ativo: linear-gradient(115deg, var(--paleta-roxo) 0%, var(--paleta-azul) 55%, #4a97d8 100%);
             --liq-brilho: rgba(86, 179, 240, .6); --liq-sombra: rgba(31, 26, 61, .35); }
@@ -1049,7 +1049,7 @@ footer a { color: var(--terracota-escuro); }
 }
 .liquido-gota { position: absolute; left: 0; top: 0; width: 0; height: 0; }
 .liquido-gota span {
-  left: -1.2rem; top: -1.2rem; width: 2.4rem; height: 2.4rem; border-radius: 50%;
+  left: -.95rem; top: -.95rem; width: 1.9rem; height: 1.9rem; border-radius: 50%;
   transform: scale(0); transition: transform .45s cubic-bezier(.34, 1.56, .64, 1);
 }
 .liquido-ativo .liquido { filter: url(#cta-liquido) drop-shadow(0 0 16px var(--liq-brilho)) drop-shadow(0 10px 22px var(--liq-sombra)); }

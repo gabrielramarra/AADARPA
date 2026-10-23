@@ -24,7 +24,7 @@
     const gota = document.createElement("span");
     gota.className = "liquido-gota";
     gota.append(document.createElement("span"));
-    camada.append(base, gota);
+    camada.append(gota, base);   // gota por trás: só a parte que vaza da pílula aparece
     botao.prepend(camada);
     botao.classList.add("cta-liquida");
 
@@ -40,7 +40,7 @@
       const r = botao.getBoundingClientRect();
       const cx = r.width / 2, cy = r.height / 2;
       // empurra a gota para fora a partir do centro: ela "puxa" a borda na direção do cursor
-      alvo = { x: cx + (e.clientX - r.left - cx) * 1.05, y: cy + (e.clientY - r.top - cy) * 1.45 };
+      alvo = { x: cx + (e.clientX - r.left - cx) * 0.95, y: cy + (e.clientY - r.top - cy) * 1.2 };
       if (!quadro) quadro = requestAnimationFrame(animar);
     };
     botao.addEventListener("pointerenter", e => {
