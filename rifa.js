@@ -1,9 +1,9 @@
-// Campanha temporária da rifa da clínica (até 30/10/2026): faixa no topo das páginas
+// Campanha temporária da rifa da clínica (até 30/11/2026): faixa no topo das páginas
 // e os destaques marcados com data-rifa. Depois do prazo tudo some sozinho; quando a
 // campanha acabar, dá para apagar este arquivo, o bloco "Rifa" do style.css e os data-rifa.
 (function () {
   const LINK = "https://apprf.com/rifadosrefugados";
-  const FIM = new Date("2026-10-30T23:59:59-03:00");
+  const FIM = new Date("2026-11-30T23:59:59-03:00");
 
   const restante = FIM - Date.now();
   if (restante < 0) { document.querySelectorAll("[data-rifa]").forEach(e => e.remove()); return; }
@@ -22,7 +22,7 @@
   faixa.setAttribute("role", "region");
   faixa.setAttribute("aria-label", "Campanha da rifa");
   faixa.innerHTML =
-    '<p><span class="rifa-faixa-bilhete" aria-hidden="true">🎟️</span> <strong>Rifa da clínica:</strong> até 30/10 sua ajuda vale o dobro. <span class="rifa-faixa-prazo"></span></p>' +
+    '<p><span class="rifa-faixa-bilhete" aria-hidden="true">🎟️</span> <strong>Rifa da clínica:</strong> até 30/11 sua ajuda vale o dobro. <span class="rifa-faixa-prazo"></span></p>' +
     '<a class="rifa-faixa-botao" target="_blank" rel="noopener" data-evento="clique_rifa">Comprar rifa</a>' +
     '<button type="button" class="rifa-faixa-fechar" aria-label="Fechar aviso da rifa">✕</button>';
   faixa.querySelector(".rifa-faixa-prazo").textContent = prazo + ".";

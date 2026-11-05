@@ -922,7 +922,7 @@ footer a { color: var(--terracota-escuro); }
   #grid-adotados .card-body h3 { font-size: 1rem; }
 }
 
-/* Rifa da clínica: campanha temporária até 30/10/2026 (rifa.js). Apagar este bloco quando acabar. */
+/* Rifa da clínica: campanha temporária até 30/11/2026 (adiada de 30/10) (rifa.js). Apagar este bloco quando acabar. */
 .rifa-faixa {
   position: relative;
   display: flex;
